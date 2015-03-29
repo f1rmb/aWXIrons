@@ -1,0 +1,979 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="aWXIron" />
+		<Option pch_mode="2" />
+		<Option compiler="avr-gcc" />
+		<Build>
+			<Target title="Simulator - Debug">
+				<Option output="aWXIron" prefix_auto="1" extension_auto="0" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="GCC" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-DARDUSIM" />
+					<Add option="-DENABLE_API_NAME" />
+					<Add option="-D__AVR_ATmega328P__" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add directory="$(ARDUINO_DIR)/arduino/cores" />
+					<Add directory="$(ARDUINO_DIR)/arduino/variants/standard" />
+					<Add directory="$(ARDUINO_DIR)/include" />
+				</Compiler>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/ardusim" />
+				</Environment>
+			</Target>
+			<Target title="Simulator - Release">
+				<Option output="aWXIron" prefix_auto="1" extension_auto="0" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="GCC" />
+				<Compiler>
+					<Add option="-Os" />
+					<Add option="-DARDUSIM" />
+					<Add option="-DENABLE_API_NAME" />
+					<Add option="-D__AVR_ATmega328P__" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add directory="$(ARDUINO_DIR)/arduino/cores" />
+					<Add directory="$(ARDUINO_DIR)/arduino/variants/standard" />
+					<Add directory="$(ARDUINO_DIR)/include" />
+				</Compiler>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/ardusim" />
+				</Environment>
+			</Target>
+			<Target title="Tiny84 @ 16MHz">
+				<Option output="bin/Release/aWXIron.elf" prefix_auto="1" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-D__AVR_ATtiny84__" />
+					<Add option="-Os" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add option="-DCODE_BLOCKS" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/cores/arduino" />
+					<Add directory="$(ARDUINO_DIR)/libraries" />
+					<Add directory="$(SKETCH_DIR)/hardware/attiny/variants/tiny14" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/variants/tiny14" />
+					<Add directory="$(SKETCH_DIR)/libraries" />
+				</Compiler>
+				<Linker>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
+					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
+					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/arduino" />
+					<Variable name="BOARD" value="Tiny84 @ 16MHz" />
+					<Variable name="CPU_FREQ" value="16000000L" />
+					<Variable name="MAX_SIZE" value="8192" />
+					<Variable name="MAX_SRAM" value="512" />
+					<Variable name="MCU" value="attiny84" />
+					<Variable name="PROTOCOL" value="" />
+					<Variable name="SKETCH_DIR" value="$(HOME)/CodeBlocksArduino/sketches" />
+					<Variable name="UPLOAD_BAUDRATE" value="19200" />
+					<Variable name="UPLOAD_PORT" value="" />
+				</Environment>
+			</Target>
+			<Target title="Tiny84 @ 8MHz">
+				<Option output="bin/Release/aWXIron.elf" prefix_auto="1" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-D__AVR_ATtiny84__" />
+					<Add option="-Os" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add option="-DCODE_BLOCKS" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/cores/arduino" />
+					<Add directory="$(ARDUINO_DIR)/libraries" />
+					<Add directory="$(SKETCH_DIR)/hardware/attiny/variants/tiny14" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/variants/tiny14" />
+					<Add directory="$(SKETCH_DIR)/libraries" />
+				</Compiler>
+				<Linker>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
+					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
+					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/arduino" />
+					<Variable name="BOARD" value="Tiny84 @ 8MHz" />
+					<Variable name="CPU_FREQ" value="8000000L" />
+					<Variable name="MAX_SIZE" value="8192" />
+					<Variable name="MAX_SRAM" value="512" />
+					<Variable name="MCU" value="attiny84" />
+					<Variable name="PROTOCOL" value="" />
+					<Variable name="SKETCH_DIR" value="$(HOME)/CodeBlocksArduino/sketches" />
+					<Variable name="UPLOAD_BAUDRATE" value="19200" />
+					<Variable name="UPLOAD_PORT" value="" />
+				</Environment>
+			</Target>
+			<Target title="Tiny84 @ 1MHz">
+				<Option output="bin/Release/aWXIron.elf" prefix_auto="1" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-D__AVR_ATtiny84__" />
+					<Add option="-Os" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add option="-DCODE_BLOCKS" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/cores/arduino" />
+					<Add directory="$(ARDUINO_DIR)/libraries" />
+					<Add directory="$(SKETCH_DIR)/hardware/attiny/variants/tiny14" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/variants/tiny14" />
+					<Add directory="$(SKETCH_DIR)/libraries" />
+				</Compiler>
+				<Linker>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
+					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
+					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/arduino" />
+					<Variable name="BOARD" value="Tiny84 @ 1MHz" />
+					<Variable name="CPU_FREQ" value="1000000L" />
+					<Variable name="MAX_SIZE" value="8192" />
+					<Variable name="MAX_SRAM" value="512" />
+					<Variable name="MCU" value="attiny84" />
+					<Variable name="PROTOCOL" value="" />
+					<Variable name="SKETCH_DIR" value="$(HOME)/CodeBlocksArduino/sketches" />
+					<Variable name="UPLOAD_BAUDRATE" value="19200" />
+					<Variable name="UPLOAD_PORT" value="" />
+				</Environment>
+			</Target>
+			<Target title="Tiny85 @ 16MHz">
+				<Option output="bin/Release/aWXIron.elf" prefix_auto="1" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-D__AVR_ATtiny85__" />
+					<Add option="-Os" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add option="-DCODE_BLOCKS" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/cores/arduino" />
+					<Add directory="$(ARDUINO_DIR)/libraries" />
+					<Add directory="$(SKETCH_DIR)/hardware/attiny/variants/tiny8" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/variants/tiny8" />
+					<Add directory="$(SKETCH_DIR)/libraries" />
+				</Compiler>
+				<Linker>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
+					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
+					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/arduino" />
+					<Variable name="BOARD" value="Tiny85 @ 16MHz" />
+					<Variable name="CPU_FREQ" value="16000000L" />
+					<Variable name="MAX_SIZE" value="8192" />
+					<Variable name="MAX_SRAM" value="512" />
+					<Variable name="MCU" value="attiny85" />
+					<Variable name="PROTOCOL" value="" />
+					<Variable name="SKETCH_DIR" value="$(HOME)/CodeBlocksArduino/sketches" />
+					<Variable name="UPLOAD_BAUDRATE" value="19200" />
+					<Variable name="UPLOAD_PORT" value="" />
+				</Environment>
+			</Target>
+			<Target title="Tiny85 @ 8MHz">
+				<Option output="bin/Release/aWXIron.elf" prefix_auto="1" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-D__AVR_ATtiny85__" />
+					<Add option="-Os" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add option="-DCODE_BLOCKS" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/cores/arduino" />
+					<Add directory="$(ARDUINO_DIR)/libraries" />
+					<Add directory="$(SKETCH_DIR)/hardware/attiny/variants/tiny8" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/variants/tiny8" />
+					<Add directory="$(SKETCH_DIR)/libraries" />
+				</Compiler>
+				<Linker>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
+					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
+					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/arduino" />
+					<Variable name="BOARD" value="Tiny85 @ 8MHz" />
+					<Variable name="CPU_FREQ" value="8000000L" />
+					<Variable name="MAX_SIZE" value="8192" />
+					<Variable name="MAX_SRAM" value="512" />
+					<Variable name="MCU" value="attiny85" />
+					<Variable name="PROTOCOL" value="" />
+					<Variable name="SKETCH_DIR" value="$(HOME)/CodeBlocksArduino/sketches" />
+					<Variable name="UPLOAD_BAUDRATE" value="19200" />
+					<Variable name="UPLOAD_PORT" value="" />
+				</Environment>
+			</Target>
+			<Target title="Tiny85 @ 1MHz">
+				<Option output="bin/Release/aWXIron.elf" prefix_auto="1" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-D__AVR_ATtiny85__" />
+					<Add option="-Os" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add option="-DCODE_BLOCKS" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/cores/arduino" />
+					<Add directory="$(ARDUINO_DIR)/libraries" />
+					<Add directory="$(SKETCH_DIR)/hardware/attiny/variants/tiny8" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/variants/tiny8" />
+					<Add directory="$(SKETCH_DIR)/libraries" />
+				</Compiler>
+				<Linker>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
+					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
+					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/arduino" />
+					<Variable name="BOARD" value="Tiny85 @ 1MHz" />
+					<Variable name="CPU_FREQ" value="1000000L" />
+					<Variable name="MAX_SIZE" value="8192" />
+					<Variable name="MAX_SRAM" value="512" />
+					<Variable name="MCU" value="attiny85" />
+					<Variable name="PROTOCOL" value="" />
+					<Variable name="SKETCH_DIR" value="$(HOME)/CodeBlocksArduino/sketches" />
+					<Variable name="UPLOAD_BAUDRATE" value="19200" />
+					<Variable name="UPLOAD_PORT" value="" />
+				</Environment>
+			</Target>
+			<Target title="ATmega328p @ 8MHz">
+				<Option output="bin/Release/aWXIron.elf" prefix_auto="1" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-D__AVR_ATmega328P__" />
+					<Add option="-Os" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add option="-DCODE_BLOCKS" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/cores/arduino" />
+					<Add directory="$(ARDUINO_DIR)/libraries" />
+					<Add directory="$(SKETCH_DIR)/hardware/attiny/variants/standard" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/variants/standard" />
+					<Add directory="$(SKETCH_DIR)/libraries" />
+				</Compiler>
+				<Linker>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
+					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
+					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/arduino" />
+					<Variable name="BOARD" value="ATmega328p @ 8MHz" />
+					<Variable name="CPU_FREQ" value="8000000L" />
+					<Variable name="MAX_SIZE" value="32768" />
+					<Variable name="MAX_SRAM" value="2048" />
+					<Variable name="MCU" value="atmega328p" />
+					<Variable name="PROTOCOL" value="" />
+					<Variable name="SKETCH_DIR" value="$(HOME)/CodeBlocksArduino/sketches" />
+					<Variable name="UPLOAD_BAUDRATE" value="19200" />
+					<Variable name="UPLOAD_PORT" value="" />
+				</Environment>
+			</Target>
+			<Target title="ATmega328p @ 16MHz">
+				<Option output="bin/Release/aWXIron.elf" prefix_auto="1" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-D__AVR_ATmega328P__" />
+					<Add option="-Os" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add option="-DCODE_BLOCKS" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/cores/arduino" />
+					<Add directory="$(ARDUINO_DIR)/libraries" />
+					<Add directory="$(SKETCH_DIR)/hardware/attiny/variants/standard" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/variants/standard" />
+					<Add directory="$(SKETCH_DIR)/libraries" />
+				</Compiler>
+				<Linker>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
+					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
+					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/arduino" />
+					<Variable name="BOARD" value="ATmega328p @ 16MHz" />
+					<Variable name="CPU_FREQ" value="16000000L" />
+					<Variable name="MAX_SIZE" value="32768" />
+					<Variable name="MAX_SRAM" value="2048" />
+					<Variable name="MCU" value="atmega328p" />
+					<Variable name="PROTOCOL" value="" />
+					<Variable name="SKETCH_DIR" value="$(HOME)/CodeBlocksArduino/sketches" />
+					<Variable name="UPLOAD_BAUDRATE" value="19200" />
+					<Variable name="UPLOAD_PORT" value="" />
+				</Environment>
+			</Target>
+			<Target title="Arduino Leonardo">
+				<Option output="bin/Release/aWXIron.elf" prefix_auto="1" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-D__AVR_ATmega32U4__" />
+					<Add option="-Os" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add option="-DCODE_BLOCKS" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/cores/arduino" />
+					<Add directory="$(ARDUINO_DIR)/libraries" />
+					<Add directory="$(SKETCH_DIR)/hardware/attiny/variants/leonardo" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/variants/leonardo" />
+					<Add directory="$(SKETCH_DIR)/libraries" />
+				</Compiler>
+				<Linker>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
+					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
+					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/arduino" />
+					<Variable name="BOARD" value="Arduino Leonardo" />
+					<Variable name="CPU_FREQ" value="16000000L" />
+					<Variable name="MAX_SIZE" value="28672" />
+					<Variable name="MAX_SRAM" value="2560" />
+					<Variable name="MCU" value="atmega32u4" />
+					<Variable name="PROTOCOL" value="avr109" />
+					<Variable name="SKETCH_DIR" value="$(HOME)/CodeBlocksArduino/sketches" />
+					<Variable name="UPLOAD_BAUDRATE" value="57600" />
+					<Variable name="UPLOAD_PORT" value="" />
+				</Environment>
+			</Target>
+			<Target title="Arduino Uno">
+				<Option output="bin/Release/aWXIron.elf" prefix_auto="1" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-D__AVR_ATmega328P__" />
+					<Add option="-Os" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add option="-DCODE_BLOCKS" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/cores/arduino" />
+					<Add directory="$(ARDUINO_DIR)/libraries" />
+					<Add directory="$(SKETCH_DIR)/hardware/attiny/variants/standard" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/variants/standard" />
+					<Add directory="$(SKETCH_DIR)/libraries" />
+				</Compiler>
+				<Linker>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
+					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
+					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/arduino" />
+					<Variable name="BOARD" value="Arduino Uno" />
+					<Variable name="CPU_FREQ" value="16000000L" />
+					<Variable name="MAX_SIZE" value="32256" />
+					<Variable name="MAX_SRAM" value="2048" />
+					<Variable name="MCU" value="atmega328p" />
+					<Variable name="PROTOCOL" value="arduino" />
+					<Variable name="SKETCH_DIR" value="$(HOME)/CodeBlocksArduino/sketches" />
+					<Variable name="UPLOAD_BAUDRATE" value="115200" />
+					<Variable name="UPLOAD_PORT" value="" />
+				</Environment>
+			</Target>
+			<Target title="Arduino Duemilanove (328)">
+				<Option output="bin/Release/aWXIron.elf" prefix_auto="1" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-D__AVR_ATmega328P__" />
+					<Add option="-Os" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add option="-DCODE_BLOCKS" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/cores/arduino" />
+					<Add directory="$(ARDUINO_DIR)/libraries" />
+					<Add directory="$(SKETCH_DIR)/hardware/attiny/variants/standard" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/variants/standard" />
+					<Add directory="$(SKETCH_DIR)/libraries" />
+				</Compiler>
+				<Linker>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
+					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
+					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/arduino" />
+					<Variable name="BOARD" value="Arduino Duemilanove (328)" />
+					<Variable name="CPU_FREQ" value="16000000L" />
+					<Variable name="MAX_SIZE" value="30720" />
+					<Variable name="MAX_SRAM" value="2048" />
+					<Variable name="MCU" value="atmega328p" />
+					<Variable name="PROTOCOL" value="arduino" />
+					<Variable name="SKETCH_DIR" value="$(HOME)/CodeBlocksArduino/sketches" />
+					<Variable name="UPLOAD_BAUDRATE" value="57600" />
+					<Variable name="UPLOAD_PORT" value="" />
+				</Environment>
+			</Target>
+			<Target title="Arduino Duemilanove (168)">
+				<Option output="bin/Release/aWXIron.elf" prefix_auto="1" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-D__AVR_ATmega168__" />
+					<Add option="-Os" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add option="-DCODE_BLOCKS" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/cores/arduino" />
+					<Add directory="$(ARDUINO_DIR)/libraries" />
+					<Add directory="$(SKETCH_DIR)/hardware/attiny/variants/standard" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/variants/standard" />
+					<Add directory="$(SKETCH_DIR)/libraries" />
+				</Compiler>
+				<Linker>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
+					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
+					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/arduino" />
+					<Variable name="BOARD" value="Arduino Duemilanove (168)" />
+					<Variable name="CPU_FREQ" value="16000000L" />
+					<Variable name="MAX_SIZE" value="14336" />
+					<Variable name="MAX_SRAM" value="1024" />
+					<Variable name="MCU" value="atmega168" />
+					<Variable name="PROTOCOL" value="arduino" />
+					<Variable name="SKETCH_DIR" value="$(HOME)/CodeBlocksArduino/sketches" />
+					<Variable name="UPLOAD_BAUDRATE" value="19200" />
+					<Variable name="UPLOAD_PORT" value="" />
+				</Environment>
+			</Target>
+			<Target title="Arduino Nano (328)">
+				<Option output="bin/Release/aWXIron.elf" prefix_auto="1" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-Os" />
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-D__AVR_ATmega328P__" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add option="-DCODE_BLOCKS" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/cores/arduino" />
+					<Add directory="$(ARDUINO_DIR)/libraries" />
+					<Add directory="$(SKETCH_DIR)/hardware/attiny/variants/eightanaloginputs" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/variants/eightanaloginputs" />
+					<Add directory="$(SKETCH_DIR)/libraries" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-mmcu=$(MCU)" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
+					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
+					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="/usr/share/arduino" />
+					<Variable name="BOARD" value="Arduino Nano (328)" />
+					<Variable name="CPU_FREQ" value="16000000L" />
+					<Variable name="MAX_SIZE" value="30720" />
+					<Variable name="MAX_SRAM" value="2048" />
+					<Variable name="MCU" value="atmega328p" />
+					<Variable name="PROTOCOL" value="arduino" />
+					<Variable name="SKETCH_DIR" value="$(HOME)/CodeBlocksArduino/sketches" />
+					<Variable name="UPLOAD_BAUDRATE" value="57600" />
+					<Variable name="UPLOAD_PORT" value="/dev/ttyUSB0" />
+				</Environment>
+			</Target>
+			<Target title="Arduino Nano (168)">
+				<Option output="bin/Release/aWXIron.elf" prefix_auto="1" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-D__AVR_ATmega168__" />
+					<Add option="-Os" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add option="-DCODE_BLOCKS" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/cores/arduino" />
+					<Add directory="$(ARDUINO_DIR)/libraries" />
+					<Add directory="$(SKETCH_DIR)/hardware/attiny/variants/eightanaloginputs" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/variants/eightanaloginputs" />
+					<Add directory="$(SKETCH_DIR)/libraries" />
+				</Compiler>
+				<Linker>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
+					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
+					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/arduino" />
+					<Variable name="BOARD" value="Arduino Nano (168)" />
+					<Variable name="CPU_FREQ" value="16000000L" />
+					<Variable name="MAX_SIZE" value="14336" />
+					<Variable name="MAX_SRAM" value="1024" />
+					<Variable name="MCU" value="atmega168" />
+					<Variable name="PROTOCOL" value="arduino" />
+					<Variable name="SKETCH_DIR" value="$(HOME)/CodeBlocksArduino/sketches" />
+					<Variable name="UPLOAD_BAUDRATE" value="19200" />
+					<Variable name="UPLOAD_PORT" value="" />
+				</Environment>
+			</Target>
+			<Target title="Arduino Mini (328)">
+				<Option output="bin/Release/aWXIron.elf" prefix_auto="1" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-D__AVR_ATmega328P__" />
+					<Add option="-Os" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add option="-DCODE_BLOCKS" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/cores/arduino" />
+					<Add directory="$(ARDUINO_DIR)/libraries" />
+					<Add directory="$(SKETCH_DIR)/hardware/attiny/variants/eightanaloginputs" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/variants/eightanaloginputs" />
+					<Add directory="$(SKETCH_DIR)/libraries" />
+				</Compiler>
+				<Linker>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
+					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
+					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/arduino" />
+					<Variable name="BOARD" value="Arduino Mini (328)" />
+					<Variable name="CPU_FREQ" value="16000000L" />
+					<Variable name="MAX_SIZE" value="28672" />
+					<Variable name="MAX_SRAM" value="2048" />
+					<Variable name="MCU" value="atmega328p" />
+					<Variable name="PROTOCOL" value="arduino" />
+					<Variable name="SKETCH_DIR" value="$(HOME)/CodeBlocksArduino/sketches" />
+					<Variable name="UPLOAD_BAUDRATE" value="57600" />
+					<Variable name="UPLOAD_PORT" value="" />
+				</Environment>
+			</Target>
+			<Target title="Arduino Mini (168)">
+				<Option output="bin/Release/aWXIron.elf" prefix_auto="1" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-D__AVR_ATmega168__" />
+					<Add option="-Os" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add option="-DCODE_BLOCKS" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/cores/arduino" />
+					<Add directory="$(ARDUINO_DIR)/libraries" />
+					<Add directory="$(SKETCH_DIR)/hardware/attiny/variants/eightanaloginputs" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/variants/eightanaloginputs" />
+					<Add directory="$(SKETCH_DIR)/libraries" />
+				</Compiler>
+				<Linker>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
+					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
+					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/arduino" />
+					<Variable name="BOARD" value="Arduino Mini (168)" />
+					<Variable name="CPU_FREQ" value="16000000L" />
+					<Variable name="MAX_SIZE" value="14336" />
+					<Variable name="MAX_SRAM" value="1024" />
+					<Variable name="MCU" value="atmega168" />
+					<Variable name="PROTOCOL" value="arduino" />
+					<Variable name="SKETCH_DIR" value="$(HOME)/CodeBlocksArduino/sketches" />
+					<Variable name="UPLOAD_BAUDRATE" value="19200" />
+					<Variable name="UPLOAD_PORT" value="" />
+				</Environment>
+			</Target>
+			<Target title="Arduino Pro Mini (328)">
+				<Option output="bin/Release/aWXIron.elf" prefix_auto="1" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-D__AVR_ATmega328P__" />
+					<Add option="-Os" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add option="-DCODE_BLOCKS" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/cores/arduino" />
+					<Add directory="$(ARDUINO_DIR)/libraries" />
+					<Add directory="$(SKETCH_DIR)/hardware/attiny/variants/standard" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/variants/standard" />
+					<Add directory="$(SKETCH_DIR)/libraries" />
+				</Compiler>
+				<Linker>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
+					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
+					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/arduino" />
+					<Variable name="BOARD" value="Arduino Pro Mini (328)" />
+					<Variable name="CPU_FREQ" value="16000000L" />
+					<Variable name="MAX_SIZE" value="30720" />
+					<Variable name="MAX_SRAM" value="2048" />
+					<Variable name="MCU" value="atmega328p" />
+					<Variable name="PROTOCOL" value="arduino" />
+					<Variable name="SKETCH_DIR" value="$(HOME)/CodeBlocksArduino/sketches" />
+					<Variable name="UPLOAD_BAUDRATE" value="57600" />
+					<Variable name="UPLOAD_PORT" value="" />
+				</Environment>
+			</Target>
+			<Target title="Arduino Pro Mini (168)">
+				<Option output="bin/Release/aWXIron.elf" prefix_auto="1" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-Os" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add option="-DCODE_BLOCKS" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/cores/arduino" />
+					<Add directory="$(ARDUINO_DIR)/libraries" />
+					<Add directory="$(SKETCH_DIR)/hardware/attiny/variants/standard" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/variants/standard" />
+					<Add directory="$(SKETCH_DIR)/libraries" />
+				</Compiler>
+				<Linker>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
+					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
+					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/arduino" />
+					<Variable name="BOARD" value="Arduino Pro Mini (168)" />
+					<Variable name="CPU_FREQ" value="16000000L" />
+					<Variable name="MAX_SIZE" value="14336" />
+					<Variable name="MAX_SRAM" value="1024" />
+					<Variable name="MCU" value="atmega168p" />
+					<Variable name="PROTOCOL" value="arduino" />
+					<Variable name="SKETCH_DIR" value="$(HOME)/CodeBlocksArduino/sketches" />
+					<Variable name="UPLOAD_BAUDRATE" value="19200" />
+					<Variable name="UPLOAD_PORT" value="" />
+				</Environment>
+			</Target>
+			<Target title="Arduino Mega 2560/ADK">
+				<Option output="bin/Release/aWXIron.elf" prefix_auto="1" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-D__AVR_ATmega2560__" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add option="-DCODE_BLOCKS" />
+					<Add option="-O2" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/cores/arduino" />
+					<Add directory="$(ARDUINO_DIR)/libraries" />
+					<Add directory="$(SKETCH_DIR)/hardware/attiny/variants/mega" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/variants/mega" />
+					<Add directory="$(SKETCH_DIR)/libraries" />
+				</Compiler>
+				<Linker>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
+					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
+					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/arduino" />
+					<Variable name="BOARD" value="Arduino Mega 2560/ADK" />
+					<Variable name="CPU_FREQ" value="16000000L" />
+					<Variable name="MAX_SIZE" value="258048" />
+					<Variable name="MAX_SRAM" value="8192" />
+					<Variable name="MCU" value="atmega2560" />
+					<Variable name="PROTOCOL" value="stk500v2" />
+					<Variable name="SKETCH_DIR" value="$(HOME)/CodeBlocksArduino/sketches" />
+					<Variable name="UPLOAD_BAUDRATE" value="115200" />
+					<Variable name="UPLOAD_PORT" value="" />
+				</Environment>
+			</Target>
+			<Target title="Arduino Mega 1280">
+				<Option output="bin/Release/aWXIron.elf" prefix_auto="1" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-D__AVR_ATmega1280__" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add option="-DCODE_BLOCKS" />
+					<Add option="-O2" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/cores/arduino" />
+					<Add directory="$(ARDUINO_DIR)/libraries" />
+					<Add directory="$(SKETCH_DIR)/hardware/attiny/variants/mega" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/variants/mega" />
+					<Add directory="$(SKETCH_DIR)/libraries" />
+				</Compiler>
+				<Linker>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
+					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
+					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/arduino" />
+					<Variable name="BOARD" value="Arduino Mega 1280" />
+					<Variable name="CPU_FREQ" value="16000000L" />
+					<Variable name="MAX_SIZE" value="126976" />
+					<Variable name="MAX_SRAM" value="4096" />
+					<Variable name="MCU" value="atmega1280" />
+					<Variable name="PROTOCOL" value="arduino" />
+					<Variable name="SKETCH_DIR" value="$(HOME)/CodeBlocksArduino/sketches" />
+					<Variable name="UPLOAD_BAUDRATE" value="57600" />
+					<Variable name="UPLOAD_PORT" value="" />
+				</Environment>
+			</Target>
+			<Target title="Arduino Ethernet">
+				<Option output="bin/Release/aWXIron.elf" prefix_auto="1" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-D__AVR_ATmega328P__" />
+					<Add option="-Os" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add option="-DCODE_BLOCKS" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/cores/arduino" />
+					<Add directory="$(ARDUINO_DIR)/libraries" />
+					<Add directory="$(SKETCH_DIR)/hardware/attiny/variants/standard" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/variants/standard" />
+					<Add directory="$(SKETCH_DIR)/libraries" />
+				</Compiler>
+				<Linker>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
+					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
+					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/arduino" />
+					<Variable name="BOARD" value="Arduino Ethernet" />
+					<Variable name="CPU_FREQ" value="16000000L" />
+					<Variable name="MAX_SIZE" value="32256" />
+					<Variable name="MAX_SRAM" value="2048" />
+					<Variable name="MCU" value="atmega328p" />
+					<Variable name="PROTOCOL" value="arduino" />
+					<Variable name="SKETCH_DIR" value="$(HOME)/CodeBlocksArduino/sketches" />
+					<Variable name="UPLOAD_BAUDRATE" value="115200" />
+					<Variable name="UPLOAD_PORT" value="" />
+				</Environment>
+			</Target>
+			<Target title="Arduino Lilypad">
+				<Option output="bin/Release/aWXIron.elf" prefix_auto="1" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-D__AVR_ATmega328P__" />
+					<Add option="-Os" />
+					<Add option="-DF_CPU=$(CPU_FREQ)" />
+					<Add option="-DCODE_BLOCKS" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/cores/arduino" />
+					<Add directory="$(ARDUINO_DIR)/libraries" />
+					<Add directory="$(SKETCH_DIR)/hardware/attiny/variants/standard" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/variants/standard" />
+					<Add directory="$(SKETCH_DIR)/libraries" />
+				</Compiler>
+				<Linker>
+					<Add option="-mmcu=$(MCU)" />
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
+					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
+					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/arduino" />
+					<Variable name="BOARD" value="Arduino Lilypad" />
+					<Variable name="CPU_FREQ" value="8000000L" />
+					<Variable name="MAX_SIZE" value="30720" />
+					<Variable name="MAX_SRAM" value="2048" />
+					<Variable name="MCU" value="atmega328p" />
+					<Variable name="PROTOCOL" value="arduino" />
+					<Variable name="SKETCH_DIR" value="$(HOME)/CodeBlocksArduino/sketches" />
+					<Variable name="UPLOAD_BAUDRATE" value="57600" />
+					<Variable name="UPLOAD_PORT" value="" />
+				</Environment>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fno-exceptions" />
+			<Add option="-ffunction-sections" />
+			<Add option="-fdata-sections" />
+			<Add option="-x c++" />
+			<Add option="-s" />
+			<Add option="-DARDUINO=101" />
+			<Add option="-DUSE_EEPROM=1" />
+			<Add option="-DUSE_ETHERNET=0" />
+			<Add option="-DUSE_FIRMATA=0" />
+			<Add option="-DUSE_LCD=1" />
+			<Add option="-DUSE_LCD4884=0" />
+			<Add option="-DUSE_OBD=0" />
+			<Add option="-DUSE_SD=0" />
+			<Add option="-DUSE_SERVO=0" />
+			<Add option="-DUSE_SOFTSERIAL=0" />
+			<Add option="-DUSE_SPI=0" />
+			<Add option="-DUSE_STEPPER=0" />
+			<Add option="-DUSE_TINYGPS=0" />
+			<Add option="-DUSE_WIRE=0" />
+			<Add option="-DPRESCALE_FACTOR=1024UL" />
+			<Add directory="." />
+			<Add directory="$(ARDUINO_DIR)/libraries/EEPROM" />
+			<Add directory="$(ARDUINO_DIR)/libraries/Ethernet" />
+			<Add directory="$(ARDUINO_DIR)/libraries/Firmata" />
+			<Add directory="$(ARDUINO_DIR)/libraries/Flash" />
+			<Add directory="$(ARDUINO_DIR)/libraries/LCD4884" />
+			<Add directory="$(ARDUINO_DIR)/libraries/LCD4Bit_mod" />
+			<Add directory="$(ARDUINO_DIR)/libraries/LiquidCrystal" />
+			<Add directory="$(ARDUINO_DIR)/libraries/SD" />
+			<Add directory="$(ARDUINO_DIR)/libraries/SD/utility" />
+			<Add directory="$(ARDUINO_DIR)/libraries/Servo" />
+			<Add directory="$(ARDUINO_DIR)/libraries/SevenSegment" />
+			<Add directory="$(ARDUINO_DIR)/libraries/SoftwareSerial" />
+			<Add directory="$(ARDUINO_DIR)/libraries/SPI" />
+			<Add directory="$(ARDUINO_DIR)/libraries/Stepper" />
+			<Add directory="$(ARDUINO_DIR)/libraries/TinyGPS" />
+			<Add directory="$(ARDUINO_DIR)/libraries/Wire" />
+			<Add directory="$(ARDUINO_DIR)/libraries/Wire/utility" />
+			<Add directory="ClickEncoder" />
+			<Add directory="TimerOne" />
+		</Compiler>
+		<Linker>
+			<Add option="-Wl,--gc-sections" />
+		</Linker>
+		<Unit filename="aDSEngine.cpp" />
+		<Unit filename="aDSEngine.h" />
+		<Unit filename="cores/CDC.cpp" />
+		<Unit filename="cores/HID.cpp" />
+		<Unit filename="cores/HardwareSerial.cpp" />
+		<Unit filename="cores/IPAddress.cpp" />
+		<Unit filename="cores/Print.cpp" />
+		<Unit filename="cores/Stream.cpp" />
+		<Unit filename="cores/Tone.cpp" />
+		<Unit filename="cores/USBCore.cpp" />
+		<Unit filename="cores/WInterrupts.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cores/WMath.cpp" />
+		<Unit filename="cores/WString.cpp" />
+		<Unit filename="cores/main.cpp" />
+		<Unit filename="cores/new.cpp" />
+		<Unit filename="cores/wiring.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cores/wiring_analog.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cores/wiring_digital.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cores/wiring_pulse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cores/wiring_shift.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libraries/libraries.cpp" />
+		<Unit filename="sketch.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<lib_finder disable_auto="1" />
+			<debugger />
+			<DoxyBlocks>
+				<comment_style block="2" line="2" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

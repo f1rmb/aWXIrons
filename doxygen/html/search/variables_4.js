@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['data_5fchannel1_5fled_5fstate',['DATA_CHANNEL1_LED_STATE',['../classa_d_s_channels.html#a16cdd2dae7a63180bcd513ccb7af4776',1,'aDSChannels']]],
+  ['data_5fchannel1_5ftemp_5fread',['DATA_CHANNEL1_TEMP_READ',['../classa_d_s_channels.html#aee1548b8b8a95929d6dd8ca78e154885',1,'aDSChannels']]],
+  ['data_5fchannel1_5ftemp_5fset',['DATA_CHANNEL1_TEMP_SET',['../classa_d_s_channels.html#a2df7bc30c06e00a0be3c8fcc9939cbaf',1,'aDSChannels']]],
+  ['data_5fchannel2_5fenabled',['DATA_CHANNEL2_ENABLED',['../classa_d_s_channels.html#a4b55287a365840a1c427419a323c5f0b',1,'aDSChannels']]],
+  ['data_5fchannel2_5fled_5fstate',['DATA_CHANNEL2_LED_STATE',['../classa_d_s_channels.html#a5206feded00ec9b5a50cc7daaf652d6b',1,'aDSChannels']]],
+  ['data_5fchannel2_5ftemp_5fread',['DATA_CHANNEL2_TEMP_READ',['../classa_d_s_channels.html#a4ebeeb4132aeafcd22cba3ab16a3328b',1,'aDSChannels']]],
+  ['data_5fchannel2_5ftemp_5fset',['DATA_CHANNEL2_TEMP_SET',['../classa_d_s_channels.html#adec84a80d196324defc237b98186d219',1,'aDSChannels']]],
+  ['data_5fchannels_5fjoinded',['DATA_CHANNELS_JOINDED',['../classa_d_s_channels.html#a4e3d8d8482d2948566ce8ea9a828332d',1,'aDSChannels']]],
+  ['data_5fdisplay',['DATA_DISPLAY',['../classa_d_s_channels.html#ade1a0de10b44c95a890c80720b27fd3a',1,'aDSChannels']]],
+  ['data_5fdisplay_5fstandby',['DATA_DISPLAY_STANDBY',['../classa_d_s_channels.html#adae8b01e7fe7df992b380eae742e684f',1,'aDSChannels']]],
+  ['data_5ffocus',['DATA_FOCUS',['../classa_d_s_channels.html#a49a8aba59392c03e587b0b13f059f52c',1,'aDSChannels']]],
+  ['data_5fin_5fcalibration',['DATA_IN_CALIBRATION',['../classa_d_s_channels.html#af1dfaec2ec784c0cf391b5d8cbea3401',1,'aDSChannels']]],
+  ['data_5foperation',['DATA_OPERATION',['../classa_d_s_channels.html#a45b4cd80ad30f9b7279340c80d1a2e4d',1,'aDSChannels']]],
+  ['data_5fstandby',['DATA_STANDBY',['../classa_d_s_channels.html#a39c73a12dd09d557309b5e258c2ee52c',1,'aDSChannels']]],
+  ['default_5ftemperature_5foffset',['DEFAULT_TEMPERATURE_OFFSET',['../classa_d_s_channel.html#a0b4fc3ed9e385748de8950dba2c992e5',1,'aDSChannel']]],
+  ['default_5ftemperature_5fslope',['DEFAULT_TEMPERATURE_SLOPE',['../classa_d_s_channel.html#af0e4a8a13e58dd104db1e5380eab0c52',1,'aDSChannel']]],
+  ['digit_5fwidth',['DIGIT_WIDTH',['../a_d_s_engine_8cpp.html#a0812ecf58a97bf3c37bba43763b5484a',1,'aDSEngine.cpp']]],
+  ['display_5fupdate_5frate',['DISPLAY_UPDATE_RATE',['../classa_d_s_channels.html#a02450ab019258afa73dcdc4c191d7b28',1,'aDSChannels']]]
+];

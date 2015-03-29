@@ -1,0 +1,37 @@
+var a_d_s_engine_8h =
+[
+    [ "aDSChannel", "classa_d_s_channel.html", "classa_d_s_channel" ],
+    [ "CalibrationData_t", "structa_d_s_channel_1_1_calibration_data__t.html", "structa_d_s_channel_1_1_calibration_data__t" ],
+    [ "aPin_t", "structa_d_s_channel_1_1a_pin__t.html", "structa_d_s_channel_1_1a_pin__t" ],
+    [ "aDSChannels", "classa_d_s_channels.html", "classa_d_s_channels" ],
+    [ "_eepromCalibrationValue_t", "uniona_d_s_channels_1_1__eeprom_calibration_value__t.html", "uniona_d_s_channels_1_1__eeprom_calibration_value__t" ],
+    [ "aDSEngine", "classa_d_s_engine.html", "classa_d_s_engine" ],
+    [ "IS_DATA_ENABLED", "a_d_s_engine_8h.html#ac64e1b23252dae4d1fbbe104790fdc05", null ],
+    [ "SIMU", "a_d_s_engine_8h.html#a55bc90ce1fe4a4912c37967a33cb7262", null ],
+    [ "OperationMode_t", "a_d_s_engine_8h.html#a926dac854c62d94f15411f0985de48b6", [
+      [ "OPERATION_MODE_READ", "a_d_s_engine_8h.html#a926dac854c62d94f15411f0985de48b6a67f8e4847972037cb8d851b8e70b188b", null ],
+      [ "OPERATION_MODE_SET", "a_d_s_engine_8h.html#a926dac854c62d94f15411f0985de48b6ad211175471942b9b29006645dc891156", null ],
+      [ "OPERATION_MODE_UNKNOWN", "a_d_s_engine_8h.html#a926dac854c62d94f15411f0985de48b6a47dfb9ca80fe56b2821b0f5c5ce15797", null ]
+    ] ],
+    [ "CHANNEL2_ENABLE_PIN", "a_d_s_engine_8h.html#ac323d692d1dd03a4de46c78541c734f7", null ],
+    [ "ENCODER_A_PIN", "a_d_s_engine_8h.html#ae2724fced0205dea4ce23bd7f621df79", null ],
+    [ "ENCODER_B_PIN", "a_d_s_engine_8h.html#a7078f04e43b456434bcae72831fdb76b", null ],
+    [ "ENCODER_PB_PIN", "a_d_s_engine_8h.html#a596dd89a2ecd8483861abf0eee2949c9", null ],
+    [ "ENCODER_STEPS_PER_NOTCH", "a_d_s_engine_8h.html#adacecc57bec8f7f1b5f16f13adc7b4b5", null ],
+    [ "LCD_COLS", "a_d_s_engine_8h.html#a0a9eda79bc0edcd8cbd24c25848edcd6", null ],
+    [ "LCD_D4_PIN", "a_d_s_engine_8h.html#ac625a031f5582c0b6892030ae9d65b9d", null ],
+    [ "LCD_D5_PIN", "a_d_s_engine_8h.html#aae4ca2d664747d2f633623e6c4c52c0c", null ],
+    [ "LCD_D6_PIN", "a_d_s_engine_8h.html#a533cfc8d6a12f1bd8cda99e8b594c5d9", null ],
+    [ "LCD_D7_PIN", "a_d_s_engine_8h.html#aec14c2435d01088e32d819a1250fa5bd", null ],
+    [ "LCD_ENABLE_PIN", "a_d_s_engine_8h.html#a5798651429642ced4296e55010099e4a", null ],
+    [ "LCD_ROWS", "a_d_s_engine_8h.html#a78336047cb7d3729000989b952ffe36e", null ],
+    [ "LCD_RS_PIN", "a_d_s_engine_8h.html#a6d95cffc7304fe82f627a0256b51ce00", null ],
+    [ "LED_CHANNEL1_PIN", "a_d_s_engine_8h.html#a63a52fce3a5ef576a1a78b0854cb0195", null ],
+    [ "LED_CHANNEL2_PIN", "a_d_s_engine_8h.html#a1caa09f7e122442ec850be50238d4263", null ],
+    [ "PROGRAM_VERSION_MAJOR", "a_d_s_engine_8h.html#a993cbf16350285d76a66b6987109124d", null ],
+    [ "PROGRAM_VERSION_MINOR", "a_d_s_engine_8h.html#ae695d2bff565fcc5ded6594d14512c0c", null ],
+    [ "PWM_CHANNEL1_PIN", "a_d_s_engine_8h.html#aa6b30e6d8b9c049f2992f4966b5e8393", null ],
+    [ "PWM_CHANNEL2_PIN", "a_d_s_engine_8h.html#a9493a96ecfabb8e2e86de32738ddd538", null ],
+    [ "TEMP_SENSOR_CHANNEL1_PIN", "a_d_s_engine_8h.html#a4d556d024b1cbc9ad9da4d37bc919504", null ],
+    [ "TEMP_SENSOR_CHANNEL2_PIN", "a_d_s_engine_8h.html#a0364c8f66dac8b1999a29b41fc5877da", null ]
+];

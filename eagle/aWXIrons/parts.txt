@@ -1,0 +1,23 @@
+Partlist
+
+Exported from InputSwitch.brd at 10/02/15 17:01
+
+EAGLE Version 6.1.0 Copyright (c) 1988-2012 CadSoft
+
+Assembly variant: 
+
+Part     Value              Package   Library                    Position (mm)         Orientation
+
+C1       100nF              C0805     resistor                   (45.007634375 17.60451875) R270
+D1                          SOD-123   adafruit                   (13.97 15.1765)       R90
+H1       MOUNT-PAD-ROUND3.0 3,0-PAD   holes                      (-21.169 34.279)      R0
+H2       MOUNT-PAD-ROUND3.0 3,0-PAD   holes                      (43.84 34.279)        R0
+JP1      CTRL_PANEL         1X04      SparkFun-Connectors        (2.9381625 17.714425) R270
+JP2      MCU                1X05      SparkFun-Connectors        (42.53510625 18.424425) R270
+R1       10K                R0805     resistor                   (23.6855 16.9545)     R90
+R2       10K                R0805     resistor                   (33.2105 14.224)      R90
+R3       1k                 R0805     resistor                   (8.128 15.1765)       R0
+R4       10k                R0805     resistor                   (44.96789375 11.736628125) R270
+T1       PN2222             SOT23-3   SparkFun-DiscreteSemi      (28.067 16.0655)      R90
+T2       PN2222             SOT23-3   SparkFun-DiscreteSemi      (19.558 17.018)       R90
+U$1      RELAYPTH2          RELAY-T9A SparkFun-Electromechanical (24.13 13.97)         MR90
