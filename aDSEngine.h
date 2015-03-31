@@ -29,9 +29,9 @@
 ///    \author F1RMB, Daniel Caujolle-Bert <f1rmb.daniel@gmail.com>
 ///
 
-#define SIMU 1
+//#define SIMU  1                  ///< Define this to run in simulation mode (temperature will raise/lower automatically, !! DO NOT PLUG ANY IRON TIP !!)
 
-//#define LCD_CHANNELS_LEDS    1 ///< Define this if you want channels LEDs displayed on the LCD
+//#define LCD_CHANNELS_LEDS    1   ///< Define this if you want channels LEDs displayed on the LCD
 
 static const uint8_t        CHANNEL2_ENABLE_PIN         = 13;   ///< Pin to check from if channel 2 is wired
 
@@ -89,13 +89,13 @@ class aDSChannel
         static const int16_t        TEMPERATURE_STANDBY         = 150;  ///< Standby temperature
         static const float          ADC_TO_TEMP_GAIN            = 0.39; ///<
         static const float          ADC_TO_TEMP_OFFSET          = 23.9; ///<
-        static const uint8_t        CNTRL_GAIN                  = 10;   ///<
+        static const uint16_t       CNTRL_GAIN                  = 10;   ///<
         static const unsigned long  BLINK_UPDATE_RATE           = 400;  ///< Update rate for LED blinking, in ms
         static const int16_t        TEMPERATURE_TOLERANCE       = 3;    ///< Temperature tolerance for REACHED state, +/- 2 °C
         static const float          DEFAULT_TEMPERATURE_SLOPE   = 0.3947387545;
         static const float          DEFAULT_TEMPERATURE_OFFSET  = 43.8279285472;
 
-        static const uint8_t        PWM_MAX_VALUE               = 150;  ///< Maximum PWM value
+        static const int16_t        PWM_MAX_VALUE               = 150;  ///< Maximum PWM value
 
         /// \brief Heating State enumeration
         ///
@@ -150,12 +150,16 @@ class aDSChannel
         uint8_t             getLEDState();
         HeatingState_t      getHeatState();
 
+        bool                isPlugged();
+
         void                setCalibration(float, float);
         const CalibrationData_t   getCalibration() const;
         int16_t             getADCValue();
+        void                setBrother(aDSChannel *);
 
     protected:
         void                _turnOffPWM(aPin_t);
+        void                _turnPWM(bool);
         int8_t              _digitalRead(aPin_t);
         void                _digitalWrite(aPin_t, uint8_t);
         uint16_t             _analogRead(aPin_t);
@@ -180,10 +184,12 @@ class aDSChannel
         uint8_t                 m_ref;
         CalibrationData_t       m_cal;
 #ifdef SIMU
-        uint8_t                 m_channel;
         unsigned long           m_nextTempStep;
         unsigned long           m_nextLowering;
 #endif // SIMU
+        uint8_t                 m_channel;
+        bool                    m_isPlugged;
+        aDSChannel             *m_brother;
 };
 
 class aDSChannels
@@ -244,9 +250,9 @@ class aDSChannels
         static const int16_t        EEPROM_ADDR_TEMP_CHANNEL_ONE   = EEPROM_ADDR_CHANNEL_JOINED + EEPROM_TEMP_SIZE;    ///< Target temp for Channel 1
         static const int16_t        EEPROM_ADDR_TEMP_CHANNEL_TWO   = EEPROM_ADDR_TEMP_CHANNEL_ONE + EEPROM_TEMP_SIZE;  ///< Target temp for Channel 2
 
-        static const int16_t        EEPROM_CALIBRATION_SIZE        = (sizeof(float) * 2) + sizeof(uint8_t); ///< EEPROM calibration size: 2 float (slope & offset), and one uint8_t for crc
-        static const int16_t        EEPROM_ADDR_CALIBRATION_CHAN_1 = EEPROM_ADDR_TEMP_CHANNEL_TWO + EEPROM_TEMP_SIZE; ///< EEPROM start offset for Channel 1 calibration values
-        static const int16_t        EEPROM_ADDR_CALIBRATION_CHAN_2 = EEPROM_ADDR_CALIBRATION_CHAN_1 + EEPROM_CALIBRATION_SIZE; ///< EEPROM start offset for Channel 2 calibration values
+        static const int16_t        EEPROM_CALIBRATION_SIZE        = (sizeof(float) * 2) + sizeof(uint8_t);             ///< EEPROM calibration size: 2 float (slope & offset), and one uint8_t for crc
+        static const int16_t        EEPROM_ADDR_CALIBRATION_CHAN_1 = EEPROM_ADDR_TEMP_CHANNEL_TWO + EEPROM_TEMP_SIZE;   ///< EEPROM start offset for Channel 1 calibration values
+        static const int16_t        EEPROM_ADDR_CALIBRATION_CHAN_2 = EEPROM_ADDR_CALIBRATION_CHAN_1 + EEPROM_CALIBRATION_SIZE;   ///< EEPROM start offset for Channel 2 calibration values
 
     public:
         aDSChannels(uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t);
@@ -282,7 +288,7 @@ class aDSChannels
         void                _enableDataCheck(uint16_t, bool);
         void                _updateDisplay();
         void                _displayBigDigit(uint8_t, uint8_t, uint8_t = 0);
-        void                _displayBigDigits(uint16_t, uint8_t, uint8_t = 0);
+        void                _displayBigDigits(int16_t, uint8_t, uint8_t = 0);
         void                _clearValue(uint8_t, int = 0);
         void                _updateField(OperationMode_t, int16_t, uint8_t);
         void                _wakeupFromStandby();

@@ -8,5 +8,6 @@ var searchData=
   ['isincalibration',['isInCalibration',['../classa_d_s_channels.html#a81715d60ce7ea13733bece2d59b5d5a1',1,'aDSChannels']]],
   ['isinstandby',['isInStandby',['../classa_d_s_channels.html#ab017dce7d5fb38344b27bfda061293e0',1,'aDSChannels']]],
   ['isjoinded',['isJoinded',['../classa_d_s_channels.html#a31523855a3c08a3ec8f8489c02a9dc25',1,'aDSChannels']]],
+  ['isplugged',['isPlugged',['../classa_d_s_channel.html#a39a24346d2ca93297284830b5e1ac862',1,'aDSChannel']]],
   ['istemphaschanged',['isTempHasChanged',['../classa_d_s_channel.html#a8cad946a5ddf4b5aa093720604039894',1,'aDSChannel']]]
 ];

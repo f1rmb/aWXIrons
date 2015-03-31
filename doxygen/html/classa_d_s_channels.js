@@ -13,7 +13,7 @@ var classa_d_s_channels =
     [ "_clearValue", "classa_d_s_channels.html#a632fdfd5934b6f8f3139a54ce6dd2f32", null ],
     [ "_crc8", "classa_d_s_channels.html#acd66c1114b0a49ae34998efd68b426a1", null ],
     [ "_displayBigDigit", "classa_d_s_channels.html#af6a7d81daa8d4bb62d95f5d5bde50b7c", null ],
-    [ "_displayBigDigits", "classa_d_s_channels.html#a70be2a2f2212d94b934cd6b3c4c51f6e", null ],
+    [ "_displayBigDigits", "classa_d_s_channels.html#a607f8ed3f704a64152103d1cd5dc309a", null ],
     [ "_enableData", "classa_d_s_channels.html#a9d11826ad7bc6e1c19ad0410b03d6bc9", null ],
     [ "_enableDataCheck", "classa_d_s_channels.html#a37abf815509574a6572995aaae6c9c3d", null ],
     [ "_getTempFromEEPROM", "classa_d_s_channels.html#a8c25157b89f1ec55776f02e781fa232e", null ],

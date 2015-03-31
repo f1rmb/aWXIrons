@@ -2,6 +2,7 @@ var searchData=
 [
   ['savecalibrationvalues',['saveCalibrationValues',['../classa_d_s_channels.html#a7ea0f1c7c6dccc16db3e6b444e9b458d',1,'aDSChannels']]],
   ['service',['service',['../classa_d_s_channel.html#aa4fa58446417fdc97f5f87dfc5486c9d',1,'aDSChannel::service()'],['../classa_d_s_channels.html#a46484358d1d1531745a981eded801b9d',1,'aDSChannels::service()']]],
+  ['setbrother',['setBrother',['../classa_d_s_channel.html#a4656235a54ea0370a6e559d8a30b8f39',1,'aDSChannel']]],
   ['setcalibration',['setCalibration',['../classa_d_s_channel.html#abaf96d257211aaef888a6c4b5697e893',1,'aDSChannel']]],
   ['setcalibrationmode',['setCalibrationMode',['../classa_d_s_channels.html#a3162e57d441c8d80c8e2a244d6a56289',1,'aDSChannels']]],
   ['setcalibrationvalues',['setCalibrationValues',['../classa_d_s_channels.html#ad405d8bf7ce96c8ec04660fa285f9fb3',1,'aDSChannels']]],

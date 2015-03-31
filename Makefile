@@ -165,7 +165,8 @@ ARDUINO_DIR =	/usr/share/arduino
 #AVRDUDE_PROGRAMMER = arduino
 
 # Arduino core sources.
-ARDUINO_CORE =	$(ARDUINO_DIR)/hardware/arduino/cores/arduino
+#ARDUINO_CORE =	$(ARDUINO_DIR)/hardware/arduino/cores/arduino
+ARDUINO_CORE =	./cores
 
 # Arduino variant (for Arduino 1.0+).
 # Directory containing the pins_arduino.h file.
@@ -256,7 +257,7 @@ endif
 endif
 endif
 
-CDEFS = $(ARCHDEF) -DUSE_EEPROM=1 -DUSE_ETHERNET=0 -DUSE_FIRMATA=0 -DUSE_LCD=1 -DUSE_LCD4884=0 -DUSE_ODB=0 -DUSE_SD=0 -DUSE_SERVO=0 -DUSE_SOFTSERIAL=0 -DUSE_SPI=0 -DUSE_STEPPER=0 -DUSE_TINYGPS=0 -DUSE_WIRE=0
+CDEFS = $(ARCHDEF) -DUSE_EEPROM=1 -DUSE_ETHERNET=0 -DUSE_FIRMATA=0 -DUSE_LCD=1 -DUSE_LCD4884=0 -DUSE_ODB=0 -DUSE_SD=0 -DUSE_SERVO=0 -DUSE_SOFTSERIAL=0 -DUSE_SPI=0 -DUSE_STEPPER=0 -DUSE_TINYGPS=0 -DUSE_WIRE=0 -DPRESCALE_FACTOR=1024UL
 
 ifdef LTO
 CDEFS +=	-DLTO
@@ -435,7 +436,7 @@ endif
 ### Include directories.
 CINCS = \
 	-I. \
-	-I$(ARDUINO_CORE) \
+	-I$(ARDUINO_DIR)/hardware/arduino/cores/arduino \
 	-I$(ARDUINO_VARIANT) \
 	$(ALIBDIRS:%=-I%) \
 	$(ULIBDIRS:%=-I%) \
@@ -979,13 +980,12 @@ dtr:
 
 # Burn the fuses
 fuses:
-	#$(AVRDUDE) -F -p $(MCU) -C /etc/avrdude.conf -v -e -V -c usbasp -P usb -U lfuse:w:0xFF:m -U hfuse:w:0xD1:m -U efuse:w:0xCB:m -F lfuse:w:0xE1:m
-	#$(AVRDUDE) -p $(MCU) -C /etc/avrdude.conf -P usb -c usbasp -b 9600 -nv
-	echo "Fix me !"
+	$(AVRDUDE) -F -p $(MCU) -C /etc/avrdude.conf -v -e -V -c usbasp -P usb -U lock:w:0x3F:m -U efuse:w:0x05:m -U hfuse:w:0xD2:m -U lfuse:w:0xFF:m
+	$(AVRDUDE) -p $(MCU) -C /etc/avrdude.conf -P usb -c usbasp -b 9600 -nv
 
 # Program the Arduino, without bootloader
 burn:
-	#$(AVRDUDE) -F -p $(MCU) -C /etc/avrdude.conf -V -c usbasp -P usb $(AVRDUDE_WRITE_FLASH) -U lock:w:0xe8:m
+	$(AVRDUDE) -F -p $(MCU) -C /etc/avrdude.conf -V -c usbasp -P usb $(AVRDUDE_WRITE_FLASH)
 	echo "Write me !"
 
 # Program the Arduino board (upload program).

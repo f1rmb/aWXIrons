@@ -14,8 +14,8 @@ var indexSectionsWithContent =
   4: "_abcdeflmoprstv",
   5: "cho",
   6: "cho",
-  7: "fims",
-  8: "cpsu"
+  7: "fim",
+  8: "cstu"
 };
 
 var indexSectionNames =

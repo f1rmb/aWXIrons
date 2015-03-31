@@ -8,5 +8,5 @@ var searchData=
   ['program_5fversion_5fminor',['PROGRAM_VERSION_MINOR',['../a_d_s_engine_8h.html#ae695d2bff565fcc5ded6594d14512c0c',1,'aDSEngine.h']]],
   ['pwm_5fchannel1_5fpin',['PWM_CHANNEL1_PIN',['../a_d_s_engine_8h.html#aa6b30e6d8b9c049f2992f4966b5e8393',1,'aDSEngine.h']]],
   ['pwm_5fchannel2_5fpin',['PWM_CHANNEL2_PIN',['../a_d_s_engine_8h.html#a9493a96ecfabb8e2e86de32738ddd538',1,'aDSEngine.h']]],
-  ['pwm_5fmax_5fvalue',['PWM_MAX_VALUE',['../classa_d_s_channel.html#a8e224779f673adb6db7cb98a1218378d',1,'aDSChannel']]]
+  ['pwm_5fmax_5fvalue',['PWM_MAX_VALUE',['../classa_d_s_channel.html#a956f89de7f0f26ec7a49c17bd3a583db',1,'aDSChannel']]]
 ];

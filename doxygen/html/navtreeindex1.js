@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"uniona_d_s_channels_1_1__eeprom_calibration_value__t.html":[4,0,1,0],
+"uniona_d_s_channels_1_1__eeprom_calibration_value__t.html#a66a8b74490b3bde2a7f58943af0ceef6":[4,0,1,0,0],
 "uniona_d_s_channels_1_1__eeprom_calibration_value__t.html#a9ac7e4ca4b0725c5d84487dc277b4ba0":[4,0,1,0,1],
 "wiring_8c.html":[5,0,15],
 "wiring_8c.html#a02fd73d861ef2e4aabb38c0c9ff82947":[5,0,15,7],

@@ -825,3 +825,119 @@
 	"pins_arduino.h"
 	"twi.h"
 
+1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/CDC.cpp
+	<CDC.cpp>
+
+1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/HardwareSerial.cpp
+	<HardwareSerial.cpp>
+
+1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/HID.cpp
+	<HID.cpp>
+
+1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/IPAddress.cpp
+	<IPAddress.cpp>
+
+1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/main.cpp
+	<main.cpp>
+
+1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/new.cpp
+	<new.cpp>
+
+1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/Print.cpp
+	<Print.cpp>
+
+1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/Stream.cpp
+	<Stream.cpp>
+
+1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/Tone.cpp
+	<Tone.cpp>
+
+1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/USBCore.cpp
+	<USBCore.cpp>
+
+1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/WInterrupts.c
+	<WInterrupts.c>
+
+1427767994 source:/home/daniel/src/Arduino/aWXIrons/cores/wiring.c
+	"wiring_private.h"
+
+1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/wiring_analog.c
+	<wiring_analog.c>
+
+1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/wiring_digital.c
+	<wiring_digital.c>
+
+1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/wiring_pulse.c
+	<wiring_pulse.c>
+
+1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/wiring_shift.c
+	<wiring_shift.c>
+
+1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/WMath.cpp
+	<WMath.cpp>
+
+1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/WString.cpp
+	<WString.cpp>
+
+1427644978 source:/home/daniel/src/Arduino/aWXIrons/libraries/libraries.cpp
+	<Arduino.h>
+	"ClickEncoder.cpp"
+	"TimerOne.cpp"
+	"EEPROM.cpp"
+	"Ethernet.cpp"
+	"EthernetClient.cpp"
+	"EthernetServer.cpp"
+	"EthernetUdp.cpp"
+	"Firmata.cpp"
+	"LiquidCrystal.cpp"
+	"LCD4884.cpp"
+	"OBD.cpp"
+	"SD.cpp"
+	"Sd2Card.cpp"
+	"SdFile.cpp"
+	"SdVolume.cpp"
+	"File.cpp"
+	"Servo.cpp"
+	"SoftwareSerial.cpp"
+	"SPI.cpp"
+	"stepper.cpp"
+	"TinyGPS.cpp"
+	"Wire.cpp"
+	"twi.c"
+
+1427644977 /home/daniel/src/Arduino/aWXIrons/ClickEncoder/ClickEncoder.cpp
+	"ClickEncoder.h"
+
+1427644977 /home/daniel/src/Arduino/aWXIrons/ClickEncoder/ClickEncoder.h
+	<stdint.h>
+	<avr/io.h>
+	<avr/interrupt.h>
+	<avr/pgmspace.h>
+	"Arduino.h"
+
+1427644978 /home/daniel/src/Arduino/aWXIrons/TimerOne/TimerOne.cpp
+	"TimerOne.h"
+
+1427644978 /home/daniel/src/Arduino/aWXIrons/TimerOne/TimerOne.h
+	"Arduino.h"
+	"WProgram.h"
+	"config/known_16bit_timers.h"
+
+1427644978 /home/daniel/src/Arduino/aWXIrons/TimerOne/config/known_16bit_timers.h
+
+1427644978 source:/home/daniel/src/Arduino/aWXIrons/sketch.cpp
+	<Arduino.h>
+	<LiquidCrystal.h>
+	"aDSEngine.h"
+
+1427777649 /home/daniel/src/Arduino/aWXIrons/aDSEngine.h
+	<Arduino.h>
+	<LiquidCrystal.h>
+	<EEPROM.h>
+	"TimerOne.h"
+	"ClickEncoder.h"
+
+1427777641 source:/home/daniel/src/Arduino/aWXIrons/aDSEngine.cpp
+	"aDSEngine.h"
+	<wiring_private.h>
+

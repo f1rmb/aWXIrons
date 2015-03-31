@@ -100,20 +100,55 @@ $(document).ready(function(){initNavTree('cal.html','');});
 <div class="title">Calibration Process </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Prerequisites:</p>
+<div class="textblock"><ul>
+<li><b>Prerequisites</b>:<br/>
+<br/>
+<ul>
+<li><b>Hardware</b>:<ul>
+<li>Digital Thermometer (e.g: you multimeter with a K probe) <br/>
+<br/>
+</li>
+</ul>
+</li>
+<li><p class="startli"><b>Software</b>:</p>
 <ul>
 <li>A serial terminal emulator (e.g. “<em>HyperTerminal</em>” or “<em>Tera Term</em>” on Windows, “<em>minicom</em>” or “<em>cutecom</em>” on Linux).</li>
 <li>The calibration spreadsheet file <b>aWXIronsCalibration.ods</b></li>
 <li>A software able to open the calibration spreadsheet, like “<em>LibreOffice</em>“, “<em>OpenOffice</em>“ and so on.</li>
 </ul>
-<p>The serial communication settings are: <b>57600</b>, <b>8</b>, <b>N</b>, <b>1</b></p>
-<p>The calibration process permits to. </p>
+<p class="startli">The serial communication settings are: <b>57600</b>, <b>8</b>, <b>N</b>, <b>1</b></p>
+</li>
+</ul>
+</li>
+</ul>
+<p><br/>
+</p>
+<ul>
+<li><b>Why a calibration</b>:<br/>
+<br/>
+ The calibration process is necessary get accurate temperature control.</li>
+</ul>
+<p><br/>
+</p>
+<ul>
+<li><b>Process Description</b>:<br/>
+<br/>
+<ul>
+<li>You have to connect the soldering station to the PC, using a USB cable.</li>
+<li>To turn the soldering station in calibration, you have to keep the encoder push button pressed while turning the station ON. Once the station is ready to use, the '<em><b>CAL</b></em>' string is displayed on the top left side of the LCD display.</li>
+<li>In calibration mode, the readed temperature isn't displayed. Instead, the ADC value is shown.</li>
+<li>It's really important to start from the lowest temperature setting (100°C), and wait till the temperature stabilize.</li>
+<li>Blah</li>
+</ul>
+</li>
+</ul>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>write me</dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Mar 29 2015 00:17:05 for aWXIron by
+    <li class="footer">Generated on Tue Mar 31 2015 05:30:55 for aWXIron by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

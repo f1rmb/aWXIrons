@@ -34,21 +34,6 @@
 ///
 ///
 
-/**
- * \page cal Calibration Process
- *
- *
- *  Prerequisites:
- *    + A serial terminal emulator (e.g. “<i>HyperTerminal</i>” or “<i>Tera Term</i>” on Windows, “<i>minicom</i>” or “<i>cutecom</i>” on Linux).
- *    + The calibration spreadsheet file <b>aWXIronsCalibration.ods</b>
- *    + A software able to open the calibration spreadsheet, like “<i>LibreOffice</i>“, “<i>OpenOffice</i>“ and so on.
- *
- *    The serial communication settings are: <b>57600</b>, <b>8</b>, <b>N</b>, <b>1</b>
- *
- *
- * The calibration process permits to.
- *
- */
 
 ///
 /// \page UI User Interface overview
@@ -153,20 +138,41 @@
 ///
 ///
 
-///
-/// \page PP Pouet tralala
-///
-/// Nothing.
-///
-/// \section poi POI
-///   dskldlskfms
-///
-///
 
-/// le processus de calibration est necessaire à la première utilisation de la station de soudage
-/// Pour mettre en fonction ce processus, il faut appuyer et maintenir le bouton de l'encoder tout en allumant la station.
-/// Un indicateur de mise en fonction de ce mode ('CAL') sera affiché sur la partie droite de la première ligne de l'afficheur LCD.
-/// En lieu et place de la temperature lue, pour chaque canal, la valeur ADC sera affichée. Cette valeur est utile au processus de calibration.
+///
+/// \page cal Calibration Process
+///
+///
+/// + __Prerequisites__:<br><br>
+///
+///      - __Hardware__:
+///        - Digital Thermometer (e.g: you multimeter with a K probe)
+/// <br><br>
+///      - __Software__:
+///         * A serial terminal emulator (e.g. “<i>HyperTerminal</i>” or “<i>Tera Term</i>” on Windows, “<i>minicom</i>” or “<i>cutecom</i>” on Linux).
+///         * The calibration spreadsheet file <b>aWXIronsCalibration.ods</b>
+///         * A software able to open the calibration spreadsheet, like “<i>LibreOffice</i>“, “<i>OpenOffice</i>“ and so on.
+///
+///         The serial communication settings are: <b>57600</b>, <b>8</b>, <b>N</b>, <b>1</b>
+///
+/// <br>
+///
+/// + __Why a calibration__:<br><br>
+///     The calibration process is necessary get accurate temperature control.
+///
+/// <br>
+/// + __Process Description__:<br><br>
+///
+///     - You have to connect the soldering station to the PC, using a USB cable.
+///     - To turn the soldering station in calibration, you have to keep the encoder push button pressed while turning the station ON.
+///         Once the station is ready to use, the '<i><b>CAL</b></i>' string is displayed on the top left side of the LCD display.
+///     - In calibration mode, the readed temperature isn't displayed. Instead, the ADC value is shown.
+///     - It's really important to start from the lowest temperature setting (100°C), and wait till the temperature stabilize.
+///     - Blah
+///
+/// \todo write me
+///
+///
 
 
 static const uint8_t        DIGIT_WIDTH          = 3;   ///< Max numerical length of temperature (used with big digits)
@@ -255,7 +261,7 @@ static const uint8_t        _glyphs[][8] PROGMEM =      ///< LCD glyphs (for big
 };
 
 /// _glyphs[] offsets
-static const uint8_t        _bigDigitsTop[11][DIGIT_WIDTH] =        ///< 0..9 + ' ' top characters matrix
+static const uint8_t        _bigDigitsTop[12][DIGIT_WIDTH] =        ///< 0..9 + ' ' top characters matrix
 {
     {  3,  0,  3 }, // 0
     {  0,  3, 32 }, // 1
@@ -267,11 +273,12 @@ static const uint8_t        _bigDigitsTop[11][DIGIT_WIDTH] =        ///< 0..9 + 
     {  0,  0,  3 }, // 7
     {  3,  2,  3 }, // 8
     {  3,  2,  3 }, // 9
-    { 32, 32, 32 }  // empty
+    { 32, 32, 32 }, // empty
+    {  1,  1,  1 }  // -
 };
 
 /// _glyphs[] offsets
-static const uint8_t        _bigDigitsBottom[11][DIGIT_WIDTH] =     ///< 0..9 + ' ' bottom characters matrix
+static const uint8_t        _bigDigitsBottom[12][DIGIT_WIDTH] =     ///< 0..9 + ' ' bottom characters matrix
 {
     {  3,  1,  3 }, // 0
     {  1,  3,  1 }, // 1
@@ -283,7 +290,8 @@ static const uint8_t        _bigDigitsBottom[11][DIGIT_WIDTH] =     ///< 0..9 + 
     { 32, 32,  3 }, // 7
     {  3,  1,  3 }, // 8
     {  1,  1,  3 }, // 9
-    { 32, 32, 32 }  // empty
+    { 32, 32, 32 }, // empty
+    {  0,  0,  0 }  // -
 };
 
 ClickEncoder *pEncoder = NULL;  ///< Global pointer to ClickEncoder object, used inside timer1ISR() function
@@ -302,6 +310,7 @@ static int8_t getNumericalLength(int16_t n)
     return (static_cast<int8_t>(snprintf(buf, sizeof(buf) - 1, "%d", n)));
 }
 
+uint8_t channelCount = 0;
 //
 // Begin of Class aDSChannel
 //
@@ -324,6 +333,9 @@ aDSChannel::aDSChannel() :
     , m_nextTempStep(0),
     m_nextLowering(0)
 #endif // SIMU
+    , m_channel(channelCount++),
+    m_isPlugged(true),
+    m_brother(NULL)
 {
     //ctor
     m_pwmPin.pin    = NOT_A_PIN;
@@ -364,7 +376,9 @@ void aDSChannel::setup(uint8_t pwmPin, uint8_t sensorPin, uint8_t ledPin)
     m_pwmPin.mask           = digitalPinToBitMask(m_pwmPin.pin);
     m_pwmPin.port           = digitalPinToPort(m_pwmPin.pin);
     m_pwmPin.outputRegister = portOutputRegister(m_pwmPin.port);
+    //
     // Turn PWM OFF
+    //
     _analogWrite(m_pwmPin, m_pwmValue);
 
     //
@@ -382,7 +396,9 @@ void aDSChannel::setup(uint8_t pwmPin, uint8_t sensorPin, uint8_t ledPin)
     m_ledPin.mask           = digitalPinToBitMask(m_ledPin.pin);
     m_ledPin.port           = digitalPinToPort(m_ledPin.pin);
     m_ledPin.outputRegister = portOutputRegister(m_ledPin.port);
+    //
     // Turn LED OFF
+    //
     _digitalWrite(m_ledPin, HIGH);
 }
 
@@ -460,15 +476,45 @@ bool aDSChannel::service(unsigned long m)
     //
     // Get current temperature
     //
-    // Switch off the heater
-    _analogWrite(m_pwmPin, 0);
-    // Wait for some time (to get low pass filter in steady state)
-     delay(50);
-    // Read the temperature OpAmp value
-     m_adcValue = _analogRead(m_sensorPin);
-    // Switch the heater back on to previous value
-     _analogWrite(m_pwmPin, m_pwmValue);
+    // Turn OFF brother's heater, since that introduce some ADC noise
+    //
+    if (m_brother)
+        m_brother->_turnPWM(false);
 
+    //
+    // Switch OFF the heater
+    //
+    _analogWrite(m_pwmPin, 0);
+
+    //
+    // Wait for some time (to get low pass filter in steady state)
+    //
+    delay(20);
+
+    //
+    // Read the ADC value
+    //
+    m_adcValue = _analogRead(m_sensorPin);
+
+    //
+    // Switch the heater back on to previous value
+    //
+    _analogWrite(m_pwmPin, m_pwmValue);
+
+    //
+    // Restore brother's heater state
+    //
+    if (m_brother)
+        m_brother->_turnPWM(true);
+
+    //
+    // Detect if iron tip is plugged or not
+    //
+    m_isPlugged = (m_adcValue > 80);
+
+    //
+    // Compute temperature from ADC value
+    //
     int16_t currTemp = round((static_cast<float>(m_adcValue) * m_cal.slope) + m_cal.offset);
 
 #ifdef SIMU // DEV SIMULATION MODE
@@ -480,30 +526,60 @@ bool aDSChannel::service(unsigned long m)
     //
     // Heating/Cooling
     //
-    // Compute difference between target and actual temperature:
+    // Compute difference between target and actual temperature
+    //
     int16_t diff = target - currTemp;
 
-    // Limit PWM value to 0...PWM_MAX_VALUE
-    int8_t pwm = 0;
+    int16_t pwm = 0;
 
+    //
+    // Limit PWM value to 0...PWM_MAX_VALUE
+    //
     if (diff > 0)
         pwm = constrain((diff * CNTRL_GAIN), 0, PWM_MAX_VALUE);
 
     //
+    // Slightly increase PWM width for fine temp control (almost)
+    //
+    if ((pwm > 0) && (pwm <= 10))
+        pwm += 20;
+
+#if 0
+    Serial.print(m_channel, DEC);
+    Serial.print(": ");
+    Serial.print(m_adcValue, DEC);
+    Serial.print(", ");
+    Serial.print(currTemp, DEC);
+    Serial.print(" deg");
+    Serial.print(", diff: ");
+    Serial.print(diff, DEC);
+    Serial.print(", PWM: ");
+    Serial.print(pwm, DEC);
+    Serial.print(", ");
+    Serial.println(m_isPlugged ? " PLUGGED" : " NOT PLUGGED");
+#endif
+
+    //
     // Reflect Heating/Cooling/Reached on state LED
     //
-    if (m_inStandby)
-        m_heatState = HEATING_STATE_STANDBY;
-    else
+    if (m_isPlugged)
     {
-        if (currTemp > TEMPERATURE_TOLERANCE)
+        if (m_inStandby)
+            m_heatState = HEATING_STATE_STANDBY;
+        else
         {
-            if ((currTemp >= (target - TEMPERATURE_TOLERANCE)) && (currTemp <= (target + TEMPERATURE_TOLERANCE)))
-                m_heatState = HEATING_STATE_REACHED;
-            else
-                m_heatState = (pwm == 0) ? HEATING_STATE_COOLING : HEATING_STATE_HEATING;
+            if (currTemp > TEMPERATURE_TOLERANCE)
+            {
+                if ((currTemp >= (target - TEMPERATURE_TOLERANCE)) && (currTemp <= (target + TEMPERATURE_TOLERANCE)))
+                    m_heatState = HEATING_STATE_REACHED;
+                else
+                    m_heatState = (pwm == 0) ? HEATING_STATE_COOLING : HEATING_STATE_HEATING;
+            }
         }
     }
+    else
+        m_heatState = HEATING_STATE_COOLING;
+
 
 #ifdef SIMU // DEV SIMULATION MODE
     //static unsigned long m_nextTempStep = 0;
@@ -592,24 +668,32 @@ uint8_t aDSChannel::updateLEDState(unsigned long m)
         switch (m_heatState)
         {
             case HEATING_STATE_HEATING:
+                //
                 // LED ON
+                //
                 if (_digitalRead(m_ledPin) == HIGH)
                     m_ledState = HIGH;
                 break;
 
             case HEATING_STATE_COOLING:
+                //
                 // LED OFF
+                //
                 if (_digitalRead(m_ledPin) == LOW)
                     m_ledState = LOW;
                 break;
 
             case HEATING_STATE_REACHED:
+                //
                 // BLINK
+                //
                 m_ledState = _digitalRead(m_ledPin);
                 break;
 
             case HEATING_STATE_STANDBY:
+                //
                 // Triple BLINK
+                //
                 m_blinkStandby++;
 
                 if (m_blinkStandby < 8)
@@ -650,10 +734,37 @@ aDSChannel::HeatingState_t aDSChannel::getHeatState()
     return m_heatState;
 }
 
+/// \brief Get is tip plugged state
+///
+/// \return bool : plugged state
+///
+///
+bool aDSChannel::isPlugged()
+{
+    return m_isPlugged;
+}
+
+/// \brief Set calibration data values
+///
+/// \param slope float : slope value
+/// \param offset float : offset value
+/// \return void
+///
+///
 void aDSChannel::setCalibration(float slope, float offset)
 {
     m_cal.slope = slope;
     m_cal.offset = offset;
+}
+
+/// \brief Get calibration data values
+///
+/// \return const CalibrationData_t : Calibration data
+///
+///
+const aDSChannel::CalibrationData_t aDSChannel::getCalibration() const
+{
+    return m_cal;
 }
 
 /// \brief Get latest ADC value
@@ -666,15 +777,15 @@ int16_t aDSChannel::getADCValue()
     return m_adcValue;
 }
 
-
-/// \brief Get calibration data values
+/// \brief Set relationship
 ///
-/// \return const CalibrationData_t : Calibration data
+/// \param p aDSChannel* : pointer to other aDSChannel
+/// \return void
 ///
 ///
-const aDSChannel::CalibrationData_t aDSChannel::getCalibration() const
+void aDSChannel::setBrother(aDSChannel *p)
 {
-    return m_cal;
+    m_brother = p;
 }
 
 /// \brief Turns PWM off for the given pin
@@ -697,7 +808,7 @@ void aDSChannel::_turnOffPWM(aPin_t pin)
                 cbi(TCCR0A, COM0B1);
                 break;
 
-#if 0 // Not Used
+#if 0 // Unused
             case TIMER1A:
                 cbi(TCCR1A, COM1A1);
                 break;
@@ -717,6 +828,14 @@ void aDSChannel::_turnOffPWM(aPin_t pin)
         }
 }
 
+void aDSChannel::_turnPWM(bool enable)
+{
+    if (enable)
+        _analogWrite(m_pwmPin, m_pwmValue);
+    else
+        _analogWrite(m_pwmPin, 0);
+}
+
 /// \brief Get state of the given pin
 ///
 /// Took and Hacked from Arduino wiring_digital.c
@@ -730,8 +849,10 @@ int8_t aDSChannel::_digitalRead(aPin_t pin)
 	if (pin.port == NOT_A_PIN)
         return LOW;
 
+    //
 	// If the pin that support PWM output, we need to turn it off
 	// before getting a digital reading.
+	//
 	if (pin.timer != NOT_ON_TIMER);
         _turnOffPWM(pin);
 
@@ -752,8 +873,10 @@ int8_t aDSChannel::_digitalRead(aPin_t pin)
 ///
 void aDSChannel::_digitalWrite(aPin_t pin, uint8_t val)
 {
+    //
     // If the pin that support PWM output, we need to turn it off
     // before doing a digital write.
+    //
     if (pin.timer != NOT_ON_TIMER)
         _turnOffPWM(pin);
 
@@ -787,20 +910,28 @@ uint16_t aDSChannel::_analogRead(aPin_t pin)
 
     ADMUX = (DEFAULT << 6) | (_pin & 0x07);
 
+    //
     // start the conversion
+    //
     sbi(ADCSRA, ADSC);
 
+    //
     // ADSC is cleared when the conversion finishes
+    //
     while (bit_is_set(ADCSRA, ADSC));
 
+    //
     // we have to read ADCL first; doing so locks both ADCL
     // and ADCH until ADCH is read.  reading ADCL second would
     // cause the results of each conversion to be discarded,
     // as ADCL and ADCH would be locked when it completed.
+    //
     low  = ADCL;
     high = ADCH;
 
+    //
     // combine the two bytes
+    //
     return (high << 8) | low;
 }
 
@@ -815,11 +946,13 @@ uint16_t aDSChannel::_analogRead(aPin_t pin)
 ///
 void aDSChannel::_analogWrite(aPin_t pin, uint8_t val)
 {
+    //
     // We need to make sure the PWM output is enabled for those pins
     // that support it, as we turn it off when digitally reading or
     // writing with them.  Also, make sure the pin is in output mode
     // for consistenty with Wiring, which doesn't require a pinMode
     // call for the analog output pins.
+    //
 
     if (val == 0)
         _digitalWrite(pin, LOW);
@@ -830,38 +963,50 @@ void aDSChannel::_analogWrite(aPin_t pin, uint8_t val)
         switch(pin.timer)
         {
             case TIMER0A:
+                //
                 // connect pwm to pin on timer 0, channel A
+                //
                 sbi(TCCR0A, COM0A1);
                 OCR0A = val; // set pwm duty
                 break;
 
             case TIMER0B:
+                //
                 // connect pwm to pin on timer 0, channel B
+                //
                 sbi(TCCR0A, COM0B1);
                 OCR0B = val; // set pwm duty
                 break;
 
-#if 0 // Not Used
+#if 0 // Unused
 			case TIMER1A:
+			    //
 				// connect pwm to pin on timer 1, channel A
+				//
 				sbi(TCCR1A, COM1A1);
 				OCR1A = val; // set pwm duty
 				break;
 
 			case TIMER1B:
+			    //
 				// connect pwm to pin on timer 1, channel B
+				//
 				sbi(TCCR1A, COM1B1);
 				OCR1B = val; // set pwm duty
 				break;
 
 			case TIMER2A:
+			    //
 				// connect pwm to pin on timer 2, channel A
+				//
 				sbi(TCCR2A, COM2A1);
 				OCR2A = val; // set pwm duty
 				break;
 
 			case TIMER2B:
+			    //
 				// connect pwm to pin on timer 2, channel B
+				//
 				sbi(TCCR2A, COM2B1);
 				OCR2B = val; // set pwm duty
 				break;
@@ -872,7 +1017,7 @@ void aDSChannel::_analogWrite(aPin_t pin, uint8_t val)
 					_digitalWrite(pin, LOW);
 				else
 					_digitalWrite(pin, HIGH);
-#endif // Not Used
+#endif
         }
     }
 }
@@ -928,17 +1073,23 @@ void aDSChannels::_showBanner()
 
     m_lcd.clear();
 
+    //
     // Reflect Dual or Single running version
+    //
     snprintf(buf, sizeof(buf), "%s %s", "aWXIrons", (IS_DATA_ENABLED(DATA_CHANNEL2_ENABLED) ? "Dual" : "Single"));
     m_lcd.setCursor((LCD_COLS - strlen(buf)) / 2, 0);
     m_lcd.print(buf);
 
+    //
     // Program's version
+    //
     snprintf(buf, sizeof(buf), "%c %d.%d", 'v', PROGRAM_VERSION_MAJOR, PROGRAM_VERSION_MINOR);
     m_lcd.setCursor((LCD_COLS - strlen(buf)) / 2, 1);
     m_lcd.print(buf);
 
+    //
     // Wait 2s
+    //
     delay(2000);
     m_lcd.clear();
 }
@@ -963,7 +1114,9 @@ bool aDSChannels::_checkForMagicNumbers()
 ///
 void aDSChannels::_writeMagicNumbers()
 {
+    //
     // Magic numbers
+    //
     EEPROM.write(EEPROM_ADDR_MAGIC,     0xD);
     EEPROM.write(EEPROM_ADDR_MAGIC + 1, 0xE);
     EEPROM.write(EEPROM_ADDR_MAGIC + 2, 0xA);
@@ -1094,11 +1247,17 @@ bool aDSChannels::_getTempFromEEPROM(int16_t startAddr, uint16_t &temp)
     int16_t  start = startAddr;
     uint8_t  crc;
 
+    //
     // Temperature
+    //
     _read(temp, start);
+    //
     // CRC8
+    //
     _read(crc, start);
-    // Scissor
+    //
+    // Split
+    //
     _scissor(temp, &crcData[0], crcOffset);
 
     return (_crc8(crcData, crcOffset) == crc);
@@ -1117,11 +1276,17 @@ void aDSChannels::_setTempToEEPROM(int16_t startAddr, uint16_t temp)
     uint8_t crcData[EEPROM_TEMP_SIZE - 1];
     size_t  crcOffset = 0;
 
-    // Scissor temp to uint8_t array
+    //
+    // Split temp to uint8_t array
+    //
     _scissor(temp, &crcData[0], crcOffset);
+    //
     // Write temp
+    //
     _write(temp, start);
+    //
     // Write computed CRC8
+    //
     _write(_crc8(crcData, crcOffset), start);
 }
 
@@ -1222,7 +1387,9 @@ void aDSChannels::setup(uint8_t cols, uint8_t rows,
 
     m_lcd.begin(cols, rows);
 
-    // create custom glyphs
+    //
+    // Create custom glyphs
+    //
     for(uint8_t i = 0; i < sizeof(_glyphs) / sizeof(_glyphs[0]); i++)
     {
         uint8_t gl[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -1237,9 +1404,12 @@ void aDSChannels::setup(uint8_t cols, uint8_t rows,
     // PWM
     //
     // Set PWM prescale factor to 1024
+    //
     TCCR0B = _BV(CS00) | _BV(CS02);
 
+    //
     // EEPROM storage checking
+    //
     if (!_checkForMagicNumbers())
         _writeMagicNumbers();
 
@@ -1247,31 +1417,42 @@ void aDSChannels::setup(uint8_t cols, uint8_t rows,
     // Channels settings
     //
     // Channel1
+    //
     m_channels[CHANNEL_ONE].setup(pwmChan1, sensChan1, ledChan1);
     m_channels[CHANNEL_ONE].setFocus(true);
 
+    //
     // Restore Channel ONE temperature from EEPROM, if crc8 match. Otherwise set it to TEMPERATURE_STANDBY
+    // If in calibration mode, set it to TEMPERATURE_MIN
+    //
     m_channels[CHANNEL_ONE].setTemperature(OPERATION_MODE_SET,
-                                           (_getTempFromEEPROM(EEPROM_ADDR_TEMP_CHANNEL_ONE, temp))
-                                           ?
-                                                constrain(temp, aDSChannel::TEMPERATURE_MIN, aDSChannel::TEMPERATURE_MAX)
-                                           :
-                                                aDSChannel::TEMPERATURE_STANDBY);
+                                           (IS_DATA_ENABLED(DATA_IN_CALIBRATION) ? aDSChannel::TEMPERATURE_MIN :
+                                                (_getTempFromEEPROM(EEPROM_ADDR_TEMP_CHANNEL_ONE, temp))
+                                                ?
+                                                    constrain(temp, aDSChannel::TEMPERATURE_MIN, aDSChannel::TEMPERATURE_MAX)
+                                                :
+                                                    aDSChannel::TEMPERATURE_STANDBY));
     m_channels[CHANNEL_ONE].syncTempChange();
 
+    //
     // Channel2 enability pin
+    //
     pinMode(chkChan2, INPUT);
     digitalRead(chkChan2);
 
-#if 1 // Channel 2 is disabled
+#if 1
+    //
     // Channel2 checking
+    //
     if (digitalRead(chkChan2) == HIGH)
         _enableData(DATA_CHANNEL2_ENABLED, true);
 #else
     _enableData(DATA_CHANNEL2_ENABLED, false);
 #endif
 
+    //
     // We force two channels in Calibration Mode
+    //
     if (IS_DATA_ENABLED(DATA_IN_CALIBRATION))
         _enableData(DATA_CHANNEL2_ENABLED, true);
 
@@ -1283,31 +1464,46 @@ void aDSChannels::setup(uint8_t cols, uint8_t rows,
         int16_t start = EEPROM_ADDR_CHANNEL_JOINED;
         _read(joined, start);
 
+        //
         // Set Channel 2 pins
+        //
         m_channels[CHANNEL_TWO].setup(pwmChan2, sensChan2, ledChan2);
 
         //
+        // Set relationship between channels (for PWM disabling while temp measurements)
+        //
+        m_channels[CHANNEL_ONE].setBrother(&m_channels[CHANNEL_TWO]);
+        m_channels[CHANNEL_TWO].setBrother(&m_channels[CHANNEL_ONE]);
+
+        //
         // Get Channel TWO temperature from EEPROM, if crc8 match. Otherwise set it to TEMPERATURE_STANDBY
+        // If in calibration mode, set it to TEMPERATURE_MIN
         //
         m_channels[CHANNEL_TWO].setTemperature(OPERATION_MODE_SET,
-                                               (_getTempFromEEPROM(EEPROM_ADDR_TEMP_CHANNEL_TWO, temp))
-                                               ?
-                                                    constrain(temp, aDSChannel::TEMPERATURE_MIN, aDSChannel::TEMPERATURE_MAX)
-                                               :
-                                                    aDSChannel::TEMPERATURE_STANDBY);
-
+                                               (IS_DATA_ENABLED(DATA_IN_CALIBRATION) ? aDSChannel::TEMPERATURE_MIN :
+                                                    (_getTempFromEEPROM(EEPROM_ADDR_TEMP_CHANNEL_TWO, temp))
+                                                    ?
+                                                        constrain(temp, aDSChannel::TEMPERATURE_MIN, aDSChannel::TEMPERATURE_MAX)
+                                                    :
+                                                        aDSChannel::TEMPERATURE_STANDBY));
+        //
         // If channels are joined, but temperature mismatche, set channel 2 temp from channel 1 one.
         // This could happen if uC is reset/turned off too early when join and temps are changed.
+        //
         if (joined && (m_channels[CHANNEL_ONE].getTemperature(OPERATION_MODE_SET) != m_channels[CHANNEL_TWO].getTemperature(OPERATION_MODE_SET)))
             m_channels[CHANNEL_TWO].setTemperature(OPERATION_MODE_SET, m_channels[CHANNEL_ONE].getTemperature(OPERATION_MODE_SET));
         else
             m_channels[CHANNEL_TWO].syncTempChange();
 
+        //
         // Enable Channel joining from stored value, except in Calibration Mode
+        //
         _enableData(DATA_CHANNELS_JOINDED, IS_DATA_ENABLED(DATA_IN_CALIBRATION) ? false : joined);
     }
 
+    //
     // Restore channel's calibration values
+    //
     restoreCalibationValues();
 
     _showBanner();
@@ -1325,10 +1521,14 @@ void aDSChannels::setOperationMode(OperationMode_t m)
 
     m_operationMode = m;
 
+    //
     // Set operation mode change, if necessary
+    //
     _enableDataCheck(DATA_OPERATION, (p != m_operationMode));
 
+    //
     // Set timestamp if current operation mode is OPERATION_MODE_SET, otherwise reset it.
+    //
     m_operationTick = (m_operationMode == OPERATION_MODE_SET) ? millis() : 0;
 }
 
@@ -1403,7 +1603,7 @@ void aDSChannels::_enableData(uint16_t bit, bool enable)
         m_datas &= (0xFFFF ^ bit);
 
 }
-#if 0 // Disabled: use IS_DATA_ENABLED() macro
+#if 0 // Disabled: use IS_DATA_ENABLED() macro. YEAH, I KNOW ! :-D
 bool aDSChannels::isDataEnabled(uint16_t bit)
 {
     return (m_datas & bit);
@@ -1429,29 +1629,41 @@ void aDSChannels::syncData(uint16_t bit)
 ///
 void aDSChannels::incEncoderPosition(uint16_t v)
 {
+    //
     // We are in OPERATION_MODE_READ, so switch to OPERATION_MODE_SET and don't increase any temperature value
+    //
     if (m_operationMode == OPERATION_MODE_READ)
     {
         setOperationMode(OPERATION_MODE_SET);
+        //
         // Leave standby mode, if necessary
+        //
         _wakeupFromStandby();
 
         return;
     }
 
+    //
     // Leave standby mode, if necessary
+    //
     _wakeupFromStandby();
 
+    //
     // Store last time any temp has been changed
+    //
     m_lastTempChange = millis();
     m_storedToEEPROM = false;
 
+    //
     // Two Joined Channels or Single Channel Mode
+    //
     if ((IS_DATA_ENABLED(DATA_CHANNEL2_ENABLED) && (IS_DATA_ENABLED(DATA_CHANNELS_JOINDED))) || !(IS_DATA_ENABLED(DATA_CHANNEL2_ENABLED)))
     {
         Channel_t last = (IS_DATA_ENABLED(DATA_CHANNEL2_ENABLED)) ? CHANNEL_TWO : CHANNEL_ONE;
 
+        //
         // Set new temperature to all channels
+        //
         for (Channel_t c = CHANNEL_ONE; c <= last; c = static_cast<Channel_t>(c + 1))
         {
             aDSChannel *chan = &m_channels[c];
@@ -1463,10 +1675,13 @@ void aDSChannels::incEncoderPosition(uint16_t v)
 
             _enableDataCheck((c == CHANNEL_ONE) ? DATA_CHANNEL1_TEMP_SET : DATA_CHANNEL2_TEMP_SET, chan->setTemperature(m_operationMode, temp));
         }
+
     } // Two Channels Unjoined Mode
     else if (IS_DATA_ENABLED(DATA_CHANNEL2_ENABLED))
     {
+        //
         // Set new temperature to focused channel
+        //
         aDSChannel *chan = m_channels[CHANNEL_ONE].hasFocus() ? &m_channels[CHANNEL_ONE] : &m_channels[CHANNEL_TWO];
         int16_t temp = chan->getTemperature(m_operationMode);
 
@@ -1487,16 +1702,22 @@ void aDSChannels::service()
 {
     bool storeToEEPROM = false;
 
+    //
     // Temp value has changed, but aren't save to EEPROM, do it now
+    //
     if (!m_storedToEEPROM && ((millis() - m_lastTempChange > TEMP_SETTING_INACTIVITY)))
     {
+        //
         // Consider to store new temp values into EEPROM
+        //
         storeToEEPROM = true;
     }
 
     unsigned long m = millis();
 
+    //
     // It's time to servicing the channels
+    //
     if ((m - m_nextMeasureUpdate) > MEASURE_UPDATE_RATE)
     {
         m_nextMeasureUpdate = m;
@@ -1507,19 +1728,24 @@ void aDSChannels::service()
             _enableDataCheck(DATA_CHANNEL2_TEMP_READ, m_channels[CHANNEL_TWO].service(m));
     }
 
+    //
     // Update LED and LCD state for Channel 1
+    //
     if (m_channels[CHANNEL_ONE].getLEDState() != m_channels[CHANNEL_ONE].updateLEDState(m))
         _enableData(DATA_CHANNEL1_LED_STATE, true);
 
-
+    //
     // Update LED state for Channel 2
+    //
     if (IS_DATA_ENABLED(DATA_CHANNEL2_ENABLED))
     {
         if (m_channels[CHANNEL_TWO].getLEDState() != m_channels[CHANNEL_TWO].updateLEDState(m))
             _enableData(DATA_CHANNEL2_LED_STATE, true);
     }
 
+    //
     // Need to save changed temp(s) to EEPROM
+    //
     if (storeToEEPROM)
     {
         if (m_channels[CHANNEL_ONE].isTempHasChanged())
@@ -1537,7 +1763,9 @@ void aDSChannels::service()
         m_storedToEEPROM = true;
     }
 
+    //
     // Update the LCD display
+    //
     _updateDisplay();
 }
 
@@ -1550,7 +1778,9 @@ void aDSChannels::toggleJoined()
 {
     _wakeupFromStandby();
 
+    //
     // Don't allow to join channels in Calibation Mode
+    //
     if (IS_DATA_ENABLED(DATA_IN_CALIBRATION))
         return;
 
@@ -1564,7 +1794,9 @@ void aDSChannels::toggleJoined()
         _enableData(DATA_CHANNELS_JOINDED, !IS_DATA_ENABLED(DATA_CHANNELS_JOINDED));
         _enableData(DATA_DISPLAY, true);
 
+        //
         // Store last time joined state changed
+        //
         m_lastTempChange = millis();
         m_storedToEEPROM = false; // That will force to check if any temperature has changed, and save it to EEPROM, if necessary
 
@@ -1720,12 +1952,16 @@ void aDSChannels::_wakeupFromStandby()
 ///
 void aDSChannels::_displayBigDigit(uint8_t digit, uint8_t position, uint8_t offset)
 {
-    // Upper digit
+    //
+    // Upper part digit
+    //
     m_lcd.setCursor((position * (DIGIT_WIDTH + 1)) + offset, 0);
     for(uint8_t i = 0; i < DIGIT_WIDTH; i++)
         m_lcd.write(_bigDigitsTop[digit][i]);
 
-    // Lower digit
+    //
+    // Lower part digit
+    //
     m_lcd.setCursor((position * (DIGIT_WIDTH + 1)) + offset, 1);
     for(uint8_t i = 0; i < DIGIT_WIDTH; i++)
         m_lcd.write(_bigDigitsBottom[digit][i]);
@@ -1739,21 +1975,35 @@ void aDSChannels::_displayBigDigit(uint8_t digit, uint8_t position, uint8_t offs
 /// \return void
 ///
 ///
-void aDSChannels::_displayBigDigits(uint16_t value, uint8_t position, uint8_t offset)
+void aDSChannels::_displayBigDigits(int16_t value, uint8_t position, uint8_t offset)
 {
     uint8_t     buffer[5];
     uint8_t    *p = &buffer[0];
     uint8_t     index = 0;
 
-    // Right Align
-    if (value < 100)
-        *p++ = ':'; // empty big char
-    if (value < 10)
-        *p++ = ':'; // empty big char
+    if (value >= 0)
+    {
+        //
+        // Right Align
+        //
+        if (value < 100)
+            *p++ = ':'; // empty big char
+        if (value < 10)
+            *p++ = ':'; // empty big char
 
-    itoa(value, (char *)p, 10);
+        itoa(value, (char *)p, 10);
+    }
+    else // value == -1
+    {
+        *p++ = ';';
+        *p++ = ';';
+        *p++ = ';';
+        *p++ = '\0';
+    }
 
-    // display each digit in sequence
+    //
+    // Display each digit in sequence
+    //
     for(; index < (sizeof(buffer) - 1); index++)
     {
         uint8_t c = buffer[index];
@@ -1766,9 +2016,11 @@ void aDSChannels::_displayBigDigits(uint16_t value, uint8_t position, uint8_t of
         _displayBigDigit(c, position + index, offset);
     }
 
-    // Display degree char
+    //
+    // Display degree char, or nothing if value < 0
+    //
     m_lcd.setCursor((position + index) * (DIGIT_WIDTH + 1) + offset, 0);
-    m_lcd.write(0xDF); // ° character
+    m_lcd.write((value >= 0) ? 0xDF : 0x20); // ° character
 }
 
 /// \brief Clear numerical value field (in non big digit mode) on LCD
@@ -1796,10 +2048,20 @@ void aDSChannels::_clearValue(uint8_t row, int destMinus)
 void aDSChannels::_updateField(OperationMode_t mode, int16_t value, uint8_t row)
 {
     _clearValue(row);
-    m_lcd.setCursor(((mode == OPERATION_MODE_READ) ? OFFSET_VALUE : (OFFSET_MARKER_RIGHT - getNumericalLength(value)) - 2), row);
-    m_lcd.print(value, DEC);
-    if (!IS_DATA_ENABLED(DATA_IN_CALIBRATION) || (IS_DATA_ENABLED(DATA_IN_CALIBRATION) && (mode == OPERATION_MODE_SET)))
-        m_lcd.write(0xDF); // ° like
+
+    if (value == -1)
+    {
+        m_lcd.setCursor(((mode == OPERATION_MODE_READ) ? OFFSET_VALUE : (OFFSET_MARKER_RIGHT - 3) - 2), row);
+        m_lcd.print(F("---"));
+    }
+    else
+    {
+        m_lcd.setCursor(((mode == OPERATION_MODE_READ) ? OFFSET_VALUE : (OFFSET_MARKER_RIGHT - getNumericalLength(value)) - 2), row);
+        m_lcd.print(value, DEC);
+
+        if (!IS_DATA_ENABLED(DATA_IN_CALIBRATION) || (IS_DATA_ENABLED(DATA_IN_CALIBRATION) && (mode == OPERATION_MODE_SET)))
+            m_lcd.write(0xDF); // ° like
+    }
 }
 
 /// \brief Update LCD display, if needed
@@ -1812,7 +2074,9 @@ void aDSChannels::_updateDisplay()
     bool            fullRedraw = false;
     unsigned long   m = millis();
 
+    //
     // Update the display each DISPLAY_UPDATE_RATE ms
+    //
     if ((m_operationMode == OPERATION_MODE_SET)
         || IS_DATA_ENABLED(DATA_FOCUS)
         || (IS_DATA_ENABLED(DATA_CHANNEL1_LED_STATE) || IS_DATA_ENABLED(DATA_CHANNEL2_LED_STATE))
@@ -1820,17 +2084,23 @@ void aDSChannels::_updateDisplay()
     {
         m_nextDisplayUpdate = m;
 
+        //
         // Single or joined.
+        //
         if ((IS_DATA_ENABLED(DATA_CHANNEL2_ENABLED) && (IS_DATA_ENABLED(DATA_CHANNELS_JOINDED))) || !(IS_DATA_ENABLED(DATA_CHANNEL2_ENABLED)))
         {
+            //
             // Operation mode has changed
+            //
             if (IS_DATA_ENABLED(DATA_OPERATION))
             {
                 fullRedraw = true;
                 syncData(DATA_OPERATION);
             }
 
+            //
             // Full redraw needed
+            //
             if ((IS_DATA_ENABLED(DATA_DISPLAY)) || fullRedraw)
             {
                 fullRedraw = true;
@@ -1839,34 +2109,57 @@ void aDSChannels::_updateDisplay()
                 m_lcd.clear();
             }
 
-            // Displayed temperature of channel 1 has changed, or full redraw
-            if ((IS_DATA_ENABLED(((m_operationMode == OPERATION_MODE_SET) ? DATA_CHANNEL1_TEMP_SET : DATA_CHANNEL1_TEMP_READ))) || fullRedraw)
-            {
-                uint16_t t = (m_operationMode == OPERATION_MODE_READ)
-                                ?
-                                    (IS_DATA_ENABLED(DATA_CHANNEL2_ENABLED)
-                                       ?
-                                           ((m_channels[CHANNEL_ONE].getTemperature(OPERATION_MODE_READ) + m_channels[CHANNEL_TWO].getTemperature(OPERATION_MODE_READ)) / 2)
-                                       :
-                                           m_channels[CHANNEL_ONE].getTemperature(OPERATION_MODE_READ))
-                                :
-                                    m_channels[CHANNEL_ONE].getTemperature(m_operationMode);
+            //
+            // Does channels plugged ?
+            //
+            bool chan1Plugged = m_channels[CHANNEL_ONE].isPlugged();
+            bool chan2Plugged = IS_DATA_ENABLED(DATA_CHANNEL2_ENABLED) ? m_channels[CHANNEL_TWO].isPlugged() : false;
 
-                _displayBigDigits(t, 0, m_operationMode == OPERATION_MODE_SET ? 2 : 0);
+            //
+            // Displayed temperature of channel 1 has changed
+            //
+            if (  (IS_DATA_ENABLED(((m_operationMode == OPERATION_MODE_SET) ? DATA_CHANNEL1_TEMP_SET : DATA_CHANNEL1_TEMP_READ))
+                  || // Or displayed temperature of channel 2 has changed
+                  (IS_DATA_ENABLED(DATA_CHANNEL2_ENABLED) &&  IS_DATA_ENABLED(((m_operationMode == OPERATION_MODE_SET) ? DATA_CHANNEL1_TEMP_SET : DATA_CHANNEL2_TEMP_READ))))
+                || // Or full redraw needed
+                  fullRedraw)
+            {
+                int16_t chan1Temp = chan1Plugged ? m_channels[CHANNEL_ONE].getTemperature(OPERATION_MODE_READ) : -1;
+                int16_t chan2Temp = IS_DATA_ENABLED(DATA_CHANNEL2_ENABLED) && chan2Plugged ? m_channels[CHANNEL_TWO].getTemperature(OPERATION_MODE_READ) : -1;
+                int16_t averagedTemp;
+
+                if (chan1Plugged && chan2Plugged)
+                    averagedTemp = (chan1Temp + chan2Temp) >> 1;
+                else if (chan1Plugged)
+                    averagedTemp = chan1Temp;
+                else if (chan2Plugged)
+                    averagedTemp = chan2Temp;
+                else
+                    averagedTemp = -1;
+
+
+                int16_t t = (m_operationMode == OPERATION_MODE_READ) ? averagedTemp : m_channels[CHANNEL_ONE].getTemperature(m_operationMode);
+
+                _displayBigDigits(t, 0, (m_operationMode == OPERATION_MODE_SET) ? 2 : 0);
                 syncData(m_operationMode == OPERATION_MODE_SET ? DATA_CHANNEL1_TEMP_SET : DATA_CHANNEL1_TEMP_READ);
                 syncData(m_operationMode == OPERATION_MODE_SET ? DATA_CHANNEL2_TEMP_SET : DATA_CHANNEL2_TEMP_READ);
             }
-        }
-        else if (IS_DATA_ENABLED(DATA_CHANNEL2_ENABLED)) // Two separate channels
+
+        } // Two separate channels
+        else if (IS_DATA_ENABLED(DATA_CHANNEL2_ENABLED))
         {
+            //
             // Operation mode has changed
+            //
             if (IS_DATA_ENABLED(DATA_OPERATION))
             {
                 fullRedraw = true;
                 syncData(DATA_OPERATION);
             }
 
+            //
             // Full redraw needed
+            //
             if ((IS_DATA_ENABLED(DATA_DISPLAY)) || fullRedraw)
             {
                 fullRedraw = true;
@@ -1875,34 +2168,52 @@ void aDSChannels::_updateDisplay()
                 m_lcd.clear();
             }
 
+            //
+            // Notify in calibration mode
+            //
             if (IS_DATA_ENABLED(DATA_IN_CALIBRATION) && fullRedraw)
             {
                 m_lcd.setCursor(OFFSET_MARKER_RIGHT + 1, 0);
                 m_lcd.print(F("CAL"));
             }
 
+            //
             // Displayed temperature of channel 1 has changed, or full redraw
+            //
             if ((IS_DATA_ENABLED(((m_operationMode == OPERATION_MODE_SET) ? DATA_CHANNEL1_TEMP_SET : DATA_CHANNEL1_TEMP_READ))) || fullRedraw)
             {
                 int16_t t = (IS_DATA_ENABLED(DATA_IN_CALIBRATION) && (m_operationMode == OPERATION_MODE_READ))
                                 ? m_channels[CHANNEL_ONE].getADCValue(): m_channels[CHANNEL_ONE].getTemperature(m_operationMode);
 
-                _updateField(m_operationMode, t, 0);
+                _updateField(m_operationMode, ((m_operationMode == OPERATION_MODE_READ)
+                                                ?
+                                                    (IS_DATA_ENABLED(DATA_IN_CALIBRATION) ? t : (m_channels[CHANNEL_ONE].isPlugged() ? t : -1) )
+                                                :
+                                                    t)
+                                            , 0);
                 syncData(m_operationMode == OPERATION_MODE_SET ? DATA_CHANNEL1_TEMP_SET : DATA_CHANNEL1_TEMP_READ);
             }
 
+            //
             // Displayed temperature of channel 2 has changed, or full redraw
+            //
             if ((IS_DATA_ENABLED(((m_operationMode == OPERATION_MODE_SET) ? DATA_CHANNEL2_TEMP_SET : DATA_CHANNEL2_TEMP_READ))) || fullRedraw)
             {
-                //int16_t t = IS_DATA_ENABLED(DATA_IN_CALIBRATION) ? m_channels[CHANNEL_TWO].getADCValue() : m_channels[CHANNEL_TWO].getTemperature(m_operationMode);
                 int16_t t = (IS_DATA_ENABLED(DATA_IN_CALIBRATION) && (m_operationMode == OPERATION_MODE_READ))
                                 ? m_channels[CHANNEL_TWO].getADCValue(): m_channels[CHANNEL_TWO].getTemperature(m_operationMode);
 
-                _updateField(m_operationMode, t, 1);
+                _updateField(m_operationMode, ((m_operationMode == OPERATION_MODE_READ)
+                                               ?
+                                                    (IS_DATA_ENABLED(DATA_IN_CALIBRATION) ? t : (m_channels[CHANNEL_TWO].isPlugged() ? t : -1) )
+                                               :
+                                                     t)
+                                            , 1);
                 syncData(m_operationMode == OPERATION_MODE_SET ? DATA_CHANNEL2_TEMP_SET : DATA_CHANNEL2_TEMP_READ);
             }
 
-            // Focus has changed
+            //
+            // Channel focus has changed
+            //
             if ((IS_DATA_ENABLED(DATA_FOCUS)) || fullRedraw)
             {
                 bool focus = m_channels[CHANNEL_ONE].hasFocus();
@@ -1921,7 +2232,9 @@ void aDSChannels::_updateDisplay()
             }
         }
 
+        //
         // Standby mode has been toggled
+        //
         if ((IS_DATA_ENABLED(DATA_DISPLAY_STANDBY)) || fullRedraw)
         {
             if (!(IS_DATA_ENABLED(DATA_CHANNELS_JOINDED)) || ((IS_DATA_ENABLED(DATA_CHANNELS_JOINDED)) && (m_operationMode == OPERATION_MODE_READ)))
@@ -1935,7 +2248,9 @@ void aDSChannels::_updateDisplay()
             }
         }
 
+        //
         // Redraw LCD LED for Channel 1
+        //
         if (IS_DATA_ENABLED(DATA_CHANNEL1_LED_STATE) || fullRedraw)
         {
 #ifdef LCD_CHANNELS_LEDS
@@ -1945,7 +2260,9 @@ void aDSChannels::_updateDisplay()
             syncData(DATA_CHANNEL1_LED_STATE);
         }
 
+        //
         // Redraw LCD LED for Channel 2
+        //
         if (IS_DATA_ENABLED(DATA_CHANNEL2_ENABLED) && (IS_DATA_ENABLED(DATA_CHANNEL2_LED_STATE) || fullRedraw))
         {
 #ifdef LCD_CHANNELS_LEDS
@@ -1973,7 +2290,9 @@ aDSEngine::aDSEngine() :
 {
     //ctor
 
+    //
     // If encoder's push button is pressed on startup, we turn Calibration Mode ON
+    //
     if (digitalRead(ENCODER_PB_PIN) == LOW)
     {
         m_channels.setCalibrationMode(true);
@@ -2075,12 +2394,12 @@ void aDSEngine::_handleSerialInput()
                                 aDSChannel::CalibrationData_t cal = m_channels.getCalibrationValues(aDSChannels::CHANNEL_ONE);
                                 Serial.print(F("1="));
                                 Serial.print(cal.slope, 9);
-                                Serial.print(F(";"));
+                                Serial.print(F(","));
                                 Serial.print(cal.offset, 9);
                                 cal = m_channels.getCalibrationValues(aDSChannels::CHANNEL_TWO);
-                                Serial.print(F("2="));
+                                Serial.print(F(";2="));
                                 Serial.print(cal.slope, 9);
-                                Serial.print(F(";"));
+                                Serial.print(F(","));
                                 Serial.print(cal.offset, 9);
                             }
                             else // Handle calibration values: ':CAL:x:slope,offset'
@@ -2120,7 +2439,9 @@ void aDSEngine::_handleSerialInput()
                     }
                 }
 
+                //
                 // Clear buffer for next command
+                //
                 m_RXoffset = 0;
 
                 Serial.print(valid ? ":OK:\r\n" : ":ERR:\r\n");
@@ -2136,16 +2457,22 @@ void aDSEngine::_handleSerialInput()
 ///
 void aDSEngine::setup()
 {
+    //
     // Setup channels
+    //
     m_channels.setup(LCD_COLS, LCD_ROWS,
                      PWM_CHANNEL1_PIN, TEMP_SENSOR_CHANNEL1_PIN, LED_CHANNEL1_PIN,
                      CHANNEL2_ENABLE_PIN,
                      PWM_CHANNEL2_PIN, TEMP_SENSOR_CHANNEL2_PIN, LED_CHANNEL2_PIN);
 
+    //
     // Pointer to ClickEncoder object (used in timer1ISR())
+    //
     pEncoder = &m_encoder;
 
+    //
     // Initialize Timer1
+    //
     Timer1.initialize(500);
     Timer1.attachInterrupt(timer1ISR);
 }
@@ -2157,25 +2484,35 @@ void aDSEngine::setup()
 ///
 void aDSEngine::run()
 {
+    //
     // Initialize operation mode timeout
+    //
     m_channels.pingOperationMode();
 
     while(1)
     {
+        //
         // Get the encoder detents value
+        //
         int16_t v = m_encoder.getValue();
 
+        //
         // Check if we need to go back to OPERATION_MODE_READ
+        //
         m_channels.updateOperationMode();
 
+        //
         // Encoder has been rotated
+        //
         if (v != 0)
         {
             m_channels.incEncoderPosition(v);
             m_channels.pingOperationMode();
         }
 
+        //
         // Any encoder push button event ?
+        //
         ClickEncoder::Button b = m_encoder.getButton();
         if (b != ClickEncoder::Open)
         {
@@ -2192,7 +2529,9 @@ void aDSEngine::run()
                 case ClickEncoder::Held: // Toggle joined channels
                     m_channels.toggleJoined();
 
+                    //
                     // Wait while button is held
+                    //
                     do
                     {
                         m_channels.service();
@@ -2204,10 +2543,14 @@ void aDSEngine::run()
             }
         }
 
-        // Channels servicing
+        //
+        // Servicing channels
+        //
         m_channels.service();
 
-        // Handle serial input (in calibration)
+        //
+        // Handle serial input (in calibration mode ONLY, time is precious)
+        //
         unsigned long m;
         if (m_channels.isInCalibration() && (((m = millis()) - m_serialInputTick) > 300))
         {

@@ -7,7 +7,6 @@ var a_d_s_engine_8h =
     [ "_eepromCalibrationValue_t", "uniona_d_s_channels_1_1__eeprom_calibration_value__t.html", "uniona_d_s_channels_1_1__eeprom_calibration_value__t" ],
     [ "aDSEngine", "classa_d_s_engine.html", "classa_d_s_engine" ],
     [ "IS_DATA_ENABLED", "a_d_s_engine_8h.html#ac64e1b23252dae4d1fbbe104790fdc05", null ],
-    [ "SIMU", "a_d_s_engine_8h.html#a55bc90ce1fe4a4912c37967a33cb7262", null ],
     [ "OperationMode_t", "a_d_s_engine_8h.html#a926dac854c62d94f15411f0985de48b6", [
       [ "OPERATION_MODE_READ", "a_d_s_engine_8h.html#a926dac854c62d94f15411f0985de48b6a67f8e4847972037cb8d851b8e70b188b", null ],
       [ "OPERATION_MODE_SET", "a_d_s_engine_8h.html#a926dac854c62d94f15411f0985de48b6ad211175471942b9b29006645dc891156", null ],

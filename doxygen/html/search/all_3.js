@@ -9,5 +9,6 @@ var searchData=
   ['channel_5fone',['CHANNEL_ONE',['../classa_d_s_channels.html#adf961fef17dabac3c929a842dd9a3293a3efc4d226ab29a90fa4999abe625bd7b',1,'aDSChannels']]],
   ['channel_5ft',['Channel_t',['../classa_d_s_channels.html#adf961fef17dabac3c929a842dd9a3293',1,'aDSChannels']]],
   ['channel_5ftwo',['CHANNEL_TWO',['../classa_d_s_channels.html#adf961fef17dabac3c929a842dd9a3293a88b7f3a84f249d1dc88457180dc728b1',1,'aDSChannels']]],
-  ['cntrl_5fgain',['CNTRL_GAIN',['../classa_d_s_channel.html#ad601f5febe4997cf3cd3b78d8ee6eda9',1,'aDSChannel']]]
+  ['channelcount',['channelCount',['../a_d_s_engine_8cpp.html#a579987f8ec3e700b27b3ac4bac6ad9df',1,'aDSEngine.cpp']]],
+  ['cntrl_5fgain',['CNTRL_GAIN',['../classa_d_s_channel.html#a10b25fbb81eaaeaa74cc2c009030c427',1,'aDSChannel']]]
 ];
