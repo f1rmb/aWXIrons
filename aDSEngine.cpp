@@ -28,7 +28,7 @@
 ///
 ///     Based on a project from __Martin Kumm__ http://www.martin-kumm.de/wiki/doku.php?id=Projects:SMD_Solderstation.
 ///
-///  The hardware has been redesigned (two channels, 16x2 LCD instead of 7 segments display, etc), and the software rewrote from scratch.
+///  The hardware has been redesigned and modified (two channels, 16x2 LCD instead of 7 segments display, etc). The software has also been rewrote from scratch.
 ///
 ///  I want to especially thank my friend __Olivier__, <i><b>F5LGJ</b></i>, for his great help and support in this project.
 ///
@@ -45,16 +45,16 @@
 ///
 ///
 /// <br>
-/// - Depending of the hardware assembly, it can control one or two soldering irons:
+/// - Depending of the hardware assembly, it can handle one or two soldering irons:
 ///
-///     -# In Single mode, the temperature reading and setting is displayed using double height font.
+///     -# In Single mode, the temperature reading and setting are displayed using double height font.
 ///
-///     -# In dual channels version, both soldering irons can be controled separately, or can be joined:
-///         + when separate channels mode is used, each channel is independent. Simple click on the encoder push button
-///            will set the focus to the next channel. The focused channel temperature will be surrounded by the symbols <b>[</b> and <b>]</b>
+///     -# In dual channels version, both soldering irons can be controlled separately, or can be joined:
+///         + when separate channels mode is used, each channel is independent. Simple clicking on the encoder push button
+///            will set the focus to the next channel. The focused channel's temperature will be surrounded by the symbols <b>[</b> and <b>]</b>
 ///
-///         + when joined mode is used, the temperature is displayed like in Single channel mode (double height font), both
-///            channels share the same settings (target temperature and standby mode).
+///         + when joined mode is used, the temperature is displayed like in <i>Single</i> channel mode (double height font), both
+///            channels share the same settings (target temperature).
 ///
 /// <br>
 /// - LED status decoding:
@@ -69,13 +69,13 @@
 /// <br>
 /// - The target temperature is stored, for each channel, inside the microcontroller's EEPROM.
 ///   The values will be restored on the next startup.
-///   After a timeout of 60 seconds, a new defined target temperature will be stored into the EEPROM.
-///   If in the meantime the user defines a new target temperature, the timeout is resetted
+///   After a timeout of 30 seconds, a new defined target temperature will be stored into the EEPROM.
+///   If in the meantime the user defines a new target temperature, the timeout will be resetted
 ///
 ///
 /// <br>
-/// - When the station is in temperature reading mode, the displayed value(s) is left aligned.
-///   When the station is in settings mode, the displayed value is right aligned.
+/// - When the station is in temperature reading mode, the displayed values are left aligned.
+///   When the station is in settings mode, the displayed values are right aligned.
 ///
 ///
 ///
@@ -86,12 +86,12 @@
 ///   target temperature, and anti-clockwise to decrease it.
 ///
 /// <br>
-/// - When the soldering station is not in settings mode, it displays the soldering tip temperature. A single encoder detents rotation
-///   will switch the soldering station into settings mode, and display the target temperature without any change to the target temperature
+/// - When the soldering station is not in settings mode, it displays the soldering tip's temperature. A single encoder detents rotation
+///   will switch the soldering station into settings mode, and displays the target temperature without any change to the target temperature
 ///   setting.
 ///
 /// <br>
-/// - When the soldering station is in settings mode, if not action is done using the encoder's rotation within 3 seconds, it will
+/// - When the soldering station is in settings mode, and no action is done using the encoder's rotation within 3 seconds, it will
 ///   switch back to temperature reading.
 ///
 /// <br>
@@ -101,7 +101,7 @@
 ///         Button | Action
 ///         -------|-------
 ///         Single Click | <i>no effect</i>
-///         Double Click | toggles standby mode (see \ref standby)
+///         Double Click | switch to standby mode (see \ref standby)
 ///         Held | <i>no effect</i>
 ///
 /// <br>
@@ -116,7 +116,7 @@
 /// <br>
 /// \section joined Joined mode
 ///
-/// - With dual channel enabled hardware, it's possible to share the same temperature preset for both soldering tips.
+/// - With Dual Channel enabled hardware, it's possible to share the same temperature preset for both soldering tips.
 ///
 /// See \ref encoderusage
 ///
@@ -131,10 +131,10 @@
 ///   above this point, otherwise it will go down to 100°C.
 ///
 /// <br>
-/// - Any encoder action will exit the standby mode.
+/// - Any encoder action will exits from <i>Standby</i> mode.
 ///
 /// <br>
-/// - When Standby mode is activated, the LEDs blink three times cyclically.
+/// - When <i>Standby</i> mode is activated, the LEDs blink three times cyclically.
 ///
 ///
 
@@ -146,7 +146,7 @@
 /// + __Prerequisites__:<br><br>
 ///
 ///      - __Hardware__:
-///        - Digital Thermometer (e.g: you multimeter with a K probe)
+///        - Digital Thermometer (e.g: your digital multimeter with a thermocouple)
 /// <br><br>
 ///      - __Software__:
 ///         * A serial terminal emulator (e.g. “<i>HyperTerminal</i>” or “<i>Tera Term</i>” on Windows, “<i>minicom</i>” or “<i>cutecom</i>” on Linux).
@@ -156,23 +156,59 @@
 ///         The serial communication settings are: <b>57600</b>, <b>8</b>, <b>N</b>, <b>1</b>
 ///
 /// <br>
+/// + __Why a calibration__:<br>
 ///
-/// + __Why a calibration__:<br><br>
-///     The calibration process is necessary get accurate temperature control.
+///     The calibration process is necessary get accurate temperature control.<br>
+///     Some average values are used by default, but that won't gives you accurate temperature control.
 ///
 /// <br>
 /// + __Process Description__:<br><br>
 ///
-///     - You have to connect the soldering station to the PC, using a USB cable.
-///     - To turn the soldering station in calibration, you have to keep the encoder push button pressed while turning the station ON.
-///         Once the station is ready to use, the '<i><b>CAL</b></i>' string is displayed on the top left side of the LCD display.
-///     - In calibration mode, the readed temperature isn't displayed. Instead, the ADC value is shown.
-///     - It's really important to start from the lowest temperature setting (100°C), and wait till the temperature stabilize.
-///     - Blah
+///     - __Step 1: <i>Calibration Mode</i>__
 ///
-/// \todo write me
+///         You have to open the soldering station's box and connect the soldering station to the PC, using a USB cable.<br>
+///         To turn the soldering station in calibration, you have to keep the encoder's push button pressed while turning ON the station.
+///         Once the station is ready to use, the '<b><i>CAL</i></b>' string is displayed on the top left side of the LCD display.<br>
 ///
+///         In calibration mode, the readed temperature isn't displayed anymore. Instead, the ADC value is shown.<br>
 ///
+///         The station will self set the target temperature to 100°C. You have to wait until the temperature stabilizes.<br><br>
+///
+///     - __Step 2: <i>Calibrate Channel 1 or 2</i>__
+///
+///         Select matching <b><i>Channel</i></b> tab in the calibration spreadsheet file.<br>
+///         Set the temperature target using the pseudo temperature value in the first column. Wait until LED blinks and the displayed ADC value stabilize.<br>
+///         Apply the thermocouple to the soldering tip, then write down the readed temperature to the column named '<b><i>Temp °C'</i></b>.<br>
+///         If needed, adjust the value in the '<b><i>ADCread</i></b>' column, accordingly to the one displayed on the station's LCD.<br>
+///         Apply the same procedure for all spreadsheet's rows.<br>
+///
+///         Once you completed the array, down the chart, the '<i>Calibration String</i>' cell contains the string you have to copy and paste to the serial terminal emulator, e.g:
+///         \code :CAL:1:0.3757498594,51.7808993467 \endcode
+///         This string starts with '<b>:CAL:</b>', followed by the channel's name, then two floating point values, comma separated.<br>
+///         Once the string entered and validated with the <b>[RETURN]</b> key, you should get a '<b><i>:OK:</i></b>' acknoledge message.<br>
+///         In case you get '<b><i>:ERR:</i></b>', double check the calibration string you pasted.<br>
+///
+///         If you own a Dual Channel soldering station, <b>repeat this step for the second Channel</b>.<br><br>
+///
+///     - __Last Step: <i>Backup</i>__
+///
+///          Once the full calibration is done, you <b>HAVE</b> to store the new values into the EEPROM, using the following command:
+///          \code :CAL:SAVE \endcode
+///          As usual, you should get a '<i><b>:OK:</b><i>' acknoledge message.
+///
+///          Once you validate the calibration with this command, you leave the calibration mode.<br>
+///          You can unplug the USB cable, close the box and use your soldering station now.
+///
+/// <br>
+/// + __Other available calibration commands__:<br><br>
+///
+///     - <i>:CAL:</i><b>OFF</b>  Cancels the calibration process, restoring previous values.
+///
+///     - <i>:CAL:</i><b>DUMP</b>  Displays the calibration values in the serial terminal emulator
+///
+/// \warning If you own a Dual Channel soldering station, you <b>HAVE</b> to calibrate both channels, or at least enter the <i>old</i> calibration string for the channel you won't calibrate.
+///
+
 
 
 static const uint8_t        DIGIT_WIDTH          = 3;   ///< Max numerical length of temperature (used with big digits)
@@ -497,7 +533,7 @@ bool aDSChannel::service(unsigned long m)
     m_adcValue = _analogRead(m_sensorPin);
 
     //
-    // Switch the heater back on to previous value
+    // Switch the heater back ON, to previous value
     //
     _analogWrite(m_pwmPin, m_pwmValue);
 
@@ -536,27 +572,29 @@ bool aDSChannel::service(unsigned long m)
     // Limit PWM value to 0...PWM_MAX_VALUE
     //
     if (diff > 0)
-        pwm = constrain((diff * CNTRL_GAIN), 0, PWM_MAX_VALUE);
+    {
+        pwm = constrain((diff * 10), 0, PWM_MAX_VALUE);
 
-    //
-    // Slightly increase PWM width for fine temp control (almost)
-    //
-    if ((pwm > 0) && (pwm <= 10))
-        pwm += 20;
+        //
+        // Slightly increase PWM width for fine temp control
+        //
+        if (diff <= TEMPERATURE_TOLERANCE)
+        pwm += (diff * 15);
+    }
 
 #if 0
     Serial.print(m_channel, DEC);
-    Serial.print(": ");
+    Serial.print(F(": [ "));
     Serial.print(m_adcValue, DEC);
-    Serial.print(", ");
+    Serial.print(F(" ], "));
     Serial.print(currTemp, DEC);
-    Serial.print(" deg");
-    Serial.print(", diff: ");
+    Serial.print(F(" deg"));
+    Serial.print(F(", diff: "));
     Serial.print(diff, DEC);
-    Serial.print(", PWM: ");
+    Serial.print(F(", PWM: "));
     Serial.print(pwm, DEC);
-    Serial.print(", ");
-    Serial.println(m_isPlugged ? " PLUGGED" : " NOT PLUGGED");
+    Serial.print(F(", "));
+    Serial.println(m_isPlugged ? F("PLUGGED") : F("NOT PLUGGED"));
 #endif
 
     //
@@ -759,7 +797,7 @@ void aDSChannel::setCalibration(float slope, float offset)
 
 /// \brief Get calibration data values
 ///
-/// \return const CalibrationData_t : Calibration data
+/// \return const aDSChannel::CalibrationData_t : Calibration data
 ///
 ///
 const aDSChannel::CalibrationData_t aDSChannel::getCalibration() const
@@ -1040,7 +1078,7 @@ void aDSChannel::_analogWrite(aPin_t pin, uint8_t val)
 ///
 aDSChannels::aDSChannels(uint8_t rs, uint8_t e, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7) :
     m_lcd(rs, e, d4, d5, d6, d7),
-    m_operationMode(OPERATION_MODE_READ),
+    m_operationMode(OPERATION_MODE_SET),
     m_operationTick(0),
     m_datas(0x0),
     m_lcdCols(0),
@@ -1088,9 +1126,29 @@ void aDSChannels::_showBanner()
     m_lcd.print(buf);
 
     //
-    // Wait 2s
+    // Wait 1s
     //
-    delay(2000);
+    delay(1000);
+    m_lcd.clear();
+
+    //
+    // FOSS - FOSH licenses
+    //
+    snprintf(buf, sizeof(buf), "%s", "FOSS  -  FOSH");
+    m_lcd.setCursor((LCD_COLS - strlen(buf)) / 2, 0);
+    m_lcd.print(buf);
+
+    //
+    // Author
+    //
+    snprintf(buf, sizeof(buf), "%s  %d", "F1RMB", 2015);
+    m_lcd.setCursor((LCD_COLS - strlen(buf)) / 2, 1);
+    m_lcd.print(buf);
+
+    //
+    // Wait 1s
+    //
+    delay(1000);
     m_lcd.clear();
 }
 
@@ -1687,7 +1745,7 @@ void aDSChannels::incEncoderPosition(uint16_t v)
 
         temp += v;
 
-        temp = constrain(temp, aDSChannel::TEMPERATURE_MIN, aDSChannel::TEMPERATURE_MAX);
+        temp = constrain(temp, aDSChannel::TEMPERATURE_MIN, (IS_DATA_ENABLED(DATA_IN_CALIBRATION) ? 999 : aDSChannel::TEMPERATURE_MAX));
 
         _enableDataCheck((chan == &m_channels[CHANNEL_ONE]) ? DATA_CHANNEL1_TEMP_SET : DATA_CHANNEL2_TEMP_SET, chan->setTemperature(m_operationMode, temp));
     }
@@ -1716,7 +1774,7 @@ void aDSChannels::service()
     unsigned long m = millis();
 
     //
-    // It's time to servicing the channels
+    // It's time fo channels servicing
     //
     if ((m - m_nextMeasureUpdate) > MEASURE_UPDATE_RATE)
     {
@@ -1748,16 +1806,22 @@ void aDSChannels::service()
     //
     if (storeToEEPROM)
     {
-        if (m_channels[CHANNEL_ONE].isTempHasChanged())
+        //
+        // Store temperature to EEPROM only if we're not in calibration mode
+        //
+        if (! IS_DATA_ENABLED(DATA_IN_CALIBRATION))
         {
-            _setTempToEEPROM(EEPROM_ADDR_TEMP_CHANNEL_ONE, m_channels[CHANNEL_ONE].getTemperature(OPERATION_MODE_SET));
-            m_channels[CHANNEL_ONE].syncTempChange();
-        }
+            if (m_channels[CHANNEL_ONE].isTempHasChanged())
+            {
+                _setTempToEEPROM(EEPROM_ADDR_TEMP_CHANNEL_ONE, m_channels[CHANNEL_ONE].getTemperature(OPERATION_MODE_SET));
+                m_channels[CHANNEL_ONE].syncTempChange();
+            }
 
-        if (m_channels[CHANNEL_TWO].isTempHasChanged())
-        {
-            _setTempToEEPROM(EEPROM_ADDR_TEMP_CHANNEL_TWO, m_channels[CHANNEL_TWO].getTemperature(OPERATION_MODE_SET));
-            m_channels[CHANNEL_TWO].syncTempChange();
+            if (m_channels[CHANNEL_TWO].isTempHasChanged())
+            {
+                _setTempToEEPROM(EEPROM_ADDR_TEMP_CHANNEL_TWO, m_channels[CHANNEL_TWO].getTemperature(OPERATION_MODE_SET));
+                m_channels[CHANNEL_TWO].syncTempChange();
+            }
         }
 
         m_storedToEEPROM = true;
@@ -1894,6 +1958,16 @@ void aDSChannels::restoreCalibationValues()
     if (IS_DATA_ENABLED(DATA_CHANNEL2_ENABLED))
         _restoreCalibrationFromEEPROM(EEPROM_ADDR_CALIBRATION_CHAN_2, m_channels[CHANNEL_TWO]);
 
+    if (IS_DATA_ENABLED(DATA_IN_CALIBRATION))
+    {
+        aDSChannel::CalibrationData_t cal = { .slope = 1.0, .offset = 0.0 };
+
+        setCalibrationValues(aDSChannels::CHANNEL_ONE, cal);
+
+        if (IS_DATA_ENABLED(DATA_CHANNEL2_ENABLED))
+            setCalibrationValues(aDSChannels::CHANNEL_TWO, cal);
+
+    }
 }
 
 /// \brief Save calibation value of given into EEPROM

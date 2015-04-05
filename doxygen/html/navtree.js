@@ -8,7 +8,6 @@ var NAVTREE =
       [ "Standby", "_u_i.html#standby", null ]
     ] ],
     [ "Calibration Process", "cal.html", null ],
-    [ "Todo List", "todo.html", null ],
     [ "Classes", null, [
       [ "Class List", "annotated.html", "annotated" ],
       [ "Class Index", "classes.html", null ],
@@ -37,7 +36,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_c_d_c_8cpp.html",
-"uniona_d_s_channels_1_1__eeprom_calibration_value__t.html"
+"wiring_8c.html#a02fd73d861ef2e4aabb38c0c9ff82947"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -87,13 +87,10 @@ class aDSChannel
 #endif
         static const int16_t        TEMPERATURE_MAX             = 450;  ///< Maximum temperature
         static const int16_t        TEMPERATURE_STANDBY         = 150;  ///< Standby temperature
-        static const float          ADC_TO_TEMP_GAIN            = 0.39; ///<
-        static const float          ADC_TO_TEMP_OFFSET          = 23.9; ///<
-        static const uint16_t       CNTRL_GAIN                  = 10;   ///<
         static const unsigned long  BLINK_UPDATE_RATE           = 400;  ///< Update rate for LED blinking, in ms
         static const int16_t        TEMPERATURE_TOLERANCE       = 3;    ///< Temperature tolerance for REACHED state, +/- 2 °C
-        static const float          DEFAULT_TEMPERATURE_SLOPE   = 0.3947387545;
-        static const float          DEFAULT_TEMPERATURE_OFFSET  = 43.8279285472;
+        static const float          DEFAULT_TEMPERATURE_SLOPE   = 0.3947387545;  ///< Default slope value, used for ADC to Temp correction
+        static const float          DEFAULT_TEMPERATURE_OFFSET  = 43.8279285472; ///< Default offset value, used for ADC to Temp correction
 
         static const int16_t        PWM_MAX_VALUE               = 150;  ///< Maximum PWM value
 
@@ -205,7 +202,7 @@ class aDSChannels
         static const unsigned long  DISPLAY_UPDATE_RATE         = 200;      ///< Display update rate, in ms
         static const unsigned long  MEASURE_UPDATE_RATE         = 200;      ///< Measurement (for aDSChannel) rate, in ms
 
-        static const unsigned long  TEMP_SETTING_INACTIVITY     = 60000;    ///< Timeout in ms, after which the new target temperature will be stored in the EEPROM.
+        static const unsigned long  TEMP_SETTING_INACTIVITY     = 30000;    ///< Timeout in ms, after which the new target temperature will be stored in the EEPROM.
 
         /// \brief Channels enumeration
         ///
@@ -250,9 +247,9 @@ class aDSChannels
         static const int16_t        EEPROM_ADDR_TEMP_CHANNEL_ONE   = EEPROM_ADDR_CHANNEL_JOINED + EEPROM_TEMP_SIZE;    ///< Target temp for Channel 1
         static const int16_t        EEPROM_ADDR_TEMP_CHANNEL_TWO   = EEPROM_ADDR_TEMP_CHANNEL_ONE + EEPROM_TEMP_SIZE;  ///< Target temp for Channel 2
 
-        static const int16_t        EEPROM_CALIBRATION_SIZE        = (sizeof(float) * 2) + sizeof(uint8_t);             ///< EEPROM calibration size: 2 float (slope & offset), and one uint8_t for crc
-        static const int16_t        EEPROM_ADDR_CALIBRATION_CHAN_1 = EEPROM_ADDR_TEMP_CHANNEL_TWO + EEPROM_TEMP_SIZE;   ///< EEPROM start offset for Channel 1 calibration values
-        static const int16_t        EEPROM_ADDR_CALIBRATION_CHAN_2 = EEPROM_ADDR_CALIBRATION_CHAN_1 + EEPROM_CALIBRATION_SIZE;   ///< EEPROM start offset for Channel 2 calibration values
+        static const int16_t        EEPROM_CALIBRATION_SIZE        = (sizeof(float) * 2) + sizeof(uint8_t);            ///< EEPROM calibration size: 2 float (slope & offset), and one uint8_t for crc
+        static const int16_t        EEPROM_ADDR_CALIBRATION_CHAN_1 = EEPROM_ADDR_TEMP_CHANNEL_TWO + EEPROM_TEMP_SIZE;  ///< EEPROM start offset for Channel 1 calibration values
+        static const int16_t        EEPROM_ADDR_CALIBRATION_CHAN_2 = EEPROM_ADDR_CALIBRATION_CHAN_1 + EEPROM_CALIBRATION_SIZE; ///< EEPROM start offset for Channel 2 calibration values
 
     public:
         aDSChannels(uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t);
@@ -328,7 +325,7 @@ class aDSChannels
 class aDSEngine
 {
     private:
-        static const uint8_t RXBUFFER_MAXLEN = 64;
+        static const uint8_t RXBUFFER_MAXLEN = 64; ///< USB input communication buffer's max size
 
     public:
         aDSEngine();

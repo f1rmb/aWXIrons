@@ -111,11 +111,11 @@ $(document).ready(function(){initNavTree('_u_i.html','');});
 <p><br/>
 </p>
 <ul>
-<li>Depending of the hardware assembly, it can control one or two soldering irons:<ol type="1">
-<li>In Single mode, the temperature reading and setting is displayed using double height font.</li>
-<li>In dual channels version, both soldering irons can be controled separately, or can be joined:<ul>
-<li>when separate channels mode is used, each channel is independent. Simple click on the encoder push button will set the focus to the next channel. The focused channel temperature will be surrounded by the symbols <b>[</b> and <b>]</b></li>
-<li>when joined mode is used, the temperature is displayed like in Single channel mode (double height font), both channels share the same settings (target temperature and standby mode).</li>
+<li>Depending of the hardware assembly, it can handle one or two soldering irons:<ol type="1">
+<li>In Single mode, the temperature reading and setting are displayed using double height font.</li>
+<li>In dual channels version, both soldering irons can be controlled separately, or can be joined:<ul>
+<li>when separate channels mode is used, each channel is independent. Simple clicking on the encoder push button will set the focus to the next channel. The focused channel's temperature will be surrounded by the symbols <b>[</b> and <b>]</b></li>
+<li>when joined mode is used, the temperature is displayed like in <em>Single</em> channel mode (double height font), both channels share the same settings (target temperature).</li>
 </ul>
 </li>
 </ol>
@@ -141,12 +141,12 @@ $(document).ready(function(){initNavTree('_u_i.html','');});
 <p><br/>
 </p>
 <ul>
-<li>The target temperature is stored, for each channel, inside the microcontroller's EEPROM. The values will be restored on the next startup. After a timeout of 60 seconds, a new defined target temperature will be stored into the EEPROM. If in the meantime the user defines a new target temperature, the timeout is resetted</li>
+<li>The target temperature is stored, for each channel, inside the microcontroller's EEPROM. The values will be restored on the next startup. After a timeout of 30 seconds, a new defined target temperature will be stored into the EEPROM. If in the meantime the user defines a new target temperature, the timeout will be resetted</li>
 </ul>
 <p><br/>
 </p>
 <ul>
-<li>When the station is in temperature reading mode, the displayed value(s) is left aligned. When the station is in settings mode, the displayed value is right aligned.</li>
+<li>When the station is in temperature reading mode, the displayed values are left aligned. When the station is in settings mode, the displayed values are right aligned.</li>
 </ul>
 <p><br/>
  </p>
@@ -158,12 +158,12 @@ Encoder usage</h1>
 <p><br/>
 </p>
 <ul>
-<li>When the soldering station is not in settings mode, it displays the soldering tip temperature. A single encoder detents rotation will switch the soldering station into settings mode, and display the target temperature without any change to the target temperature setting.</li>
+<li>When the soldering station is not in settings mode, it displays the soldering tip's temperature. A single encoder detents rotation will switch the soldering station into settings mode, and displays the target temperature without any change to the target temperature setting.</li>
 </ul>
 <p><br/>
 </p>
 <ul>
-<li>When the soldering station is in settings mode, if not action is done using the encoder's rotation within 3 seconds, it will switch back to temperature reading.</li>
+<li>When the soldering station is in settings mode, and no action is done using the encoder's rotation within 3 seconds, it will switch back to temperature reading.</li>
 </ul>
 <p><br/>
 </p>
@@ -175,7 +175,7 @@ Encoder usage</h1>
 <tr>
 <td>Single Click </td><td><em>no effect</em> </td></tr>
 <tr>
-<td>Double Click </td><td>toggles standby mode (see <a class="el" href="_u_i.html#standby">Standby</a>) </td></tr>
+<td>Double Click </td><td>switch to standby mode (see <a class="el" href="_u_i.html#standby">Standby</a>) </td></tr>
 <tr>
 <td>Held </td><td><em>no effect</em> </td></tr>
 </table>
@@ -200,7 +200,7 @@ Encoder usage</h1>
 <h1><a class="anchor" id="joined"></a>
 Joined mode</h1>
 <ul>
-<li>With dual channel enabled hardware, it's possible to share the same temperature preset for both soldering tips.</li>
+<li>With Dual Channel enabled hardware, it's possible to share the same temperature preset for both soldering tips.</li>
 </ul>
 <p>See <a class="el" href="_u_i.html#encoderusage">Encoder usage</a></p>
 <p><br/>
@@ -218,19 +218,19 @@ Standby</h1>
 <p><br/>
 </p>
 <ul>
-<li>Any encoder action will exit the standby mode.</li>
+<li>Any encoder action will exits from <em>Standby</em> mode.</li>
 </ul>
 <p><br/>
 </p>
 <ul>
-<li>When Standby mode is activated, the LEDs blink three times cyclically. </li>
+<li>When <em>Standby</em> mode is activated, the LEDs blink three times cyclically. </li>
 </ul>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Mar 31 2015 05:30:55 for aWXIron by
+    <li class="footer">Generated on Sun Apr 5 2015 08:58:39 for aWXIron by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -105,7 +105,7 @@ $(document).ready(function(){initNavTree('cal.html','');});
 <br/>
 <ul>
 <li><b>Hardware</b>:<ul>
-<li>Digital Thermometer (e.g: you multimeter with a K probe) <br/>
+<li>Digital Thermometer (e.g: your digital multimeter with a thermocouple) <br/>
 <br/>
 </li>
 </ul>
@@ -124,9 +124,11 @@ $(document).ready(function(){initNavTree('cal.html','');});
 <p><br/>
 </p>
 <ul>
-<li><b>Why a calibration</b>:<br/>
-<br/>
- The calibration process is necessary get accurate temperature control.</li>
+<li><p class="startli"><b>Why a calibration</b>:<br/>
+</p>
+<p class="startli">The calibration process is necessary get accurate temperature control.<br/>
+ Some average values are used by default, but that won't gives you accurate temperature control.</p>
+</li>
 </ul>
 <p><br/>
 </p>
@@ -134,21 +136,64 @@ $(document).ready(function(){initNavTree('cal.html','');});
 <li><b>Process Description</b>:<br/>
 <br/>
 <ul>
-<li>You have to connect the soldering station to the PC, using a USB cable.</li>
-<li>To turn the soldering station in calibration, you have to keep the encoder push button pressed while turning the station ON. Once the station is ready to use, the '<em><b>CAL</b></em>' string is displayed on the top left side of the LCD display.</li>
-<li>In calibration mode, the readed temperature isn't displayed. Instead, the ADC value is shown.</li>
-<li>It's really important to start from the lowest temperature setting (100°C), and wait till the temperature stabilize.</li>
-<li>Blah</li>
+<li><p class="startli"><b>Step 1: <em>Calibration Mode</em></b></p>
+<p class="startli">You have to open the soldering station's box and connect the soldering station to the PC, using a USB cable.<br/>
+ To turn the soldering station in calibration, you have to keep the encoder's push button pressed while turning ON the station. Once the station is ready to use, the '<b><em>CAL</em></b>' string is displayed on the top left side of the LCD display.<br/>
+</p>
+<p class="startli">In calibration mode, the readed temperature isn't displayed anymore. Instead, the ADC value is shown.<br/>
+</p>
+<p class="startli">The station will self set the target temperature to 100°C. You have to wait until the temperature stabilizes.<br/>
+<br/>
+</p>
+</li>
+<li><p class="startli"><b>Step 2: <em>Calibrate Channel 1 or 2</em></b></p>
+<p class="startli">Select matching <b><em>Channel</em></b> tab in the calibration spreadsheet file.<br/>
+ Set the temperature target using the pseudo temperature value in the first column. Wait until LED blinks and the displayed ADC value stabilize.<br/>
+ Apply the thermocouple to the soldering tip, then write down the readed temperature to the column named '<b><em>Temp °C'</em></b>.<br/>
+ If needed, adjust the value in the '<b><em>ADCread</em></b>' column, accordingly to the one displayed on the station's LCD.<br/>
+ Apply the same procedure for all spreadsheet's rows.<br/>
+</p>
+<p class="startli">Once you completed the array, down the chart, the '<em>Calibration String</em>' cell contains the string you have to copy and paste to the serial terminal emulator, e.g: </p>
+<div class="fragment"><div class="line">:CAL:1:0.3757498594,51.7808993467 </div>
+</div><!-- fragment --><p> This string starts with '<b>:CAL:</b>', followed by the channel's name, then two floating point values, comma separated.<br/>
+ Once the string entered and validated with the <b>[RETURN]</b> key, you should get a '<b><em>:OK:</em></b>' acknoledge message.<br/>
+ In case you get '<b><em>:ERR:</em></b>', double check the calibration string you pasted.<br/>
+</p>
+<p class="startli">If you own a Dual Channel soldering station, <b>repeat this step for the second Channel</b>.<br/>
+<br/>
+</p>
+</li>
+<li><p class="startli"><b>Last Step: <em>Backup</em></b></p>
+<p class="startli">Once the full calibration is done, you <b>HAVE</b> to store the new values into the EEPROM, using the following command: </p>
+<div class="fragment"><div class="line">:CAL:SAVE </div>
+</div><!-- fragment --><p> As usual, you should get a '<em><b>:OK:</b><em>' acknoledge message.</em></em></p>
+<p class="startli"><em><em> Once you validate the calibration with this command, you leave the calibration mode.<br/>
+ You can unplug the USB cable, close the box and use your soldering station now.</em></em></p>
+</li>
 </ul>
 </li>
 </ul>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>write me</dd></dl>
+<p><em><em><br/>
+</p>
+<ul>
+<li><b>Other available calibration commands</b>:<br/>
+<br/>
+<ul>
+<li><em>:CAL:</em><b>OFF</b> Cancels the calibration process, restoring previous values.</li>
+<li><em>:CAL:</em><b>DUMP</b> Displays the calibration values in the serial terminal emulator</li>
+</ul>
+</li>
+</ul>
+<p></em></em></p>
+<p><em><em></p>
+<dl class="section warning"><dt>Warning</dt><dd>If you own a Dual Channel soldering station, you <b>HAVE</b> to calibrate both channels, or at least enter the <em>old</em> calibration string for the channel you won't calibrate. </dd></dl>
+<p></em></em></p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Mar 31 2015 05:30:55 for aWXIron by
+    <li class="footer">Generated on Sun Apr 5 2015 08:58:39 for aWXIron by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
