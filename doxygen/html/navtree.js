@@ -3,8 +3,8 @@ var NAVTREE =
   [ "aWXIron", "index.html", [
     [ "SMD Soldering Station for Weller RT Series Tips", "mainpage.html", null ],
     [ "User Interface overview", "_u_i.html", [
-      [ "Encoder usage", "_u_i.html#encoderusage", null ],
-      [ "Joined mode", "_u_i.html#joined", null ],
+      [ "Encoder use", "_u_i.html#encoderuse", null ],
+      [ "Merged mode", "_u_i.html#merged", null ],
       [ "Standby", "_u_i.html#standby", null ]
     ] ],
     [ "Calibration Process", "cal.html", null ],
@@ -36,7 +36,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_c_d_c_8cpp.html",
-"wiring_8c.html#a02fd73d861ef2e4aabb38c0c9ff82947"
+"structa_d_s_channel_1_1a_pin__t.html#a11a7bede0cec2649a309f916def07fdb"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,5 +1,6 @@
 var a_d_s_engine_8h =
 [
+    [ "aDSTemperatureAveraging", "classa_d_s_temperature_averaging.html", "classa_d_s_temperature_averaging" ],
     [ "aDSChannel", "classa_d_s_channel.html", "classa_d_s_channel" ],
     [ "CalibrationData_t", "structa_d_s_channel_1_1_calibration_data__t.html", "structa_d_s_channel_1_1_calibration_data__t" ],
     [ "aPin_t", "structa_d_s_channel_1_1a_pin__t.html", "structa_d_s_channel_1_1a_pin__t" ],

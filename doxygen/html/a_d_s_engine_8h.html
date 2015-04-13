@@ -121,6 +121,9 @@ $(document).ready(function(){initNavTree('a_d_s_engine_8h.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classa_d_s_temperature_averaging.html">aDSTemperatureAveraging</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classa_d_s_channel.html" title="aDSChannel class ">aDSChannel</a> class  <a href="classa_d_s_temperature_averaging.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classa_d_s_channel.html">aDSChannel</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classa_d_s_channel.html" title="aDSChannel class ">aDSChannel</a> class  <a href="classa_d_s_channel.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,11 +134,13 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Our pin structure.  <a href="structa_d_s_channel_1_1a_pin__t.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classa_d_s_channels.html">aDSChannels</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classa_d_s_channels.html" title="aDSChannels class ">aDSChannels</a> class  <a href="classa_d_s_channels.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uniona_d_s_channels_1_1__eeprom_calibration_value__t.html">aDSChannels::_eepromCalibrationValue_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Union to manipulate float/uint8_t [] calibration values.  <a href="uniona_d_s_channels_1_1__eeprom_calibration_value__t.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classa_d_s_engine.html">aDSEngine</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classa_d_s_engine.html" title="aDSEngine class ">aDSEngine</a> class  <a href="classa_d_s_engine.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -214,7 +219,7 @@ Variables</h2></td></tr>
 <tr class="memitem:a993cbf16350285d76a66b6987109124d"><td class="memItemLeft" align="right" valign="top">static const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a_d_s_engine_8h.html#a993cbf16350285d76a66b6987109124d">PROGRAM_VERSION_MAJOR</a> = 1</td></tr>
 <tr class="memdesc:a993cbf16350285d76a66b6987109124d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Major program version.  <a href="#a993cbf16350285d76a66b6987109124d">More...</a><br/></td></tr>
 <tr class="separator:a993cbf16350285d76a66b6987109124d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae695d2bff565fcc5ded6594d14512c0c"><td class="memItemLeft" align="right" valign="top">static const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a_d_s_engine_8h.html#ae695d2bff565fcc5ded6594d14512c0c">PROGRAM_VERSION_MINOR</a> = 2</td></tr>
+<tr class="memitem:ae695d2bff565fcc5ded6594d14512c0c"><td class="memItemLeft" align="right" valign="top">static const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a_d_s_engine_8h.html#ae695d2bff565fcc5ded6594d14512c0c">PROGRAM_VERSION_MINOR</a> = 4</td></tr>
 <tr class="memdesc:ae695d2bff565fcc5ded6594d14512c0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minor program version.  <a href="#ae695d2bff565fcc5ded6594d14512c0c">More...</a><br/></td></tr>
 <tr class="separator:ae695d2bff565fcc5ded6594d14512c0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -630,7 +635,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const uint8_t PROGRAM_VERSION_MINOR = 2</td>
+          <td class="memname">const uint8_t PROGRAM_VERSION_MINOR = 4</td>
         </tr>
       </table>
   </td>
@@ -738,7 +743,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="a_d_s_engine_8h.html">aDSEngine.h</a></li>
-    <li class="footer">Generated on Sun Apr 5 2015 09:13:25 for aWXIron by
+    <li class="footer">Generated on Mon Apr 13 2015 09:29:40 for aWXIron by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

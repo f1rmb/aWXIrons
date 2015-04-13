@@ -62,7 +62,7 @@ static const uint8_t        LED_CHANNEL2_PIN            = A3;   ///< LED pin of 
 
 
 static const uint8_t        PROGRAM_VERSION_MAJOR       = 1;    ///< Major program version
-static const uint8_t        PROGRAM_VERSION_MINOR       = 2;    ///< Minor program version
+static const uint8_t        PROGRAM_VERSION_MINOR       = 4;    ///< Minor program version
 
 /// \brief Operation Mode enumeration
 ///
@@ -74,6 +74,25 @@ typedef enum
     OPERATION_MODE_UNKNOWN      ///< Unset (internal)
 } OperationMode_t;
 
+
+/// \brief aDSChannel class
+///
+class aDSTemperatureAveraging
+{
+    protected:
+        static const uint8_t ARRAY_SIZE_MAX = 10; ///< Averaging is performed using n values
+
+    public:
+        aDSTemperatureAveraging();
+        ~aDSTemperatureAveraging();
+
+        void                stackTemperature(int16_t);
+        int16_t             getTemperature();
+
+    private:
+        int16_t                 m_temperatures[ARRAY_SIZE_MAX];
+        uint8_t                 m_offset;
+};
 
 /// \brief aDSChannel class
 ///
@@ -187,8 +206,11 @@ class aDSChannel
         uint8_t                 m_channel;
         bool                    m_isPlugged;
         aDSChannel             *m_brother;
+        aDSTemperatureAveraging m_avrTemp;
 };
 
+/// \brief aDSChannels class
+///
 class aDSChannels
 {
     public:
@@ -322,6 +344,8 @@ class aDSChannels
 };
 
 
+/// \brief aDSEngine class
+///
 class aDSEngine
 {
     private:

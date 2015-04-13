@@ -101,21 +101,21 @@ $(document).ready(function(){initNavTree('_u_i.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><ul>
-<li>The Soldering Station control is done using a simple rotary encoder, which integrates a push button.</li>
+<li>The Soldering Station control is performed using a simple rotary encoder, which integrates a push button.</li>
 </ul>
 <p><br/>
 </p>
 <ul>
-<li>The temperature range goes from 100°C, up to 450°C.</li>
+<li>The temperature range varies from 100°C, up to 450°C.</li>
 </ul>
 <p><br/>
 </p>
 <ul>
-<li>Depending of the hardware assembly, it can handle one or two soldering irons:<ol type="1">
-<li>In Single mode, the temperature reading and setting are displayed using double height font.</li>
-<li>In dual channels version, both soldering irons can be controlled separately, or can be joined:<ul>
-<li>when separate channels mode is used, each channel is independent. Simple clicking on the encoder push button will set the focus to the next channel. The focused channel's temperature will be surrounded by the symbols <b>[</b> and <b>]</b></li>
-<li>when joined mode is used, the temperature is displayed like in <em>Single</em> channel mode (double height font), both channels share the same settings (target temperature).</li>
+<li>Depending on the hardware assembly, the station can handle one or two soldering irons:<ol type="1">
+<li>The Single mode, the temperature readings and settings are displayed using a double height font.</li>
+<li>The dual channels version, both soldering irons can be controlled separately, or can be merged:<ul>
+<li>when the separate channels mode is used, each channel is independent. Simple clicking on the encoder push button will set the focus to the next channel. The focused channel's temperature will be surrounded by the symbols <b>[</b> and <b>]</b></li>
+<li>when merged mode is used, the temperature is displayed in the same way as the <em>Single</em> channel mode (double height font), both channels share the same settings (target temperature).</li>
 </ul>
 </li>
 </ol>
@@ -141,34 +141,34 @@ $(document).ready(function(){initNavTree('_u_i.html','');});
 <p><br/>
 </p>
 <ul>
-<li>The target temperature is stored, for each channel, inside the microcontroller's EEPROM. The values will be restored on the next startup. After a timeout of 30 seconds, a new defined target temperature will be stored into the EEPROM. If in the meantime the user defines a new target temperature, the timeout will be resetted</li>
+<li>The target temperature is stored, for each channel, into the microcontroller's EEPROM. The values will be restored on the next startup. After a timeout of 30 seconds, a new defined target temperature will be stored into the EEPROM. If in the meantime the user defines a new target temperature, the timeout will be reset.</li>
 </ul>
 <p><br/>
 </p>
 <ul>
-<li>When the station is in temperature reading mode, the displayed values are left aligned. When the station is in settings mode, the displayed values are right aligned.</li>
+<li>When the station is in the temperature reading mode, the displayed values are left aligned. When the station is in the settings mode, the displayed values are right aligned.</li>
 </ul>
 <p><br/>
  </p>
-<h1><a class="anchor" id="encoderusage"></a>
-Encoder usage</h1>
+<h1><a class="anchor" id="encoderuse"></a>
+Encoder use</h1>
 <ul>
-<li>In any mode (settings or temperature reading), the rotary encoder is used to define the target temperature. Turn the encoder clockwise to increase the target temperature, and anti-clockwise to decrease it.</li>
+<li>In any mode (settings or temperature readings), the rotary encoder is used to define the target temperature. Turn the encoder clockwise to increase the target temperature, and anti-clockwise to decrease it.</li>
 </ul>
 <p><br/>
 </p>
 <ul>
-<li>When the soldering station is not in settings mode, it displays the soldering tip's temperature. A single encoder detents rotation will switch the soldering station into settings mode, and displays the target temperature without any change to the target temperature setting.</li>
+<li>When the soldering station is not in the settings mode, it displays the soldering tips temperature. A single encoder detents rotation will switch the soldering station into the settings mode, and displays the target temperature without any change to the target temperature settings.</li>
 </ul>
 <p><br/>
 </p>
 <ul>
-<li>When the soldering station is in settings mode, and no action is done using the encoder's rotation within 3 seconds, it will switch back to temperature reading.</li>
+<li>When the soldering station is in the settings mode, and no action is performed using the encoder rotation within 3 seconds, it will switch back to the temperature readings.</li>
 </ul>
 <p><br/>
 </p>
 <ul>
-<li>Encoder's push button:<ul>
+<li>Encoder push button:<ul>
 <li>Single soldering tip version: <table class="doxtable">
 <tr>
 <th>Button </th><th>Action  </th></tr>
@@ -185,11 +185,11 @@ Encoder usage</h1>
 <tr>
 <th>Button </th><th>Action  </th></tr>
 <tr>
-<td>Single click </td><td>change the focus to the next channel (if not in joined mode) </td></tr>
+<td>Single click </td><td>change the focus to the next channel (if not in merged mode) </td></tr>
 <tr>
 <td>Double click </td><td>switch to standby mode (see <a class="el" href="_u_i.html#standby">Standby</a>) </td></tr>
 <tr>
-<td>Held </td><td>toggles joined mode (see <a class="el" href="_u_i.html#joined">Joined mode</a>) </td></tr>
+<td>Held </td><td>toggles mergded mode (see <a class="el" href="_u_i.html#merged">Merged mode</a>) </td></tr>
 </table>
 </li>
 </ul>
@@ -197,12 +197,12 @@ Encoder usage</h1>
 </ul>
 <p><br/>
  </p>
-<h1><a class="anchor" id="joined"></a>
-Joined mode</h1>
+<h1><a class="anchor" id="merged"></a>
+Merged mode</h1>
 <ul>
-<li>With Dual Channel enabled hardware, it's possible to share the same temperature preset for both soldering tips.</li>
+<li>With Dual Channel enabled hardware, it is possible to share the same temperature preset values for both soldering tips.</li>
 </ul>
-<p>See <a class="el" href="_u_i.html#encoderusage">Encoder usage</a></p>
+<p>See <a class="el" href="_u_i.html#encoderuse">Encoder use</a></p>
 <p><br/>
  </p>
 <h1><a class="anchor" id="standby"></a>
@@ -213,7 +213,7 @@ Standby</h1>
 <p><br/>
 </p>
 <ul>
-<li>When standby mode is enabled, the target temperature will go down to 150°C if the temperature setting is set above this point, otherwise it will go down to 100°C.</li>
+<li>When the standby mode is enabled, the target temperature will decrease to 150°C if the temperature setting is set above this point, otherwise it will decrease to 100°C.</li>
 </ul>
 <p><br/>
 </p>
@@ -223,14 +223,14 @@ Standby</h1>
 <p><br/>
 </p>
 <ul>
-<li>When <em>Standby</em> mode is activated, the LEDs blink three times cyclically. </li>
+<li>When the <em>Standby</em> mode is activated, the LEDs blink three times cyclically. </li>
 </ul>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Apr 5 2015 09:13:25 for aWXIron by
+    <li class="footer">Generated on Mon Apr 13 2015 09:29:40 for aWXIron by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

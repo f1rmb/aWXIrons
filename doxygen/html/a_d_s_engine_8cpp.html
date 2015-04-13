@@ -115,7 +115,7 @@ $(document).ready(function(){initNavTree('a_d_s_engine_8cpp.html','');});
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a6355c87c8c393a4c3bf917c4822a6378"><td class="memItemLeft" align="right" valign="top">static int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a_d_s_engine_8cpp.html#a6355c87c8c393a4c3bf917c4822a6378">getNumericalLength</a> (int16_t n)</td></tr>
-<tr class="memdesc:a6355c87c8c393a4c3bf917c4822a6378"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return numerical character length of argument.  <a href="#a6355c87c8c393a4c3bf917c4822a6378">More...</a><br/></td></tr>
+<tr class="memdesc:a6355c87c8c393a4c3bf917c4822a6378"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns numerical character length of argument.  <a href="#a6355c87c8c393a4c3bf917c4822a6378">More...</a><br/></td></tr>
 <tr class="separator:a6355c87c8c393a4c3bf917c4822a6378"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa586405426853e6ac669caf8fea98438"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a_d_s_engine_8cpp.html#aa586405426853e6ac669caf8fea98438">timer1ISR</a> (void)</td></tr>
 <tr class="memdesc:aa586405426853e6ac669caf8fea98438"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timer1 class ISR function.  <a href="#aa586405426853e6ac669caf8fea98438">More...</a><br/></td></tr>
@@ -135,10 +135,10 @@ Variables</h2></td></tr>
 <tr class="memitem:a38a2cc5488ac8ffbd9ba96e3cfa5e9d4"><td class="memItemLeft" align="right" valign="top">static const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a_d_s_engine_8cpp.html#a38a2cc5488ac8ffbd9ba96e3cfa5e9d4">_bigDigitsBottom</a> [12][<a class="el" href="a_d_s_engine_8cpp.html#a0812ecf58a97bf3c37bba43763b5484a">DIGIT_WIDTH</a>]</td></tr>
 <tr class="memdesc:a38a2cc5488ac8ffbd9ba96e3cfa5e9d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">_glyphs[] offsets  <a href="#a38a2cc5488ac8ffbd9ba96e3cfa5e9d4">More...</a><br/></td></tr>
 <tr class="separator:a38a2cc5488ac8ffbd9ba96e3cfa5e9d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a615779cc53f166f14003c43b41e209d3"><td class="memItemLeft" align="right" valign="top">ClickEncoder *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a_d_s_engine_8cpp.html#a615779cc53f166f14003c43b41e209d3">pEncoder</a> = NULL</td></tr>
+<tr class="memitem:a615779cc53f166f14003c43b41e209d3"><td class="memItemLeft" align="right" valign="top">static ClickEncoder *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a_d_s_engine_8cpp.html#a615779cc53f166f14003c43b41e209d3">pEncoder</a> = NULL</td></tr>
 <tr class="memdesc:a615779cc53f166f14003c43b41e209d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Global pointer to ClickEncoder object, used inside <a class="el" href="a_d_s_engine_8cpp.html#aa586405426853e6ac669caf8fea98438" title="Timer1 class ISR function. ">timer1ISR()</a> function.  <a href="#a615779cc53f166f14003c43b41e209d3">More...</a><br/></td></tr>
 <tr class="separator:a615779cc53f166f14003c43b41e209d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a579987f8ec3e700b27b3ac4bac6ad9df"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a_d_s_engine_8cpp.html#a579987f8ec3e700b27b3ac4bac6ad9df">channelCount</a> = 0</td></tr>
+<tr class="memitem:a579987f8ec3e700b27b3ac4bac6ad9df"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a_d_s_engine_8cpp.html#a579987f8ec3e700b27b3ac4bac6ad9df">channelCount</a> = 0</td></tr>
 <tr class="separator:a579987f8ec3e700b27b3ac4bac6ad9df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -172,7 +172,7 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Return numerical character length of argument. </p>
+<p>Returns numerical character length of argument. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">n</td><td>int16_t : value to get length from </td></tr>
@@ -283,11 +283,19 @@ Variables</h2></td></tr>
 <a class="anchor" id="a579987f8ec3e700b27b3ac4bac6ad9df"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">uint8_t channelCount = 0</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -317,11 +325,19 @@ Variables</h2></td></tr>
 <a class="anchor" id="a615779cc53f166f14003c43b41e209d3"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">ClickEncoder* pEncoder = NULL</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Global pointer to ClickEncoder object, used inside <a class="el" href="a_d_s_engine_8cpp.html#aa586405426853e6ac669caf8fea98438" title="Timer1 class ISR function. ">timer1ISR()</a> function. </p>
@@ -356,7 +372,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="a_d_s_engine_8cpp.html">aDSEngine.cpp</a></li>
-    <li class="footer">Generated on Sun Apr 5 2015 09:13:25 for aWXIron by
+    <li class="footer">Generated on Mon Apr 13 2015 09:29:39 for aWXIron by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

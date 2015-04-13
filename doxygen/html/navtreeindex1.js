@@ -1,5 +1,14 @@
 var NAVTREEINDEX1 =
 {
+"structa_d_s_channel_1_1a_pin__t.html#a11a7bede0cec2649a309f916def07fdb":[3,0,0,0,1],
+"structa_d_s_channel_1_1a_pin__t.html#a58d294525be4c9bb294dff6b792d4471":[3,0,0,0,3],
+"structa_d_s_channel_1_1a_pin__t.html#a987779d037c3cf6a6c4a2eb0eae101e1":[3,0,0,0,2],
+"structa_d_s_channel_1_1a_pin__t.html#aac01da048af628b7e2bb2e36ac981959":[3,0,0,0,0],
+"structa_d_s_channel_1_1a_pin__t.html#ab6aafac7156493aa8c740fa22c3b5f02":[3,0,0,0,4],
+"uniona_d_s_channels_1_1__eeprom_calibration_value__t.html":[3,0,1,0],
+"uniona_d_s_channels_1_1__eeprom_calibration_value__t.html#a66a8b74490b3bde2a7f58943af0ceef6":[3,0,1,0,0],
+"uniona_d_s_channels_1_1__eeprom_calibration_value__t.html#a9ac7e4ca4b0725c5d84487dc277b4ba0":[3,0,1,0,1],
+"wiring_8c.html":[4,0,15],
 "wiring_8c.html#a02fd73d861ef2e4aabb38c0c9ff82947":[4,0,15,7],
 "wiring_8c.html#a3d5262b0f828700a2ce29198838e0d9e":[4,0,15,1],
 "wiring_8c.html#a4b3aa3ca41aae80581b58e3db57c7eac":[4,0,15,6],

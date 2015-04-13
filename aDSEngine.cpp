@@ -26,11 +26,14 @@
 ///
 /// \page mainpage SMD Soldering Station for Weller RT Series Tips
 ///
-///     Based on a project from __Martin Kumm__ http://www.martin-kumm.de/wiki/doku.php?id=Projects:SMD_Solderstation.
+///     Based on a project by __Martin Kumm__ http://www.martin-kumm.de/wiki/doku.php?id=Projects:SMD_Solderstation.
 ///
-///  The hardware has been redesigned and modified (two channels, 16x2 LCD instead of 7 segments display, etc). The software has also been rewrote from scratch.
+///  The hardware has been redesigned and modified (two channels, 16x2 LCD instead of 7 segments display, etc). The software has also been rewritten from scratch.
 ///
-///  I want to especially thank my friend __Olivier__, <i><b>F5LGJ</b></i>, for his great help and support in this project.
+/// <br>
+///  I would especially like to thank my friend __Olivier__, <i><b>F5LGJ</b></i>, for his great help and support in this project.
+///
+///  Big thumbs up to __Patrick__, <i><b>F6AZZ</b></i>, for the documentation corrections ;-)
 ///
 ///
 
@@ -38,22 +41,22 @@
 ///
 /// \page UI User Interface overview
 ///
-/// - The Soldering Station control is done using a simple rotary encoder, which integrates a push button.
+/// - The Soldering Station control is performed using a simple rotary encoder, which integrates a push button.
 ///
 /// <br>
-/// - The temperature range goes from 100°C, up to 450°C.
+/// - The temperature range varies from 100°C, up to 450°C.
 ///
 ///
 /// <br>
-/// - Depending of the hardware assembly, it can handle one or two soldering irons:
+/// - Depending on the hardware assembly, the station can handle one or two soldering irons:
 ///
-///     -# In Single mode, the temperature reading and setting are displayed using double height font.
+///     -# The Single mode, the temperature readings and settings are displayed using a double height font.
 ///
-///     -# In dual channels version, both soldering irons can be controlled separately, or can be joined:
-///         + when separate channels mode is used, each channel is independent. Simple clicking on the encoder push button
+///     -# The dual channels version, both soldering irons can be controlled separately, or can be merged:
+///         + when the separate channels mode is used, each channel is independent. Simple clicking on the encoder push button
 ///            will set the focus to the next channel. The focused channel's temperature will be surrounded by the symbols <b>[</b> and <b>]</b>
 ///
-///         + when joined mode is used, the temperature is displayed like in <i>Single</i> channel mode (double height font), both
+///         + when merged mode is used, the temperature is displayed in the same way as the <i>Single</i> channel mode (double height font), both
 ///            channels share the same settings (target temperature).
 ///
 /// <br>
@@ -67,35 +70,35 @@
 ///
 ///
 /// <br>
-/// - The target temperature is stored, for each channel, inside the microcontroller's EEPROM.
+/// - The target temperature is stored, for each channel, into the microcontroller's EEPROM.
 ///   The values will be restored on the next startup.
 ///   After a timeout of 30 seconds, a new defined target temperature will be stored into the EEPROM.
-///   If in the meantime the user defines a new target temperature, the timeout will be resetted
+///   If in the meantime the user defines a new target temperature, the timeout will be reset.
 ///
 ///
 /// <br>
-/// - When the station is in temperature reading mode, the displayed values are left aligned.
-///   When the station is in settings mode, the displayed values are right aligned.
+/// - When the station is in the temperature reading mode, the displayed values are left aligned.
+///   When the station is in the settings mode, the displayed values are right aligned.
 ///
 ///
 ///
 /// <br>
-/// \section encoderusage Encoder usage
+/// \section encoderuse Encoder use
 ///
-/// - In any mode (settings or temperature reading), the rotary encoder is used to define the target temperature. Turn the encoder clockwise to increase the
+/// - In any mode (settings or temperature readings), the rotary encoder is used to define the target temperature. Turn the encoder clockwise to increase the
 ///   target temperature, and anti-clockwise to decrease it.
 ///
 /// <br>
-/// - When the soldering station is not in settings mode, it displays the soldering tip's temperature. A single encoder detents rotation
-///   will switch the soldering station into settings mode, and displays the target temperature without any change to the target temperature
-///   setting.
+/// - When the soldering station is not in the settings mode, it displays the soldering tips temperature. A single encoder detents rotation
+///   will switch the soldering station into the settings mode, and displays the target temperature without any change to the target temperature
+///   settings.
 ///
 /// <br>
-/// - When the soldering station is in settings mode, and no action is done using the encoder's rotation within 3 seconds, it will
-///   switch back to temperature reading.
+/// - When the soldering station is in the settings mode, and no action is performed using the encoder rotation within 3 seconds, it will
+///   switch back to the temperature readings.
 ///
 /// <br>
-/// - Encoder's push button:
+/// - Encoder push button:
 ///
 ///     + Single soldering tip version:
 ///         Button | Action
@@ -108,17 +111,17 @@
 ///     + Dual soldering tip version:
 ///         Button | Action
 ///         -------|-------
-///         Single click | change the focus to the next channel (if not in joined mode)
+///         Single click | change the focus to the next channel (if not in merged mode)
 ///         Double click | switch to standby mode (see \ref standby)
-///         Held | toggles joined mode (see \ref joined)
+///         Held | toggles mergded mode (see \ref merged)
 ///
 ///
 /// <br>
-/// \section joined Joined mode
+/// \section merged Merged mode
 ///
-/// - With Dual Channel enabled hardware, it's possible to share the same temperature preset for both soldering tips.
+/// - With Dual Channel enabled hardware, it is possible to share the same temperature preset values for both soldering tips.
 ///
-/// See \ref encoderusage
+/// See \ref encoderuse
 ///
 ///
 /// <br>
@@ -127,14 +130,14 @@
 /// - A double-click on the encoder brings the soldering station in the standby mode.
 ///
 /// <br>
-/// - When standby mode is enabled, the target temperature will go down to 150°C if the temperature setting is set
-///   above this point, otherwise it will go down to 100°C.
+/// - When the standby mode is enabled, the target temperature will decrease to 150°C if the temperature setting is set
+///   above this point, otherwise it will decrease to 100°C.
 ///
 /// <br>
 /// - Any encoder action will exits from <i>Standby</i> mode.
 ///
 /// <br>
-/// - When <i>Standby</i> mode is activated, the LEDs blink three times cyclically.
+/// - When the <i>Standby</i> mode is activated, the LEDs blink three times cyclically.
 ///
 ///
 
@@ -330,10 +333,12 @@ static const uint8_t        _bigDigitsBottom[12][DIGIT_WIDTH] =     ///< 0..9 + 
     {  0,  0,  0 }  // -
 };
 
-ClickEncoder *pEncoder = NULL;  ///< Global pointer to ClickEncoder object, used inside timer1ISR() function
+static ClickEncoder *pEncoder = NULL;  ///< Global pointer to ClickEncoder object, used inside timer1ISR() function
+static uint8_t channelCount = 0;
 
 
-/// \brief Return numerical character length of argument
+
+/// \brief Returns numerical character length of argument
 ///
 /// \param n int16_t : value to get length from
 /// \return int8_t : length
@@ -346,7 +351,66 @@ static int8_t getNumericalLength(int16_t n)
     return (static_cast<int8_t>(snprintf(buf, sizeof(buf) - 1, "%d", n)));
 }
 
-uint8_t channelCount = 0;
+//
+// Begin of Class aDSTemperatureAveraging
+//
+/// \brief aDSTemperatureAveraging class constructor
+///
+aDSTemperatureAveraging::aDSTemperatureAveraging() : m_offset(ARRAY_SIZE_MAX)
+{
+    // ctor
+    for (uint8_t i = 0; i < ARRAY_SIZE_MAX; i++)
+        m_temperatures[i] = 0;
+}
+
+/// \brief aDSTemperatureAveraging class destructor
+///
+aDSTemperatureAveraging::~aDSTemperatureAveraging()
+{
+    // dtor
+}
+
+/// \brief Stacks the temperature value to an array, used to compute an averaged value
+///
+/// \param temp int16_t : temperature
+/// \return void
+///
+///
+void aDSTemperatureAveraging::stackTemperature(int16_t temp)
+{
+    if (temp > 0)
+    {
+        m_offset++;
+
+        if (m_offset >= ARRAY_SIZE_MAX)
+            m_offset = 0;
+
+        m_temperatures[m_offset] = temp;
+    }
+}
+
+/// \brief Returns the averaged temperature, computed from stacked values
+///
+/// \return int16_t : averaged temperature
+///
+///
+int16_t aDSTemperatureAveraging::getTemperature()
+{
+    uint8_t n = 1;
+    float   sum = 0.0;
+
+    for (uint8_t i = 0; i < ARRAY_SIZE_MAX; i++)
+    {
+        if (m_temperatures[i] > 0)
+            sum += m_temperatures[(n++ - 1)];
+    }
+
+    return static_cast<int16_t>((sum / static_cast<float>(n - 1)) + 0.5); // ceil
+}
+//
+// End of Class aDSTemperatureAveraging
+//
+
 //
 // Begin of Class aDSChannel
 //
@@ -467,7 +531,7 @@ bool aDSChannel::hasFocus()
 ///
 uint16_t aDSChannel::getTemperature(OperationMode_t mode)
 {
-    return (mode == OPERATION_MODE_READ) ? m_currentTemp : m_targetTemp;
+    return (mode == OPERATION_MODE_READ) ? m_avrTemp.getTemperature() : m_targetTemp;
 }
 
 /// \brief Set current temperature accordingly from the given mode (SET/READ)
@@ -487,7 +551,10 @@ bool aDSChannel::setTemperature(OperationMode_t mode, int16_t temp)
         m_targetTemp = temp;
     }
     else
+    {
         m_currentTemp = temp;
+        m_avrTemp.stackTemperature(m_currentTemp);
+    }
 
     return (p != ((mode == OPERATION_MODE_SET) ? m_targetTemp : m_currentTemp));
 }
@@ -557,6 +624,7 @@ bool aDSChannel::service(unsigned long m)
     currTemp = m_currentTemp;
 #else
     m_currentTemp = currTemp;
+    m_avrTemp.stackTemperature(m_currentTemp);
 #endif
 
     //
