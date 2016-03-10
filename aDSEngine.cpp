@@ -959,7 +959,7 @@ int8_t aDSChannel::_digitalRead(aPin_t pin)
 	// If the pin that support PWM output, we need to turn it off
 	// before getting a digital reading.
 	//
-	if (pin.timer != NOT_ON_TIMER);
+	if (pin.timer != NOT_ON_TIMER)
         _turnOffPWM(pin);
 
 	if (*(pin.outputRegister) & (pin.mask))

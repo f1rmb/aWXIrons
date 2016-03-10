@@ -62,7 +62,7 @@ static const uint8_t        LED_CHANNEL2_PIN            = A3;   ///< LED pin of 
 
 
 static const uint8_t        PROGRAM_VERSION_MAJOR       = 1;    ///< Major program version
-static const uint8_t        PROGRAM_VERSION_MINOR       = 4;    ///< Minor program version
+static const uint8_t        PROGRAM_VERSION_MINOR       = 5;    ///< Minor program version
 
 /// \brief Operation Mode enumeration
 ///
