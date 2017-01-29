@@ -38,7 +38,7 @@ var classa_d_s_channel =
     [ "DEFAULT_TEMPERATURE_OFFSET", "classa_d_s_channel.html#a0b4fc3ed9e385748de8950dba2c992e5", null ],
     [ "DEFAULT_TEMPERATURE_SLOPE", "classa_d_s_channel.html#af0e4a8a13e58dd104db1e5380eab0c52", null ],
     [ "m_adcValue", "classa_d_s_channel.html#a0b65f5b50deac5de371576df677fe57a", null ],
-    [ "m_avrTemp", "classa_d_s_channel.html#a68593034eb5de61a16b20feff1459aeb", null ],
+    [ "m_avrTemp", "classa_d_s_channel.html#ad439f489795900db1eabe1ff270dbfed", null ],
     [ "m_blinkStandby", "classa_d_s_channel.html#a77656e288e0b5828d39dbb169e008961", null ],
     [ "m_brother", "classa_d_s_channel.html#a82bcdaea4b278a225780160076b725b8", null ],
     [ "m_cal", "classa_d_s_channel.html#aad56d55823c1504658a842c39c40225c", null ],

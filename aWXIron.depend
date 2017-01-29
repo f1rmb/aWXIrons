@@ -470,7 +470,7 @@
 	<LiquidCrystal.h>
 	"aDSEngine.h"
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/Arduino.h
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/Arduino.h
 	<stdlib.h>
 	<string.h>
 	<math.h>
@@ -483,66 +483,66 @@
 	"HardwareSerial.h"
 	"pins_arduino.h"
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/binary.h
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/binary.h
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/WCharacter.h
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/WCharacter.h
 	<ctype.h>
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/WString.h
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/WString.h
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 	<avr/pgmspace.h>
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/HardwareSerial.h
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/HardwareSerial.h
 	<inttypes.h>
 	"Stream.h"
 	"USBAPI.h"
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/Stream.h
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/Stream.h
 	<inttypes.h>
 	"Print.h"
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/Print.h
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/Print.h
 	<inttypes.h>
 	<stdio.h>
 	"WString.h"
 	"Printable.h"
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/Printable.h
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/Printable.h
 	<new.h>
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/new.h
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/new.h
 	<stdlib.h>
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/USBAPI.h
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/USBAPI.h
 
-1392612896 /usr/share/arduino/hardware/arduino/variants/eightanaloginputs/pins_arduino.h
+1401426835 /usr/share/arduino/hardware/arduino/variants/eightanaloginputs/pins_arduino.h
 	"../standard/pins_arduino.h"
 
-1392612896 /usr/share/arduino/hardware/arduino/variants/standard/pins_arduino.h
+1401426835 /usr/share/arduino/hardware/arduino/variants/standard/pins_arduino.h
 	<avr/pgmspace.h>
 
-1392612896 /usr/share/arduino/libraries/LiquidCrystal/LiquidCrystal.h
+1401426834 /usr/share/arduino/libraries/LiquidCrystal/LiquidCrystal.h
 	<inttypes.h>
 	"Print.h"
 
-1392612896 /usr/share/arduino/libraries/EEPROM/EEPROM.h
+1401426834 /usr/share/arduino/libraries/EEPROM/EEPROM.h
 	<inttypes.h>
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/wiring_private.h
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/wiring_private.h
 	<avr/io.h>
 	<avr/interrupt.h>
 	<stdio.h>
 	<stdarg.h>
 	"Arduino.h"
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/CDC.cpp
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/CDC.cpp
 	"Platform.h"
 	"USBAPI.h"
 	<avr/wdt.h>
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/Platform.h
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/Platform.h
 	<inttypes.h>
 	<avr/pgmspace.h>
 	<avr/eeprom.h>
@@ -553,11 +553,11 @@
 	"USBCore.h"
 	"USBAPI.h"
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/USBDesc.h
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/USBDesc.h
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/USBCore.h
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/USBCore.h
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/HardwareSerial.cpp
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/HardwareSerial.cpp
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -566,25 +566,25 @@
 	"wiring_private.h"
 	"HardwareSerial.h"
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/HID.cpp
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/HID.cpp
 	"Platform.h"
 	"USBAPI.h"
 	"USBDesc.h"
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/IPAddress.cpp
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/IPAddress.cpp
 	<Arduino.h>
 	<IPAddress.h>
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/IPAddress.h
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/IPAddress.h
 	<Printable.h>
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/main.cpp
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/main.cpp
 	<Arduino.h>
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/new.cpp
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/new.cpp
 	<new.h>
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/Print.cpp
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/Print.cpp
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -592,22 +592,22 @@
 	"Arduino.h"
 	"Print.h"
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/Stream.cpp
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/Stream.cpp
 	"Arduino.h"
 	"Stream.h"
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/Tone.cpp
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/Tone.cpp
 	<avr/interrupt.h>
 	<avr/pgmspace.h>
 	"Arduino.h"
 	"pins_arduino.h"
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/USBCore.cpp
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/USBCore.cpp
 	"Platform.h"
 	"USBAPI.h"
 	"USBDesc.h"
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/WInterrupts.c
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/WInterrupts.c
 	<inttypes.h>
 	<avr/io.h>
 	<avr/interrupt.h>
@@ -615,71 +615,71 @@
 	<stdio.h>
 	"wiring_private.h"
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/wiring_analog.c
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/wiring_analog.c
 	"wiring_private.h"
 	"pins_arduino.h"
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/wiring_digital.c
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/wiring_digital.c
 	"wiring_private.h"
 	"pins_arduino.h"
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/wiring_pulse.c
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/wiring_pulse.c
 	"wiring_private.h"
 	"pins_arduino.h"
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/wiring_shift.c
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/wiring_shift.c
 	"wiring_private.h"
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/WMath.cpp
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/WMath.cpp
 	"stdlib.h"
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/WString.cpp
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/WString.cpp
 	"WString.h"
 
-1392612896 /usr/share/arduino/libraries/EEPROM/EEPROM.cpp
+1401426834 /usr/share/arduino/libraries/EEPROM/EEPROM.cpp
 	<avr/eeprom.h>
 	"Arduino.h"
 	"EEPROM.h"
 
-1392612896 /usr/share/arduino/libraries/Ethernet/Ethernet.cpp
+1401426834 /usr/share/arduino/libraries/Ethernet/Ethernet.cpp
 	"w5100.h"
 	"Ethernet.h"
 	"Dhcp.h"
 
-1392612896 /usr/share/arduino/libraries/Ethernet/Ethernet.h
+1401426834 /usr/share/arduino/libraries/Ethernet/Ethernet.h
 	<inttypes.h>
 	"IPAddress.h"
 	"EthernetClient.h"
 	"EthernetServer.h"
 	"Dhcp.h"
 
-1392612896 /usr/share/arduino/libraries/Ethernet/EthernetClient.h
+1401426834 /usr/share/arduino/libraries/Ethernet/EthernetClient.h
 	"Arduino.h"
 	"Print.h"
 	"Client.h"
 	"IPAddress.h"
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/Client.h
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/Client.h
 	"Print.h"
 	"Stream.h"
 	"IPAddress.h"
 
-1392612896 /usr/share/arduino/libraries/Ethernet/EthernetServer.h
+1401426834 /usr/share/arduino/libraries/Ethernet/EthernetServer.h
 	"Server.h"
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/Server.h
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/Server.h
 
-1392612896 /usr/share/arduino/libraries/Ethernet/Dhcp.h
+1401426834 /usr/share/arduino/libraries/Ethernet/Dhcp.h
 	"EthernetUdp.h"
 
-1392612896 /usr/share/arduino/libraries/Ethernet/EthernetUdp.h
+1401426834 /usr/share/arduino/libraries/Ethernet/EthernetUdp.h
 	<Udp.h>
 
-1392612896 /usr/share/arduino/hardware/arduino/cores/arduino/Udp.h
+1401426835 /usr/share/arduino/hardware/arduino/cores/arduino/Udp.h
 	<Stream.h>
 	<IPAddress.h>
 
-1392612896 /usr/share/arduino/libraries/Ethernet/EthernetClient.cpp
+1401426834 /usr/share/arduino/libraries/Ethernet/EthernetClient.cpp
 	"w5100.h"
 	"socket.h"
 	"string.h"
@@ -689,10 +689,10 @@
 	"EthernetServer.h"
 	"Dns.h"
 
-1392612896 /usr/share/arduino/libraries/Ethernet/Dns.h
+1401426834 /usr/share/arduino/libraries/Ethernet/Dns.h
 	<EthernetUdp.h>
 
-1392612896 /usr/share/arduino/libraries/Ethernet/EthernetServer.cpp
+1401426834 /usr/share/arduino/libraries/Ethernet/EthernetServer.cpp
 	"w5100.h"
 	"socket.h"
 	"string.h"
@@ -700,121 +700,121 @@
 	"EthernetClient.h"
 	"EthernetServer.h"
 
-1392612896 /usr/share/arduino/libraries/Ethernet/EthernetUdp.cpp
+1401426834 /usr/share/arduino/libraries/Ethernet/EthernetUdp.cpp
 	"w5100.h"
 	"socket.h"
 	"Ethernet.h"
 	"Udp.h"
 	"Dns.h"
 
-1392612896 /usr/share/arduino/libraries/Firmata/Firmata.cpp
+1401426834 /usr/share/arduino/libraries/Firmata/Firmata.cpp
 	"Firmata.h"
 	"HardwareSerial.h"
 	<string.h>
 	<stdlib.h>
 
-1392612896 /usr/share/arduino/libraries/Firmata/Firmata.h
+1401426834 /usr/share/arduino/libraries/Firmata/Firmata.h
 	"Boards.h"
 
-1392612896 /usr/share/arduino/libraries/Firmata/Boards.h
+1401426834 /usr/share/arduino/libraries/Firmata/Boards.h
 	<inttypes.h>
 	"Arduino.h"
 	"WProgram.h"
 
-1392612896 /usr/share/arduino/libraries/LiquidCrystal/LiquidCrystal.cpp
+1401426834 /usr/share/arduino/libraries/LiquidCrystal/LiquidCrystal.cpp
 	"LiquidCrystal.h"
 	<stdio.h>
 	<string.h>
 	<inttypes.h>
 	"Arduino.h"
 
-1392612896 /usr/share/arduino/libraries/SD/SD.cpp
+1401426835 /usr/share/arduino/libraries/SD/SD.cpp
 	"SD.h"
 
-1392612896 /usr/share/arduino/libraries/SD/SD.h
+1401426835 /usr/share/arduino/libraries/SD/SD.h
 	<Arduino.h>
 	<utility/SdFat.h>
 	<utility/SdFatUtil.h>
 
-1392612896 /usr/share/arduino/libraries/SD/utility/SdFat.h
+1401426835 /usr/share/arduino/libraries/SD/utility/SdFat.h
 	<avr/pgmspace.h>
 	"Sd2Card.h"
 	"FatStructs.h"
 	"Print.h"
 
-1392612896 /usr/share/arduino/libraries/SD/utility/Sd2Card.h
+1401426835 /usr/share/arduino/libraries/SD/utility/Sd2Card.h
 	"Sd2PinMap.h"
 	"SdInfo.h"
 
-1392612896 /usr/share/arduino/libraries/SD/utility/Sd2PinMap.h
+1401426835 /usr/share/arduino/libraries/SD/utility/Sd2PinMap.h
 	<avr/io.h>
 
-1392612896 /usr/share/arduino/libraries/SD/utility/SdInfo.h
+1401426835 /usr/share/arduino/libraries/SD/utility/SdInfo.h
 	<stdint.h>
 
-1392612896 /usr/share/arduino/libraries/SD/utility/FatStructs.h
+1401426835 /usr/share/arduino/libraries/SD/utility/FatStructs.h
 
-1392612896 /usr/share/arduino/libraries/SD/utility/SdFatUtil.h
+1401426835 /usr/share/arduino/libraries/SD/utility/SdFatUtil.h
 	<Arduino.h>
 	<avr/pgmspace.h>
 
-1392612896 /usr/share/arduino/libraries/SD/utility/Sd2Card.cpp
+1401426835 /usr/share/arduino/libraries/SD/utility/Sd2Card.cpp
 	<Arduino.h>
 	"Sd2Card.h"
 
-1392612896 /usr/share/arduino/libraries/SD/utility/SdFile.cpp
+1401426835 /usr/share/arduino/libraries/SD/utility/SdFile.cpp
 	<SdFat.h>
 	<avr/pgmspace.h>
 	<Arduino.h>
 
-1392612896 /usr/share/arduino/libraries/SD/utility/SdVolume.cpp
+1401426835 /usr/share/arduino/libraries/SD/utility/SdVolume.cpp
 	<SdFat.h>
 
-1392612896 /usr/share/arduino/libraries/SD/File.cpp
+1401426835 /usr/share/arduino/libraries/SD/File.cpp
 	<SD.h>
 
-1392612896 /usr/share/arduino/libraries/Servo/Servo.cpp
+1401426835 /usr/share/arduino/libraries/Servo/Servo.cpp
 	<avr/interrupt.h>
 	<Arduino.h>
 	"Servo.h"
 
-1392612896 /usr/share/arduino/libraries/Servo/Servo.h
+1401426835 /usr/share/arduino/libraries/Servo/Servo.h
 	<inttypes.h>
 
-1392612896 /usr/share/arduino/libraries/SoftwareSerial/SoftwareSerial.cpp
+1401426835 /usr/share/arduino/libraries/SoftwareSerial/SoftwareSerial.cpp
 	<avr/interrupt.h>
 	<avr/pgmspace.h>
 	<Arduino.h>
 	<SoftwareSerial.h>
 
-1392612896 /usr/share/arduino/libraries/SoftwareSerial/SoftwareSerial.h
+1401426835 /usr/share/arduino/libraries/SoftwareSerial/SoftwareSerial.h
 	<inttypes.h>
 	<Stream.h>
 
-1392612896 /usr/share/arduino/libraries/SPI/SPI.cpp
+1401426835 /usr/share/arduino/libraries/SPI/SPI.cpp
 	"pins_arduino.h"
 	"SPI.h"
 
-1392612896 /usr/share/arduino/libraries/SPI/SPI.h
+1401426835 /usr/share/arduino/libraries/SPI/SPI.h
 	<stdio.h>
 	<Arduino.h>
 	<avr/pgmspace.h>
 
-1392612896 /usr/share/arduino/libraries/Wire/Wire.cpp
+1401426835 /usr/share/arduino/libraries/Wire/Wire.cpp
 	<stdlib.h>
 	<string.h>
 	<inttypes.h>
 	"twi.h"
 	"Wire.h"
 
-1392612896 /usr/share/arduino/libraries/Wire/utility/twi.h
+1401426835 /usr/share/arduino/libraries/Wire/utility/twi.h
 	<inttypes.h>
 
-1392612896 /usr/share/arduino/libraries/Wire/Wire.h
+1401426835 /usr/share/arduino/libraries/Wire/Wire.h
 	<inttypes.h>
 	"Stream.h"
 
-1392612896 /usr/share/arduino/libraries/Wire/utility/twi.c
+1401426835 /usr/share/arduino/libraries/Wire/utility/twi.c
 	<math.h>
 	<stdlib.h>
 	<inttypes.h>
@@ -825,61 +825,61 @@
 	"pins_arduino.h"
 	"twi.h"
 
-1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/CDC.cpp
+1485681627 source:/home/daniel/src/Arduino/aWXIrons/cores/CDC.cpp
 	<CDC.cpp>
 
-1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/HardwareSerial.cpp
+1485681627 source:/home/daniel/src/Arduino/aWXIrons/cores/HardwareSerial.cpp
 	<HardwareSerial.cpp>
 
-1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/HID.cpp
+1485681627 source:/home/daniel/src/Arduino/aWXIrons/cores/HID.cpp
 	<HID.cpp>
 
-1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/IPAddress.cpp
+1485681627 source:/home/daniel/src/Arduino/aWXIrons/cores/IPAddress.cpp
 	<IPAddress.cpp>
 
-1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/main.cpp
+1485681627 source:/home/daniel/src/Arduino/aWXIrons/cores/main.cpp
 	<main.cpp>
 
-1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/new.cpp
+1485681627 source:/home/daniel/src/Arduino/aWXIrons/cores/new.cpp
 	<new.cpp>
 
-1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/Print.cpp
+1485681627 source:/home/daniel/src/Arduino/aWXIrons/cores/Print.cpp
 	<Print.cpp>
 
-1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/Stream.cpp
+1485681627 source:/home/daniel/src/Arduino/aWXIrons/cores/Stream.cpp
 	<Stream.cpp>
 
-1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/Tone.cpp
+1485681627 source:/home/daniel/src/Arduino/aWXIrons/cores/Tone.cpp
 	<Tone.cpp>
 
-1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/USBCore.cpp
+1485681627 source:/home/daniel/src/Arduino/aWXIrons/cores/USBCore.cpp
 	<USBCore.cpp>
 
-1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/WInterrupts.c
+1485681627 source:/home/daniel/src/Arduino/aWXIrons/cores/WInterrupts.c
 	<WInterrupts.c>
 
-1427767994 source:/home/daniel/src/Arduino/aWXIrons/cores/wiring.c
+1485681627 source:/home/daniel/src/Arduino/aWXIrons/cores/wiring.c
 	"wiring_private.h"
 
-1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/wiring_analog.c
+1485681627 source:/home/daniel/src/Arduino/aWXIrons/cores/wiring_analog.c
 	<wiring_analog.c>
 
-1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/wiring_digital.c
+1485681627 source:/home/daniel/src/Arduino/aWXIrons/cores/wiring_digital.c
 	<wiring_digital.c>
 
-1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/wiring_pulse.c
+1485681627 source:/home/daniel/src/Arduino/aWXIrons/cores/wiring_pulse.c
 	<wiring_pulse.c>
 
-1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/wiring_shift.c
+1485681627 source:/home/daniel/src/Arduino/aWXIrons/cores/wiring_shift.c
 	<wiring_shift.c>
 
-1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/WMath.cpp
+1485681627 source:/home/daniel/src/Arduino/aWXIrons/cores/WMath.cpp
 	<WMath.cpp>
 
-1427644977 source:/home/daniel/src/Arduino/aWXIrons/cores/WString.cpp
+1485681627 source:/home/daniel/src/Arduino/aWXIrons/cores/WString.cpp
 	<WString.cpp>
 
-1427644978 source:/home/daniel/src/Arduino/aWXIrons/libraries/libraries.cpp
+1485681627 source:/home/daniel/src/Arduino/aWXIrons/libraries/libraries.cpp
 	<Arduino.h>
 	"ClickEncoder.cpp"
 	"TimerOne.cpp"
@@ -905,39 +905,391 @@
 	"Wire.cpp"
 	"twi.c"
 
-1427644977 /home/daniel/src/Arduino/aWXIrons/ClickEncoder/ClickEncoder.cpp
+1485681627 /home/daniel/src/Arduino/aWXIrons/ClickEncoder/ClickEncoder.cpp
 	"ClickEncoder.h"
 
-1427644977 /home/daniel/src/Arduino/aWXIrons/ClickEncoder/ClickEncoder.h
+1485681627 /home/daniel/src/Arduino/aWXIrons/ClickEncoder/ClickEncoder.h
 	<stdint.h>
 	<avr/io.h>
 	<avr/interrupt.h>
 	<avr/pgmspace.h>
 	"Arduino.h"
 
-1427644978 /home/daniel/src/Arduino/aWXIrons/TimerOne/TimerOne.cpp
+1485681627 /home/daniel/src/Arduino/aWXIrons/TimerOne/TimerOne.cpp
 	"TimerOne.h"
 
-1427644978 /home/daniel/src/Arduino/aWXIrons/TimerOne/TimerOne.h
+1485681627 /home/daniel/src/Arduino/aWXIrons/TimerOne/TimerOne.h
 	"Arduino.h"
 	"WProgram.h"
 	"config/known_16bit_timers.h"
 
-1427644978 /home/daniel/src/Arduino/aWXIrons/TimerOne/config/known_16bit_timers.h
+1485681627 /home/daniel/src/Arduino/aWXIrons/TimerOne/config/known_16bit_timers.h
 
-1427644978 source:/home/daniel/src/Arduino/aWXIrons/sketch.cpp
+1485681627 source:/home/daniel/src/Arduino/aWXIrons/sketch.cpp
 	<Arduino.h>
 	<LiquidCrystal.h>
 	"aDSEngine.h"
 
-1427777649 /home/daniel/src/Arduino/aWXIrons/aDSEngine.h
+1485685987 /home/daniel/src/Arduino/aWXIrons/aDSEngine.h
 	<Arduino.h>
 	<LiquidCrystal.h>
 	<EEPROM.h>
 	"TimerOne.h"
 	"ClickEncoder.h"
 
-1427777641 source:/home/daniel/src/Arduino/aWXIrons/aDSEngine.cpp
+1485683417 source:/home/daniel/src/Arduino/aWXIrons/aDSEngine.cpp
 	"aDSEngine.h"
 	<wiring_private.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/CDC.cpp
+	"Platform.h"
+	"USBAPI.h"
+	<avr/wdt.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/Platform.h
+	<inttypes.h>
+	<avr/pgmspace.h>
+	<avr/eeprom.h>
+	<avr/interrupt.h>
+	<util/delay.h>
+	"Arduino.h"
+	"USBDesc.h"
+	"USBCore.h"
+	"USBAPI.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/Arduino.h
+	<stdlib.h>
+	<string.h>
+	<math.h>
+	<avr/pgmspace.h>
+	<avr/io.h>
+	<avr/interrupt.h>
+	"binary.h"
+	"WCharacter.h"
+	"WString.h"
+	"HardwareSerial.h"
+	"pins_arduino.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/binary.h
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/WCharacter.h
+	<ctype.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/WString.h
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	<avr/pgmspace.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/HardwareSerial.h
+	<inttypes.h>
+	"Stream.h"
+	"USBAPI.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/Stream.h
+	<inttypes.h>
+	"Print.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/Print.h
+	<inttypes.h>
+	<stdio.h>
+	"WString.h"
+	"Printable.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/Printable.h
+	<new.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/new.h
+	<stdlib.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/USBAPI.h
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/variants/standard/pins_arduino.h
+	<avr/pgmspace.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/USBDesc.h
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/USBCore.h
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/HardwareSerial.cpp
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<inttypes.h>
+	"Arduino.h"
+	"wiring_private.h"
+	"HardwareSerial.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/wiring_private.h
+	<avr/io.h>
+	<avr/interrupt.h>
+	<stdio.h>
+	<stdarg.h>
+	"Arduino.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/HID.cpp
+	"Platform.h"
+	"USBAPI.h"
+	"USBDesc.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/IPAddress.cpp
+	<Arduino.h>
+	<IPAddress.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/IPAddress.h
+	<Printable.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/main.cpp
+	<Arduino.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/new.cpp
+	<new.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/Print.cpp
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	"Arduino.h"
+	"Print.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/Stream.cpp
+	"Arduino.h"
+	"Stream.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/Tone.cpp
+	<avr/interrupt.h>
+	<avr/pgmspace.h>
+	"Arduino.h"
+	"pins_arduino.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/USBCore.cpp
+	"Platform.h"
+	"USBAPI.h"
+	"USBDesc.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/WInterrupts.c
+	<inttypes.h>
+	<avr/io.h>
+	<avr/interrupt.h>
+	<avr/pgmspace.h>
+	<stdio.h>
+	"wiring_private.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/wiring_analog.c
+	"wiring_private.h"
+	"pins_arduino.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/wiring_digital.c
+	"wiring_private.h"
+	"pins_arduino.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/wiring_pulse.c
+	"wiring_private.h"
+	"pins_arduino.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/wiring_shift.c
+	"wiring_private.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/WMath.cpp
+	"stdlib.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/WString.cpp
+	"WString.h"
+
+1401426834 /home/daniel/CodeBlocksArduino/arduino/libraries/EEPROM/EEPROM.cpp
+	<avr/eeprom.h>
+	"Arduino.h"
+	"EEPROM.h"
+
+1401426834 /home/daniel/CodeBlocksArduino/arduino/libraries/EEPROM/EEPROM.h
+	<inttypes.h>
+
+1401426834 /home/daniel/CodeBlocksArduino/arduino/libraries/Ethernet/Ethernet.cpp
+	"w5100.h"
+	"Ethernet.h"
+	"Dhcp.h"
+
+1401426834 /home/daniel/CodeBlocksArduino/arduino/libraries/Ethernet/Ethernet.h
+	<inttypes.h>
+	"IPAddress.h"
+	"EthernetClient.h"
+	"EthernetServer.h"
+	"Dhcp.h"
+
+1401426834 /home/daniel/CodeBlocksArduino/arduino/libraries/Ethernet/EthernetClient.h
+	"Arduino.h"
+	"Print.h"
+	"Client.h"
+	"IPAddress.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/Client.h
+	"Print.h"
+	"Stream.h"
+	"IPAddress.h"
+
+1401426834 /home/daniel/CodeBlocksArduino/arduino/libraries/Ethernet/EthernetServer.h
+	"Server.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/Server.h
+
+1401426834 /home/daniel/CodeBlocksArduino/arduino/libraries/Ethernet/Dhcp.h
+	"EthernetUdp.h"
+
+1401426834 /home/daniel/CodeBlocksArduino/arduino/libraries/Ethernet/EthernetUdp.h
+	<Udp.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/hardware/arduino/cores/arduino/Udp.h
+	<Stream.h>
+	<IPAddress.h>
+
+1401426834 /home/daniel/CodeBlocksArduino/arduino/libraries/Ethernet/EthernetClient.cpp
+	"w5100.h"
+	"socket.h"
+	"string.h"
+	"Arduino.h"
+	"Ethernet.h"
+	"EthernetClient.h"
+	"EthernetServer.h"
+	"Dns.h"
+
+1401426834 /home/daniel/CodeBlocksArduino/arduino/libraries/Ethernet/Dns.h
+	<EthernetUdp.h>
+
+1401426834 /home/daniel/CodeBlocksArduino/arduino/libraries/Ethernet/EthernetServer.cpp
+	"w5100.h"
+	"socket.h"
+	"string.h"
+	"Ethernet.h"
+	"EthernetClient.h"
+	"EthernetServer.h"
+
+1401426834 /home/daniel/CodeBlocksArduino/arduino/libraries/Ethernet/EthernetUdp.cpp
+	"w5100.h"
+	"socket.h"
+	"Ethernet.h"
+	"Udp.h"
+	"Dns.h"
+
+1401426834 /home/daniel/CodeBlocksArduino/arduino/libraries/Firmata/Firmata.cpp
+	"Firmata.h"
+	"HardwareSerial.h"
+	<string.h>
+	<stdlib.h>
+
+1401426834 /home/daniel/CodeBlocksArduino/arduino/libraries/Firmata/Firmata.h
+	"Boards.h"
+
+1401426834 /home/daniel/CodeBlocksArduino/arduino/libraries/Firmata/Boards.h
+	<inttypes.h>
+	"Arduino.h"
+	"WProgram.h"
+
+1401426834 /home/daniel/CodeBlocksArduino/arduino/libraries/LiquidCrystal/LiquidCrystal.cpp
+	"LiquidCrystal.h"
+	<stdio.h>
+	<string.h>
+	<inttypes.h>
+	"Arduino.h"
+
+1401426834 /home/daniel/CodeBlocksArduino/arduino/libraries/LiquidCrystal/LiquidCrystal.h
+	<inttypes.h>
+	"Print.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/libraries/SD/SD.cpp
+	"SD.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/libraries/SD/SD.h
+	<Arduino.h>
+	<utility/SdFat.h>
+	<utility/SdFatUtil.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/libraries/SD/utility/SdFat.h
+	<avr/pgmspace.h>
+	"Sd2Card.h"
+	"FatStructs.h"
+	"Print.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/libraries/SD/utility/Sd2Card.h
+	"Sd2PinMap.h"
+	"SdInfo.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/libraries/SD/utility/Sd2PinMap.h
+	<avr/io.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/libraries/SD/utility/SdInfo.h
+	<stdint.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/libraries/SD/utility/FatStructs.h
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/libraries/SD/utility/SdFatUtil.h
+	<Arduino.h>
+	<avr/pgmspace.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/libraries/SD/utility/Sd2Card.cpp
+	<Arduino.h>
+	"Sd2Card.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/libraries/SD/utility/SdFile.cpp
+	<SdFat.h>
+	<avr/pgmspace.h>
+	<Arduino.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/libraries/SD/utility/SdVolume.cpp
+	<SdFat.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/libraries/SD/File.cpp
+	<SD.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/libraries/Servo/Servo.cpp
+	<avr/interrupt.h>
+	<Arduino.h>
+	"Servo.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/libraries/Servo/Servo.h
+	<inttypes.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/libraries/SoftwareSerial/SoftwareSerial.cpp
+	<avr/interrupt.h>
+	<avr/pgmspace.h>
+	<Arduino.h>
+	<SoftwareSerial.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/libraries/SoftwareSerial/SoftwareSerial.h
+	<inttypes.h>
+	<Stream.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/libraries/SPI/SPI.cpp
+	"pins_arduino.h"
+	"SPI.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/libraries/SPI/SPI.h
+	<stdio.h>
+	<Arduino.h>
+	<avr/pgmspace.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/libraries/Wire/Wire.cpp
+	<stdlib.h>
+	<string.h>
+	<inttypes.h>
+	"twi.h"
+	"Wire.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/libraries/Wire/utility/twi.h
+	<inttypes.h>
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/libraries/Wire/Wire.h
+	<inttypes.h>
+	"Stream.h"
+
+1401426835 /home/daniel/CodeBlocksArduino/arduino/libraries/Wire/utility/twi.c
+	<math.h>
+	<stdlib.h>
+	<inttypes.h>
+	<avr/io.h>
+	<avr/interrupt.h>
+	<compat/twi.h>
+	"Arduino.h"
+	"pins_arduino.h"
+	"twi.h"
 

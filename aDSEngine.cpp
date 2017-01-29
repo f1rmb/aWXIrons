@@ -354,61 +354,118 @@ static int8_t getNumericalLength(int16_t n)
 //
 // Begin of Class aDSTemperatureAveraging
 //
-/// \brief aDSTemperatureAveraging class constructor
+/// \brief ValueAveraging class constructor
+/// \param zero
 ///
-aDSTemperatureAveraging::aDSTemperatureAveraging() : m_offset(ARRAY_SIZE_MAX)
+ValueAveraging::ValueAveraging() :
+		m_average(ARRAY_SIZE_MAX)
 {
     // ctor
-    for (uint8_t i = 0; i < ARRAY_SIZE_MAX; i++)
-        m_temperatures[i] = 0;
+	ResetValues();
 }
 
-/// \brief aDSTemperatureAveraging class destructor
+/// \brief ValueAveraging class destructor
 ///
-aDSTemperatureAveraging::~aDSTemperatureAveraging()
+ValueAveraging::~ValueAveraging()
 {
     // dtor
 }
 
-/// \brief Stacks the temperature value to an array, used to compute an averaged value
+/// \brief Stacks the value to an array, used to compute an averaged value
+/// \param value value
 ///
-/// \param temp int16_t : temperature
+template<typename T>
+void ValueAveraging::StackValue(T value)
+{
+    if (value > 0)
+    {
+        m_offset = (m_offset + 1) % m_average;
+
+        m_values[m_offset] = static_cast<double>(value);
+    }
+}
+
+/// \brief Returns the averaged value, computed from stacked values
+/// \return averaged value
+///
+template<typename T>
+T ValueAveraging::GetValue()
+{
+    uint16_t n = 0;
+    double	 sum = 0.0;
+
+    for (uint16_t i = 0; i < m_average; i++)
+    {
+    	if (isnan(m_values[i]))
+    		break;
+
+    	sum += m_values[i];
+    	n++;
+    }
+
+    // No usable value found.
+    if (n == 0)
+        n = 1.0;
+
+    return static_cast<T>((sum / double(n)) + 0.5); // ceil
+}
+
+
+/// \brief Set how many values will be used to compute the average
+///
+/// \param v uint16_t max value
+/// \return bool true on success
+///
+///
+bool ValueAveraging::SetAverage(uint16_t v)
+{
+	bool ret = false;
+
+	if (v >= 0 && v <= ARRAY_SIZE_MAX)
+	{
+		// Zeroing the array
+		ResetValues();
+
+		m_average = v;
+
+		ret = true;
+	}
+
+	return ret;
+}
+
+/// \brief Get how many values will be used to compute the average
+///
+uint16_t ValueAveraging::GetAverage()
+{
+	return m_average;
+}
+
+/// \brief Get max value that can be used to build the average
+///
+/// \return uint16_t max value
+///
+///
+uint16_t ValueAveraging::GetMaxAverage()
+{
+	return ARRAY_SIZE_MAX;
+}
+
+/// \brief Reset the array used to store values to be averaged
+///
 /// \return void
 ///
 ///
-void aDSTemperatureAveraging::stackTemperature(int16_t temp)
+void ValueAveraging::ResetValues()
 {
-    if (temp > 0)
-    {
-        m_offset++;
 
-        if (m_offset >= ARRAY_SIZE_MAX)
-            m_offset = 0;
+	for (uint16_t i = 0; i < ARRAY_SIZE_MAX; i++)
+		m_values[i] = NAN;
 
-        m_temperatures[m_offset] = temp;
-    }
-}
-
-/// \brief Returns the averaged temperature, computed from stacked values
-///
-/// \return int16_t : averaged temperature
-///
-///
-int16_t aDSTemperatureAveraging::getTemperature()
-{
-    uint8_t n = 1;
-    float   sum = 0.0;
-
-    for (uint8_t i = 0; i < ARRAY_SIZE_MAX; i++)
-    {
-        if (m_temperatures[i] > 0)
-            sum += m_temperatures[(n++ - 1)];
-    }
-
-    return static_cast<int16_t>((sum / static_cast<float>(n - 1)) + 0.5); // ceil
+	m_offset = ARRAY_SIZE_MAX - 1;
 }
 //
-// End of Class aDSTemperatureAveraging
+// End of Class ValueAveraging
 //
 
 //
@@ -531,7 +588,7 @@ bool aDSChannel::hasFocus()
 ///
 uint16_t aDSChannel::getTemperature(OperationMode_t mode)
 {
-    return (mode == OPERATION_MODE_READ) ? m_avrTemp.getTemperature() : m_targetTemp;
+    return (mode == OPERATION_MODE_READ) ? m_avrTemp.GetValue<int16_t>() : m_targetTemp;
 }
 
 /// \brief Set current temperature accordingly from the given mode (SET/READ)
@@ -553,7 +610,7 @@ bool aDSChannel::setTemperature(OperationMode_t mode, int16_t temp)
     else
     {
         m_currentTemp = temp;
-        m_avrTemp.stackTemperature(m_currentTemp);
+        m_avrTemp.StackValue(m_currentTemp);
     }
 
     return (p != ((mode == OPERATION_MODE_SET) ? m_targetTemp : m_currentTemp));
@@ -624,7 +681,7 @@ bool aDSChannel::service(unsigned long m)
     currTemp = m_currentTemp;
 #else
     m_currentTemp = currTemp;
-    m_avrTemp.stackTemperature(m_currentTemp);
+    m_avrTemp.StackValue(m_currentTemp);
 #endif
 
     //

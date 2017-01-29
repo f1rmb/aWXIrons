@@ -62,7 +62,7 @@ static const uint8_t        LED_CHANNEL2_PIN            = A3;   ///< LED pin of 
 
 
 static const uint8_t        PROGRAM_VERSION_MAJOR       = 1;    ///< Major program version
-static const uint8_t        PROGRAM_VERSION_MINOR       = 5;    ///< Minor program version
+static const uint8_t        PROGRAM_VERSION_MINOR       = 6;    ///< Minor program version
 
 /// \brief Operation Mode enumeration
 ///
@@ -77,21 +77,46 @@ typedef enum
 
 /// \brief aDSChannel class
 ///
-class aDSTemperatureAveraging
+class ValueAveraging
 {
     protected:
-        static const uint8_t ARRAY_SIZE_MAX = 10; ///< Averaging is performed using n values
+        static const uint16_t ARRAY_SIZE_MAX = 10; ///< Averaging is performed using n values
 
     public:
-        aDSTemperatureAveraging();
-        ~aDSTemperatureAveraging();
+        ///
+        /// @param zero
+        ValueAveraging();
 
-        void                stackTemperature(int16_t);
-        int16_t             getTemperature();
+        ///
+        ///
+        ~ValueAveraging();
+
+        /// @param value
+        template<typename T>
+        void                			StackValue(T value);
+
+        /// @return
+        template<typename T>
+        T             					GetValue();
+
+        /// @param v
+        /// @return
+        bool							SetAverage(uint16_t v);
+
+        /// @return
+        uint16_t						GetAverage();
+
+        /// @return
+        uint16_t						GetMaxAverage();
+
+        ///
+        ///
+        void							ResetValues();
 
     private:
-        int16_t                 m_temperatures[ARRAY_SIZE_MAX];
-        uint8_t                 m_offset;
+        double           				m_values[ARRAY_SIZE_MAX]; ///<
+        uint16_t             			m_offset; ///<
+        uint16_t 						m_average; ///<
 };
 
 /// \brief aDSChannel class
@@ -206,7 +231,7 @@ class aDSChannel
         uint8_t                 m_channel;
         bool                    m_isPlugged;
         aDSChannel             *m_brother;
-        aDSTemperatureAveraging m_avrTemp;
+        ValueAveraging          m_avrTemp;
 };
 
 /// \brief aDSChannels class

@@ -1,0 +1,7 @@
+doxygen/latex/*
+bin/*
+*.save
+*.o
+*~
+*.eep
+*.elf
