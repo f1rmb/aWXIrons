@@ -32,7 +32,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">aWXIron
-   &#160;<span id="projectnumber">1.2</span>
+   &#160;<span id="projectnumber">1.6</span>
    </div>
   </td>
  </tr>
@@ -153,7 +153,7 @@ $(document).ready(function(){initNavTree('cal.html','');});
  Apply the same procedure for all spreadsheet's rows.<br />
 </p>
 <p class="startli">Once you completed the array, down the chart, the '<em>Calibration String</em>' cell contains the string you have to copy and paste to the serial terminal emulator, e.g: </p><div class="fragment"><div class="line">:CAL:1:0.3757498594,51.7808993467 </div></div><!-- fragment --><p> This string starts with '<b>:CAL:</b>', followed by the channel's name, then two floating point values, comma separated.<br />
- Once the string entered and validated with the <b>[RETURN]</b> key, you should get a '<b><em>:OK:</em></b>' acknoledge message.<br />
+ Once the string entered and validated with the <b>[RETURN]</b> key, you should get a '<b><em>:OK:</em></b>' acknowledge message.<br />
  In case you get '<b><em>:ERR:</em></b>', double check the calibration string you pasted.<br />
 </p>
 <p class="startli">If you own a Dual Channel soldering station, <b>repeat this step for the second Channel</b>.<br />
@@ -174,7 +174,7 @@ $(document).ready(function(){initNavTree('cal.html','');});
 <br />
 <ul>
 <li><em>:CAL:</em><b>OFF</b> Cancels the calibration process, restoring previous values.</li>
-<li><em>:CAL:</em><b>DUMP</b> Displays the calibration values in the serial terminal emulator</li>
+<li><em>:CAL:</em><b>DUMP</b> Displays the calibration values (stored in EEPROM and current ones) in the serial terminal emulator</li>
 </ul>
 </li>
 </ul>
@@ -186,7 +186,7 @@ $(document).ready(function(){initNavTree('cal.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Jan 29 2017 11:18:40 for aWXIron by
+    <li class="footer">Generated on Sun Jan 29 2017 14:53:10 for aWXIron by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
   </ul>

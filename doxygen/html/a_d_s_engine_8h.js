@@ -30,6 +30,7 @@ var a_d_s_engine_8h =
     [ "LED_CHANNEL2_PIN", "a_d_s_engine_8h.html#a1caa09f7e122442ec850be50238d4263", null ],
     [ "PROGRAM_VERSION_MAJOR", "a_d_s_engine_8h.html#a993cbf16350285d76a66b6987109124d", null ],
     [ "PROGRAM_VERSION_MINOR", "a_d_s_engine_8h.html#ae695d2bff565fcc5ded6594d14512c0c", null ],
+    [ "PROGRAM_YEAR", "a_d_s_engine_8h.html#aaeef3be236bf437f2f213f51ffd9654d", null ],
     [ "PWM_CHANNEL1_PIN", "a_d_s_engine_8h.html#aa6b30e6d8b9c049f2992f4966b5e8393", null ],
     [ "PWM_CHANNEL2_PIN", "a_d_s_engine_8h.html#a9493a96ecfabb8e2e86de32738ddd538", null ],
     [ "TEMP_SENSOR_CHANNEL1_PIN", "a_d_s_engine_8h.html#a4d556d024b1cbc9ad9da4d37bc919504", null ],

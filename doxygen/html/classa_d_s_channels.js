@@ -46,6 +46,7 @@ var classa_d_s_channels =
     [ "toggleJoined", "classa_d_s_channels.html#adfc0925271daf62fa31ebae213f74208", null ],
     [ "toggleStandbyMode", "classa_d_s_channels.html#a218a46c6187a8d0aa467de5277315375", null ],
     [ "updateOperationMode", "classa_d_s_channels.html#a62667df5531723e286b0c77382e79872", null ],
+    [ "aDSEngine", "classa_d_s_channels.html#abf956dc2a5ef8cf2211bacf7564e90ae", null ],
     [ "DATA_CHANNEL1_LED_STATE", "classa_d_s_channels.html#a16cdd2dae7a63180bcd513ccb7af4776", null ],
     [ "DATA_CHANNEL1_TEMP_READ", "classa_d_s_channels.html#aee1548b8b8a95929d6dd8ca78e154885", null ],
     [ "DATA_CHANNEL1_TEMP_SET", "classa_d_s_channels.html#a2df7bc30c06e00a0be3c8fcc9939cbaf", null ],

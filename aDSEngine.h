@@ -1,5 +1,5 @@
 ///
-/// \copyright Copyright (C) 2015  F1RMB, Daniel Caujolle-Bert <f1rmb.daniel@gmail.com>
+/// \copyright Copyright (C) 2015-2017  F1RMB, Daniel Caujolle-Bert <f1rmb.daniel@gmail.com>
 ///
 /// \license
 ///  This program is free software; you can redistribute it and/or
@@ -30,7 +30,7 @@
 ///
 
 //#define SIMU  1                  ///< Define this to run in simulation mode (temperature will raise/lower automatically, !! DO NOT PLUG ANY IRON TIP !!)
-
+//#define CHANNEL_COUNTING     1   ///< Define this to trace channel counting, debug purpose
 //#define LCD_CHANNELS_LEDS    1   ///< Define this if you want channels LEDs displayed on the LCD
 
 static const uint8_t        CHANNEL2_ENABLE_PIN         = 13;   ///< Pin to check from if channel 2 is wired
@@ -63,6 +63,7 @@ static const uint8_t        LED_CHANNEL2_PIN            = A3;   ///< LED pin of 
 
 static const uint8_t        PROGRAM_VERSION_MAJOR       = 1;    ///< Major program version
 static const uint8_t        PROGRAM_VERSION_MINOR       = 6;    ///< Minor program version
+static const uint16_t       PROGRAM_YEAR                = 2017; ///< Release year
 
 /// \brief Operation Mode enumeration
 ///
@@ -75,7 +76,7 @@ typedef enum
 } OperationMode_t;
 
 
-/// \brief aDSChannel class
+/// \brief ValueAveraging class
 ///
 class ValueAveraging
 {
@@ -83,40 +84,20 @@ class ValueAveraging
         static const uint16_t ARRAY_SIZE_MAX = 10; ///< Averaging is performed using n values
 
     public:
-        ///
-        /// @param zero
         ValueAveraging();
-
-        ///
-        ///
         ~ValueAveraging();
 
-        /// @param value
-        template<typename T>
-        void                			StackValue(T value);
-
-        /// @return
-        template<typename T>
-        T             					GetValue();
-
-        /// @param v
-        /// @return
+        void                			StackValue(int16_t value);
+        int16_t             			GetValue();
         bool							SetAverage(uint16_t v);
-
-        /// @return
         uint16_t						GetAverage();
-
-        /// @return
         uint16_t						GetMaxAverage();
-
-        ///
-        ///
         void							ResetValues();
 
     private:
-        double           				m_values[ARRAY_SIZE_MAX]; ///<
-        uint16_t             			m_offset; ///<
-        uint16_t 						m_average; ///<
+        int16_t           				m_values[ARRAY_SIZE_MAX]; ///< values array storage
+        uint16_t             			m_offset; ///< offset in m_values[]
+        uint16_t 						m_average; ///< max values used from m_values[] to build average value
 };
 
 /// \brief aDSChannel class
@@ -222,22 +203,27 @@ class aDSChannel
         bool                    m_tempHasChanged;
         unsigned long           m_nextBlink;
         uint8_t                 m_blinkStandby;
-        uint8_t                 m_ref;
         CalibrationData_t       m_cal;
 #ifdef SIMU
         unsigned long           m_nextTempStep;
         unsigned long           m_nextLowering;
 #endif // SIMU
+#if CHANNEL_COUNTING
         uint8_t                 m_channel;
+#endif
         bool                    m_isPlugged;
         aDSChannel             *m_brother;
         ValueAveraging          m_avrTemp;
 };
 
+class aDSEngine;
+
 /// \brief aDSChannels class
 ///
 class aDSChannels
 {
+    friend aDSEngine;
+
     public:
         static const uint8_t        OFFSET_VALUE                = 2;        ///< Value column LCD offset
         static const uint8_t        OFFSET_MARKER_LEFT          = 0;        ///< Column LCD offset for left marker '['
@@ -277,7 +263,7 @@ class aDSChannels
         static const uint16_t       DATA_FOCUS                  = 1 << 12;  ///< Bitfield: Focus has changed
         static const uint16_t       DATA_IN_CALIBRATION         = 1 << 13;  ///< Bitfield: in Calibration
 
-    protected:
+    private:
         /** \brief Union to manipulate float/uint8_t [] calibration values
          *
          */

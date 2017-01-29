@@ -1,5 +1,5 @@
 ///
-/// \copyright Copyright (C) 2015  F1RMB, Daniel Caujolle-Bert <f1rmb.daniel@gmail.com>
+/// \copyright Copyright (C) 2015-2017  F1RMB, Daniel Caujolle-Bert <f1rmb.daniel@gmail.com>
 ///
 /// \license
 ///  This program is free software; you can redistribute it and/or
@@ -188,7 +188,7 @@
 ///         Once you completed the array, down the chart, the '<i>Calibration String</i>' cell contains the string you have to copy and paste to the serial terminal emulator, e.g:
 ///         \code :CAL:1:0.3757498594,51.7808993467 \endcode
 ///         This string starts with '<b>:CAL:</b>', followed by the channel's name, then two floating point values, comma separated.<br>
-///         Once the string entered and validated with the <b>[RETURN]</b> key, you should get a '<b><i>:OK:</i></b>' acknoledge message.<br>
+///         Once the string entered and validated with the <b>[RETURN]</b> key, you should get a '<b><i>:OK:</i></b>' acknowledge message.<br>
 ///         In case you get '<b><i>:ERR:</i></b>', double check the calibration string you pasted.<br>
 ///
 ///         If you own a Dual Channel soldering station, <b>repeat this step for the second Channel</b>.<br><br>
@@ -207,7 +207,7 @@
 ///
 ///     - <i>:CAL:</i><b>OFF</b>  Cancels the calibration process, restoring previous values.
 ///
-///     - <i>:CAL:</i><b>DUMP</b>  Displays the calibration values in the serial terminal emulator
+///     - <i>:CAL:</i><b>DUMP</b>  Displays the calibration values (stored in EEPROM and current ones) in the serial terminal emulator
 ///
 /// \warning If you own a Dual Channel soldering station, you <b>HAVE</b> to calibrate both channels, or at least enter the <i>old</i> calibration string for the channel you won't calibrate.
 ///
@@ -334,8 +334,10 @@ static const uint8_t        _bigDigitsBottom[12][DIGIT_WIDTH] =     ///< 0..9 + 
 };
 
 static ClickEncoder *pEncoder = NULL;  ///< Global pointer to ClickEncoder object, used inside timer1ISR() function
-static uint8_t channelCount = 0;
 
+#if CHANNEL_COUNTING
+static uint8_t channelCount = 0;
+#endif
 
 
 /// \brief Returns numerical character length of argument
@@ -355,7 +357,7 @@ static int8_t getNumericalLength(int16_t n)
 // Begin of Class aDSTemperatureAveraging
 //
 /// \brief ValueAveraging class constructor
-/// \param zero
+///
 ///
 ValueAveraging::ValueAveraging() :
 		m_average(ARRAY_SIZE_MAX)
@@ -366,62 +368,69 @@ ValueAveraging::ValueAveraging() :
 
 /// \brief ValueAveraging class destructor
 ///
+///
 ValueAveraging::~ValueAveraging()
 {
     // dtor
 }
 
 /// \brief Stacks the value to an array, used to compute an averaged value
-/// \param value value
 ///
-template<typename T>
-void ValueAveraging::StackValue(T value)
+/// \param value int16_t : value to stack
+/// \return void
+///
+///
+void ValueAveraging::StackValue(int16_t value)
 {
     if (value > 0)
     {
         m_offset = (m_offset + 1) % m_average;
 
-        m_values[m_offset] = static_cast<double>(value);
+        m_values[m_offset] = value;
     }
 }
 
 /// \brief Returns the averaged value, computed from stacked values
-/// \return averaged value
 ///
-template<typename T>
-T ValueAveraging::GetValue()
+/// \return int16_t : averaged value
+///
+///
+int16_t ValueAveraging::GetValue()
 {
     uint16_t n = 0;
     double	 sum = 0.0;
 
     for (uint16_t i = 0; i < m_average; i++)
     {
-    	if (isnan(m_values[i]))
+    	if (m_values[i] == -1)
     		break;
 
-    	sum += m_values[i];
-    	n++;
+        if (m_values[i] > 0)
+        {
+            sum += m_values[i];
+            n++;
+        }
     }
 
     // No usable value found.
     if (n == 0)
-        n = 1.0;
+        return 0;
 
-    return static_cast<T>((sum / double(n)) + 0.5); // ceil
+    return static_cast<int16_t>((sum / double(n)) + 0.5); // ceil
 }
 
 
 /// \brief Set how many values will be used to compute the average
 ///
-/// \param v uint16_t max value
-/// \return bool true on success
+/// \param v uint16_t : values used for averaging
+/// \return bool : true on success
 ///
 ///
 bool ValueAveraging::SetAverage(uint16_t v)
 {
 	bool ret = false;
 
-	if (v >= 0 && v <= ARRAY_SIZE_MAX)
+	if ((v >= 0) && (v <= ARRAY_SIZE_MAX))
 	{
 		// Zeroing the array
 		ResetValues();
@@ -436,6 +445,9 @@ bool ValueAveraging::SetAverage(uint16_t v)
 
 /// \brief Get how many values will be used to compute the average
 ///
+/// \return uint16_t : values used for averaging
+///
+///
 uint16_t ValueAveraging::GetAverage()
 {
 	return m_average;
@@ -443,7 +455,7 @@ uint16_t ValueAveraging::GetAverage()
 
 /// \brief Get max value that can be used to build the average
 ///
-/// \return uint16_t max value
+/// \return uint16_t : max values used for averaging
 ///
 ///
 uint16_t ValueAveraging::GetMaxAverage()
@@ -460,7 +472,7 @@ void ValueAveraging::ResetValues()
 {
 
 	for (uint16_t i = 0; i < ARRAY_SIZE_MAX; i++)
-		m_values[i] = NAN;
+		m_values[i] = -1;
 
 	m_offset = ARRAY_SIZE_MAX - 1;
 }
@@ -490,8 +502,10 @@ aDSChannel::aDSChannel() :
     , m_nextTempStep(0),
     m_nextLowering(0)
 #endif // SIMU
-    , m_channel(channelCount++),
-    m_isPlugged(true),
+#if CHANNEL_COUNTING
+    , m_channel(channelCount++)
+#endif // 0
+    , m_isPlugged(true),
     m_brother(NULL)
 {
     //ctor
@@ -508,6 +522,9 @@ aDSChannel::aDSChannel() :
 aDSChannel::~aDSChannel()
 {
     //dtor
+#if CHANNEL_COUNTING
+    channelCount--;
+#endif
 }
 
 /// \brief Setup member function, should be called before any other member
@@ -523,7 +540,6 @@ aDSChannel::~aDSChannel()
 ///
 void aDSChannel::setup(uint8_t pwmPin, uint8_t sensorPin, uint8_t ledPin)
 {
-    m_ref = DEFAULT;
     //
     // PWM
     //
@@ -588,7 +604,7 @@ bool aDSChannel::hasFocus()
 ///
 uint16_t aDSChannel::getTemperature(OperationMode_t mode)
 {
-    return (mode == OPERATION_MODE_READ) ? m_avrTemp.GetValue<int16_t>() : m_targetTemp;
+    return (mode == OPERATION_MODE_READ) ? m_avrTemp.GetValue() : m_targetTemp;
 }
 
 /// \brief Set current temperature accordingly from the given mode (SET/READ)
@@ -704,7 +720,7 @@ bool aDSChannel::service(unsigned long m)
         // Slightly increase PWM width for fine temp control
         //
         if (diff <= TEMPERATURE_TOLERANCE)
-        pwm += (diff * 15);
+            pwm += (diff * 15);
     }
 
 #if 0
@@ -1239,14 +1255,14 @@ void aDSChannels::_showBanner()
     //
     // Reflect Dual or Single running version
     //
-    snprintf(buf, sizeof(buf), "%s %s", "aWXIrons", (IS_DATA_ENABLED(DATA_CHANNEL2_ENABLED) ? "Dual" : "Single"));
+    snprintf_P(buf, sizeof(buf), PSTR("%s %s"), PSTR("aWXIrons"), (IS_DATA_ENABLED(DATA_CHANNEL2_ENABLED) ? PSTR("Dual") : PSTR("Single")));
     m_lcd.setCursor((LCD_COLS - strlen(buf)) / 2, 0);
     m_lcd.print(buf);
 
     //
     // Program's version
     //
-    snprintf(buf, sizeof(buf), "%c %d.%d", 'v', PROGRAM_VERSION_MAJOR, PROGRAM_VERSION_MINOR);
+    snprintf_P(buf, sizeof(buf), PSTR("%c %d.%d"), 'v', PROGRAM_VERSION_MAJOR, PROGRAM_VERSION_MINOR);
     m_lcd.setCursor((LCD_COLS - strlen(buf)) / 2, 1);
     m_lcd.print(buf);
 
@@ -1259,14 +1275,14 @@ void aDSChannels::_showBanner()
     //
     // FOSS - FOSH licenses
     //
-    snprintf(buf, sizeof(buf), "%s", "FOSS  -  FOSH");
+    snprintf_P(buf, sizeof(buf), PSTR("%s"), PSTR("FOSS  -  FOSH"));
     m_lcd.setCursor((LCD_COLS - strlen(buf)) / 2, 0);
     m_lcd.print(buf);
 
     //
     // Author
     //
-    snprintf(buf, sizeof(buf), "%s  %d", "F1RMB", 2015);
+    snprintf_P(buf, sizeof(buf), PSTR("%s  2015-%d"), PSTR("F1RMB"), PROGRAM_YEAR);
     m_lcd.setCursor((LCD_COLS - strlen(buf)) / 2, 1);
     m_lcd.print(buf);
 
@@ -1372,7 +1388,8 @@ bool aDSChannels::_write(T const v, int16_t &addr)
 /// \return template \<typename T\> bool : true on read success, otherwise false
 ///
 ///
-template <typename T> bool aDSChannels::_read(T &v, int16_t &addr)
+template <typename T>
+bool aDSChannels::_read(T &v, int16_t &addr)
 {
     union
     {
@@ -2573,7 +2590,7 @@ void aDSEngine::_handleSerialInput()
 
                         Serial.print(':');
 
-                        if (!strcmp((const char *)cmd, "CAL")) // Calibration
+                        if (!strcmp_P((const char *)cmd, PSTR("CAL"))) // Calibration
                         {
                             valid = true;
 
@@ -2582,15 +2599,38 @@ void aDSEngine::_handleSerialInput()
                                 m_channels.setCalibrationMode(false);
                                 m_channels.restoreCalibationValues();
                             }
-                            else if (!strcmp((const char *)arg, "SAVE")) // Store calibation value into EEPROM, then leave calibration mode
+                            else if (!strcmp_P((const char *)arg, PSTR("SAVE"))) // Store calibation value into EEPROM, then leave calibration mode
                             {
                                 m_channels.setCalibrationMode(false);
                                 m_channels.saveCalibrationValues(aDSChannels::CHANNEL_ONE);
                                 m_channels.saveCalibrationValues(aDSChannels::CHANNEL_TWO);
                             }
-                            else if (!strcmp((const char *)arg, "DUMP")) // Dump calibration values
+                            else if (!strcmp((const char *)arg, PSTR("DUMP"))) // Dump calibration values
                             {
-                                aDSChannel::CalibrationData_t cal = m_channels.getCalibrationValues(aDSChannels::CHANNEL_ONE);
+                                aDSChannel::CalibrationData_t   cal;
+                                aDSChannel                      chans[aDSChannels::CHANNEL_MAX];
+
+                                // Retrieve calibration values stored in EEPROM for channel 1
+                                m_channels._restoreCalibrationFromEEPROM(aDSChannels::EEPROM_ADDR_CALIBRATION_CHAN_1, chans[aDSChannels::CHANNEL_ONE]);
+                                cal = chans[aDSChannels::CHANNEL_ONE].getCalibration();
+
+                                Serial.print(F("STORED:"));
+                                Serial.print(F("1="));
+                                Serial.print(cal.slope, 9);
+                                Serial.print(F(","));
+                                Serial.print(cal.offset, 9);
+
+                                // Retrieve calibration values stored in EEPROM for channel 2
+                                m_channels._restoreCalibrationFromEEPROM(aDSChannels::EEPROM_ADDR_CALIBRATION_CHAN_2, chans[aDSChannels::CHANNEL_TWO]);
+                                cal = chans[aDSChannels::CHANNEL_TWO].getCalibration();
+                                Serial.print(F(";2="));
+                                Serial.print(cal.slope, 9);
+                                Serial.print(F(","));
+                                Serial.print(cal.offset, 9);
+
+                                Serial.print(F(":CURRENT:"));
+
+                                cal = m_channels.getCalibrationValues(aDSChannels::CHANNEL_ONE);
                                 Serial.print(F("1="));
                                 Serial.print(cal.slope, 9);
                                 Serial.print(F(","));
@@ -2621,9 +2661,9 @@ void aDSEngine::_handleSerialInput()
                                     cal.slope = atof((char *)pV1);
                                     cal.offset = atof((char *)pV2);
 
-                                    if (!strcmp((const char *)cmd2, "1"))
+                                    if (!strcmp_P((const char *)cmd2, PSTR("1")))
                                         m_channels.setCalibrationValues(aDSChannels::CHANNEL_ONE, cal);
-                                    else if (!strcmp((const char *)cmd2, "2"))
+                                    else if (!strcmp_P((const char *)cmd2, PSTR("2")))
                                         m_channels.setCalibrationValues(aDSChannels::CHANNEL_TWO, cal);
                                     else
                                         valid = false;
@@ -2633,7 +2673,7 @@ void aDSEngine::_handleSerialInput()
                             }
                         }
                         else
-                            Serial.print("INVALID");
+                            Serial.print(F("INVALID"));
 
                     }
                 }
@@ -2643,7 +2683,7 @@ void aDSEngine::_handleSerialInput()
                 //
                 m_RXoffset = 0;
 
-                Serial.print(valid ? ":OK:\r\n" : ":ERR:\r\n");
+                Serial.print(valid ? F(":OK:\r\n") : F(":ERR:\r\n"));
             }
         }
     }
@@ -2683,6 +2723,8 @@ void aDSEngine::setup()
 ///
 void aDSEngine::run()
 {
+    unsigned long m;
+
     //
     // Initialize operation mode timeout
     //
@@ -2750,7 +2792,6 @@ void aDSEngine::run()
         //
         // Handle serial input (in calibration mode ONLY, time is precious)
         //
-        unsigned long m;
         if (m_channels.isInCalibration() && (((m = millis()) - m_serialInputTick) > 300))
         {
             m_serialInputTick = m;
