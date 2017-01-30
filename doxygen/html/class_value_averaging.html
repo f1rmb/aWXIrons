@@ -128,12 +128,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a202342138433fc0d5a9634114bec0254"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value_averaging.html#a202342138433fc0d5a9634114bec0254">~ValueAveraging</a> ()</td></tr>
 <tr class="memdesc:a202342138433fc0d5a9634114bec0254"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_value_averaging.html" title="ValueAveraging class. ">ValueAveraging</a> class destructor.  <a href="#a202342138433fc0d5a9634114bec0254">More...</a><br /></td></tr>
 <tr class="separator:a202342138433fc0d5a9634114bec0254"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5cc8867896527fd9a3c5e1a8db2b5be3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value_averaging.html#a5cc8867896527fd9a3c5e1a8db2b5be3">StackValue</a> (int16_t value)</td></tr>
-<tr class="memdesc:a5cc8867896527fd9a3c5e1a8db2b5be3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stacks the value to an array, used to compute an averaged value.  <a href="#a5cc8867896527fd9a3c5e1a8db2b5be3">More...</a><br /></td></tr>
-<tr class="separator:a5cc8867896527fd9a3c5e1a8db2b5be3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e729b7db436d1510b8ce0d09207ecac"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value_averaging.html#a1e729b7db436d1510b8ce0d09207ecac">GetValue</a> ()</td></tr>
-<tr class="memdesc:a1e729b7db436d1510b8ce0d09207ecac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the averaged value, computed from stacked values.  <a href="#a1e729b7db436d1510b8ce0d09207ecac">More...</a><br /></td></tr>
-<tr class="separator:a1e729b7db436d1510b8ce0d09207ecac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac424da04346167a9119707852fac2eac"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ac424da04346167a9119707852fac2eac"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_value_averaging.html#ac424da04346167a9119707852fac2eac">StackValue</a> (T value)</td></tr>
+<tr class="memdesc:ac424da04346167a9119707852fac2eac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stacks the value to an array, used to compute an averaged value.  <a href="#ac424da04346167a9119707852fac2eac">More...</a><br /></td></tr>
+<tr class="separator:ac424da04346167a9119707852fac2eac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad900f2ebcb915ba1127bdde3ce5daa20"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ad900f2ebcb915ba1127bdde3ce5daa20"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_value_averaging.html#ad900f2ebcb915ba1127bdde3ce5daa20">GetValue</a> ()</td></tr>
+<tr class="memdesc:ad900f2ebcb915ba1127bdde3ce5daa20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the averaged value, computed from stacked values.  <a href="#ad900f2ebcb915ba1127bdde3ce5daa20">More...</a><br /></td></tr>
+<tr class="separator:ad900f2ebcb915ba1127bdde3ce5daa20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5be1f3a8f3de748d3e67721d2bccd838"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value_averaging.html#a5be1f3a8f3de748d3e67721d2bccd838">SetAverage</a> (uint16_t v)</td></tr>
 <tr class="memdesc:a5be1f3a8f3de748d3e67721d2bccd838"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set how many values will be used to compute the average.  <a href="#a5be1f3a8f3de748d3e67721d2bccd838">More...</a><br /></td></tr>
 <tr class="separator:a5be1f3a8f3de748d3e67721d2bccd838"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -155,9 +157,9 @@ Static Protected Attributes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a7a9eec279e564862a3311924380053b2"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value_averaging.html#a7a9eec279e564862a3311924380053b2">m_values</a> [<a class="el" href="class_value_averaging.html#aa46baa2355c653c33abc67fb9e035ff1">ARRAY_SIZE_MAX</a>]</td></tr>
-<tr class="memdesc:a7a9eec279e564862a3311924380053b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">values array storage  <a href="#a7a9eec279e564862a3311924380053b2">More...</a><br /></td></tr>
-<tr class="separator:a7a9eec279e564862a3311924380053b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50524b6a1f1525f70f386d70d0f0a407"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value_averaging.html#a50524b6a1f1525f70f386d70d0f0a407">m_values</a> [<a class="el" href="class_value_averaging.html#aa46baa2355c653c33abc67fb9e035ff1">ARRAY_SIZE_MAX</a>]</td></tr>
+<tr class="memdesc:a50524b6a1f1525f70f386d70d0f0a407"><td class="mdescLeft">&#160;</td><td class="mdescRight">values array storage  <a href="#a50524b6a1f1525f70f386d70d0f0a407">More...</a><br /></td></tr>
+<tr class="separator:a50524b6a1f1525f70f386d70d0f0a407"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad368a2e8b3c8436b9c4eca377fcd8e5d"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_value_averaging.html#ad368a2e8b3c8436b9c4eca377fcd8e5d">m_offset</a></td></tr>
 <tr class="memdesc:ad368a2e8b3c8436b9c4eca377fcd8e5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">offset in m_values[]  <a href="#ad368a2e8b3c8436b9c4eca377fcd8e5d">More...</a><br /></td></tr>
 <tr class="separator:ad368a2e8b3c8436b9c4eca377fcd8e5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -239,12 +241,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1e729b7db436d1510b8ce0d09207ecac"></a>
+<a class="anchor" id="ad900f2ebcb915ba1127bdde3ce5daa20"></a>
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">int16_t ValueAveraging::GetValue </td>
+          <td class="memname">T ValueAveraging::GetValue </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -300,14 +304,16 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a5cc8867896527fd9a3c5e1a8db2b5be3"></a>
+<a class="anchor" id="ac424da04346167a9119707852fac2eac"></a>
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void ValueAveraging::StackValue </td>
           <td>(</td>
-          <td class="paramtype">int16_t&#160;</td>
+          <td class="paramtype">T&#160;</td>
           <td class="paramname"><em>value</em></td><td>)</td>
           <td></td>
         </tr>
@@ -392,7 +398,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7a9eec279e564862a3311924380053b2"></a>
+<a class="anchor" id="a50524b6a1f1525f70f386d70d0f0a407"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -400,7 +406,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int16_t ValueAveraging::m_values[<a class="el" href="class_value_averaging.html#aa46baa2355c653c33abc67fb9e035ff1">ARRAY_SIZE_MAX</a>]</td>
+          <td class="memname">double ValueAveraging::m_values[<a class="el" href="class_value_averaging.html#aa46baa2355c653c33abc67fb9e035ff1">ARRAY_SIZE_MAX</a>]</td>
         </tr>
       </table>
   </td>
@@ -424,7 +430,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_value_averaging.html">ValueAveraging</a></li>
-    <li class="footer">Generated on Sun Jan 29 2017 14:53:10 for aWXIron by
+    <li class="footer">Generated on Mon Jan 30 2017 07:42:28 for aWXIron by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
   </ul>

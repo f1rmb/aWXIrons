@@ -38,7 +38,7 @@ var searchData=
   ['m_5fstoredtoeeprom',['m_storedToEEPROM',['../classa_d_s_channels.html#a11643dc05fbb575d9165677c3c6c42c2',1,'aDSChannels']]],
   ['m_5ftargettemp',['m_targetTemp',['../classa_d_s_channel.html#ae54b282f63bce12db3dbbe8fa5ad08ff',1,'aDSChannel']]],
   ['m_5ftemphaschanged',['m_tempHasChanged',['../classa_d_s_channel.html#a80e337b41efcd12821172d93c176110b',1,'aDSChannel']]],
-  ['m_5fvalues',['m_values',['../class_value_averaging.html#a7a9eec279e564862a3311924380053b2',1,'ValueAveraging']]],
+  ['m_5fvalues',['m_values',['../class_value_averaging.html#a50524b6a1f1525f70f386d70d0f0a407',1,'ValueAveraging']]],
   ['main_2ecpp',['main.cpp',['../main_8cpp.html',1,'']]],
   ['mask',['mask',['../structa_d_s_channel_1_1a_pin__t.html#aac01da048af628b7e2bb2e36ac981959',1,'aDSChannel::aPin_t']]],
   ['measure_5fupdate_5frate',['MEASURE_UPDATE_RATE',['../classa_d_s_channels.html#ad94e6e52e09d65b43115ea85b53ccf40',1,'aDSChannels']]],

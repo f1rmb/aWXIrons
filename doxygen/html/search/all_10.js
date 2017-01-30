@@ -16,7 +16,7 @@ var searchData=
   ['setup',['setup',['../classa_d_s_channel.html#ad3562c6b29a77f38c41a517356c47f00',1,'aDSChannel::setup()'],['../classa_d_s_channels.html#ad70dc21830fae8fae76f479aa1bb6532',1,'aDSChannels::setup()'],['../classa_d_s_engine.html#a47f8d730253fbe7b43cdbb8002ce00d4',1,'aDSEngine::setup()'],['../sketch_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d',1,'setup():&#160;sketch.cpp']]],
   ['sketch_2ecpp',['sketch.cpp',['../sketch_8cpp.html',1,'']]],
   ['slope',['slope',['../structa_d_s_channel_1_1_calibration_data__t.html#a04dc7b104454937bb7087821d2c67fac',1,'aDSChannel::CalibrationData_t']]],
-  ['stackvalue',['StackValue',['../class_value_averaging.html#a5cc8867896527fd9a3c5e1a8db2b5be3',1,'ValueAveraging']]],
+  ['stackvalue',['StackValue',['../class_value_averaging.html#ac424da04346167a9119707852fac2eac',1,'ValueAveraging']]],
   ['stream_2ecpp',['Stream.cpp',['../_stream_8cpp.html',1,'']]],
   ['syncdata',['syncData',['../classa_d_s_channels.html#aa6ba76ad289c76da99075ad204e81d67',1,'aDSChannels']]],
   ['synctempchange',['syncTempChange',['../classa_d_s_channel.html#a6304ab2dc63e175d7cd214434f53e751',1,'aDSChannel']]]

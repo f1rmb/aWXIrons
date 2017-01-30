@@ -350,12 +350,136 @@ static int8_t getNumericalLength(int16_t n)
 {
     char buf[16];
 
-    return (static_cast<int8_t>(snprintf(buf, sizeof(buf) - 1, "%d", n)));
+    return (static_cast<int8_t>(snprintf_P(buf, sizeof(buf) - 1, PSTR("%d"), n)));
 }
 
 //
 // Begin of Class aDSTemperatureAveraging
 //
+#ifdef DOUBLE_AVERAGE
+/// \brief ValueAveraging class constructor
+///
+///
+ValueAveraging::ValueAveraging() :
+		m_average(ARRAY_SIZE_MAX)
+{
+    // ctor
+	ResetValues();
+}
+
+/// \brief ValueAveraging class destructor
+///
+///
+ValueAveraging::~ValueAveraging()
+{
+    // dtor
+}
+
+/// \brief Stacks the value to an array, used to compute an averaged value
+///
+/// \param value int16_t : value to stack
+/// \return void
+///
+///
+template<typename T>
+void ValueAveraging::StackValue(T value)
+{
+    if (value > 0)
+    {
+        m_offset = (m_offset + 1) % m_average;
+
+        m_values[m_offset] = static_cast<double>(value);
+    }
+}
+
+/// \brief Returns the averaged value, computed from stacked values
+///
+/// \return int16_t : averaged value
+///
+///
+template<typename T>
+T ValueAveraging::GetValue()
+{
+    uint16_t n = 0;
+    double	 sum = 0.0;
+
+    for (uint16_t i = 0; i < m_average; i++)
+    {
+    	if (isnan(m_values[i]))
+    		break;
+
+        if (m_values[i] > 0)
+        {
+            sum += m_values[i];
+            n++;
+        }
+    }
+
+    // No usable value found.
+    if (n == 0)
+        return 0;
+
+    return static_cast<T>((sum / double(n)) + 0.5); // ceil
+}
+
+
+/// \brief Set how many values will be used to compute the average
+///
+/// \param v uint16_t : values used for averaging
+/// \return bool : true on success
+///
+///
+bool ValueAveraging::SetAverage(uint16_t v)
+{
+	bool ret = false;
+
+	if ((v >= 0) && (v <= ARRAY_SIZE_MAX))
+	{
+		// Zeroing the array
+		ResetValues();
+
+		m_average = v;
+
+		ret = true;
+	}
+
+	return ret;
+}
+
+/// \brief Get how many values will be used to compute the average
+///
+/// \return uint16_t : values used for averaging
+///
+///
+uint16_t ValueAveraging::GetAverage()
+{
+	return m_average;
+}
+
+/// \brief Get max value that can be used to build the average
+///
+/// \return uint16_t : max values used for averaging
+///
+///
+uint16_t ValueAveraging::GetMaxAverage()
+{
+	return ARRAY_SIZE_MAX;
+}
+
+/// \brief Reset the array used to store values to be averaged
+///
+/// \return void
+///
+///
+void ValueAveraging::ResetValues()
+{
+
+	for (uint16_t i = 0; i < ARRAY_SIZE_MAX; i++)
+		m_values[i] = NAN;
+
+	m_offset = ARRAY_SIZE_MAX - 1;
+}
+#else
 /// \brief ValueAveraging class constructor
 ///
 ///
@@ -476,6 +600,7 @@ void ValueAveraging::ResetValues()
 
 	m_offset = ARRAY_SIZE_MAX - 1;
 }
+#endif
 //
 // End of Class ValueAveraging
 //
@@ -604,7 +729,16 @@ bool aDSChannel::hasFocus()
 ///
 uint16_t aDSChannel::getTemperature(OperationMode_t mode)
 {
-    return (mode == OPERATION_MODE_READ) ? m_avrTemp.GetValue() : m_targetTemp;
+    return (mode == OPERATION_MODE_READ) ?
+
+#ifdef DOUBLE_AVERAGE
+    m_avrTemp.GetValue<int16_t>()
+#else
+    m_avrTemp.GetValue()
+#endif // DOUBLE_AVERAGE
+
+
+    : m_targetTemp;
 }
 
 /// \brief Set current temperature accordingly from the given mode (SET/READ)
@@ -1255,7 +1389,7 @@ void aDSChannels::_showBanner()
     //
     // Reflect Dual or Single running version
     //
-    snprintf_P(buf, sizeof(buf), PSTR("%s %s"), PSTR("aWXIrons"), (IS_DATA_ENABLED(DATA_CHANNEL2_ENABLED) ? PSTR("Dual") : PSTR("Single")));
+    snprintf_P(buf, sizeof(buf), PSTR("%s %s"), "aWXIrons", (IS_DATA_ENABLED(DATA_CHANNEL2_ENABLED) ? "Dual" : "Single"));
     m_lcd.setCursor((LCD_COLS - strlen(buf)) / 2, 0);
     m_lcd.print(buf);
 
@@ -1275,14 +1409,14 @@ void aDSChannels::_showBanner()
     //
     // FOSS - FOSH licenses
     //
-    snprintf_P(buf, sizeof(buf), PSTR("%s"), PSTR("FOSS  -  FOSH"));
+    snprintf_P(buf, sizeof(buf), PSTR("%s"), "FOSS  -  FOSH");
     m_lcd.setCursor((LCD_COLS - strlen(buf)) / 2, 0);
     m_lcd.print(buf);
 
     //
     // Author
     //
-    snprintf_P(buf, sizeof(buf), PSTR("%s  2015-%d"), PSTR("F1RMB"), PROGRAM_YEAR);
+    snprintf_P(buf, sizeof(buf), PSTR("%s  2015-%d"), "F1RMB", PROGRAM_YEAR);
     m_lcd.setCursor((LCD_COLS - strlen(buf)) / 2, 1);
     m_lcd.print(buf);
 
@@ -2590,22 +2724,22 @@ void aDSEngine::_handleSerialInput()
 
                         Serial.print(':');
 
-                        if (!strcmp_P((const char *)cmd, PSTR("CAL"))) // Calibration
+                        if (strcmp_P((const char *)cmd, PSTR("CAL")) == 0) // Calibration
                         {
                             valid = true;
 
-                            if (!strcmp((const char *)arg, "OFF")) // Off : no calibation value stored into EEPROM
+                            if (strcmp_P((const char *)arg, PSTR("OFF")) == 0) // Off : no calibation value stored into EEPROM
                             {
                                 m_channels.setCalibrationMode(false);
                                 m_channels.restoreCalibationValues();
                             }
-                            else if (!strcmp_P((const char *)arg, PSTR("SAVE"))) // Store calibation value into EEPROM, then leave calibration mode
+                            else if (strcmp_P((const char *)arg, PSTR("SAVE")) == 0) // Store calibation value into EEPROM, then leave calibration mode
                             {
                                 m_channels.setCalibrationMode(false);
                                 m_channels.saveCalibrationValues(aDSChannels::CHANNEL_ONE);
                                 m_channels.saveCalibrationValues(aDSChannels::CHANNEL_TWO);
                             }
-                            else if (!strcmp((const char *)arg, PSTR("DUMP"))) // Dump calibration values
+                            else if (strcmp_P((const char *)arg, PSTR("DUMP")) == 0) // Dump calibration values
                             {
                                 aDSChannel::CalibrationData_t   cal;
                                 aDSChannel                      chans[aDSChannels::CHANNEL_MAX];
@@ -2661,9 +2795,9 @@ void aDSEngine::_handleSerialInput()
                                     cal.slope = atof((char *)pV1);
                                     cal.offset = atof((char *)pV2);
 
-                                    if (!strcmp_P((const char *)cmd2, PSTR("1")))
+                                    if (strcmp_P((const char *)cmd2, PSTR("1")) == 0)
                                         m_channels.setCalibrationValues(aDSChannels::CHANNEL_ONE, cal);
-                                    else if (!strcmp_P((const char *)cmd2, PSTR("2")))
+                                    else if (strcmp_P((const char *)cmd2, PSTR("2")) == 0)
                                         m_channels.setCalibrationValues(aDSChannels::CHANNEL_TWO, cal);
                                     else
                                         valid = false;

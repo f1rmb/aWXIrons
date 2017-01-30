@@ -7,7 +7,7 @@ var indexSectionsWithContent =
   4: "_abcdeflmoprstv",
   5: "cho",
   6: "cho",
-  7: "fim",
+  7: "dfim",
   8: "csu"
 };
 

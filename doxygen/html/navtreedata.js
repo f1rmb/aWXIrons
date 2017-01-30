@@ -36,7 +36,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "UI.html",
-"structa_d_s_channel_1_1_calibration_data__t.html"
+"sketch_8cpp.html#afe461d27b9c48d5921c00d521181f12f"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

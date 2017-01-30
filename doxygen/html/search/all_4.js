@@ -19,5 +19,6 @@ var searchData=
   ['delay',['delay',['../wiring_8c.html#a6bc5f943544a887f8b23cadfb26a5e30',1,'wiring.c']]],
   ['delaymicroseconds',['delayMicroseconds',['../wiring_8c.html#a62e0a53bc261f9de8700cc5a92307e85',1,'wiring.c']]],
   ['digit_5fwidth',['DIGIT_WIDTH',['../a_d_s_engine_8cpp.html#a0812ecf58a97bf3c37bba43763b5484a',1,'aDSEngine.cpp']]],
-  ['display_5fupdate_5frate',['DISPLAY_UPDATE_RATE',['../classa_d_s_channels.html#a02450ab019258afa73dcdc4c191d7b28',1,'aDSChannels']]]
+  ['display_5fupdate_5frate',['DISPLAY_UPDATE_RATE',['../classa_d_s_channels.html#a02450ab019258afa73dcdc4c191d7b28',1,'aDSChannels']]],
+  ['double_5faverage',['DOUBLE_AVERAGE',['../a_d_s_engine_8h.html#a788430db287120b194cb677f925cc0de',1,'aDSEngine.h']]]
 ];

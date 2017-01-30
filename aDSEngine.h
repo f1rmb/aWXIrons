@@ -32,6 +32,7 @@
 //#define SIMU  1                  ///< Define this to run in simulation mode (temperature will raise/lower automatically, !! DO NOT PLUG ANY IRON TIP !!)
 //#define CHANNEL_COUNTING     1   ///< Define this to trace channel counting, debug purpose
 //#define LCD_CHANNELS_LEDS    1   ///< Define this if you want channels LEDs displayed on the LCD
+#define DOUBLE_AVERAGE        1 ///< Define this if you want to use averaging based on double values (more SRAM used)
 
 static const uint8_t        CHANNEL2_ENABLE_PIN         = 13;   ///< Pin to check from if channel 2 is wired
 
@@ -78,6 +79,31 @@ typedef enum
 
 /// \brief ValueAveraging class
 ///
+#ifdef DOUBLE_AVERAGE
+class ValueAveraging
+{
+    protected:
+        static const uint16_t ARRAY_SIZE_MAX = 10; ///< Averaging is performed using n values
+
+    public:
+        ValueAveraging();
+        ~ValueAveraging();
+
+        template<typename T>
+        void                			StackValue(T value);
+        template<typename T>
+        T                               GetValue();
+        bool							SetAverage(uint16_t v);
+        uint16_t						GetAverage();
+        uint16_t						GetMaxAverage();
+        void							ResetValues();
+
+    private:
+        double           				m_values[ARRAY_SIZE_MAX]; ///< values array storage
+        uint16_t             			m_offset; ///< offset in m_values[]
+        uint16_t 						m_average; ///< max values used from m_values[] to build average value
+};
+#else
 class ValueAveraging
 {
     protected:
@@ -99,6 +125,7 @@ class ValueAveraging
         uint16_t             			m_offset; ///< offset in m_values[]
         uint16_t 						m_average; ///< max values used from m_values[] to build average value
 };
+#endif
 
 /// \brief aDSChannel class
 ///

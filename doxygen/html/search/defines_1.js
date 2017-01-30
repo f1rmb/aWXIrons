@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['is_5fdata_5fenabled',['IS_DATA_ENABLED',['../a_d_s_engine_8h.html#ac64e1b23252dae4d1fbbe104790fdc05',1,'aDSEngine.h']]]
+  ['fract_5finc',['FRACT_INC',['../wiring_8c.html#a5647e40017bbd34a202f6a672ca116e4',1,'wiring.c']]],
+  ['fract_5fmax',['FRACT_MAX',['../wiring_8c.html#a3d5262b0f828700a2ce29198838e0d9e',1,'wiring.c']]]
 ];

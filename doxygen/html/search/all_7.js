@@ -11,5 +11,5 @@ var searchData=
   ['getoperationmode',['getOperationMode',['../classa_d_s_channels.html#a10659288573e74e590cfb74393617e10',1,'aDSChannels']]],
   ['getstandbymode',['getStandbyMode',['../classa_d_s_channel.html#aee3c481e46b4e860887fec6c97c48de3',1,'aDSChannel']]],
   ['gettemperature',['getTemperature',['../classa_d_s_channel.html#a39514f56dad198436739e466e79085d9',1,'aDSChannel']]],
-  ['getvalue',['GetValue',['../class_value_averaging.html#a1e729b7db436d1510b8ce0d09207ecac',1,'ValueAveraging']]]
+  ['getvalue',['GetValue',['../class_value_averaging.html#ad900f2ebcb915ba1127bdde3ce5daa20',1,'ValueAveraging']]]
 ];
