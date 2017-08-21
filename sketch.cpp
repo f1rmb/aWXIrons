@@ -1,7 +1,10 @@
 #include <Arduino.h>
-#include <LiquidCrystal.h>
+//#include <HardwareSerial.h>
+#include <src/LiquidCrystal.h>
 
 #include "aDSEngine.h"
+
+#include <HardwareSerial0.cpp>
 
 aDSEngine *engine;
 

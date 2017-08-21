@@ -18,8 +18,8 @@
 #define ADSENGINE_H
 
 #include <Arduino.h>
-#include <LiquidCrystal.h>
-#include <EEPROM.h>
+#include <src/LiquidCrystal.h>
+#include <src/EEPROM.h>
 
 #include "TimerOne.h"
 #include "ClickEncoder.h"

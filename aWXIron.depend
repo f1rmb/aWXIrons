@@ -1293,3 +1293,533 @@
 	"pins_arduino.h"
 	"twi.h"
 
+1502368308 source:/home/caudanie/src/Arduino/aWXIrons/aDSEngine.cpp
+	"aDSEngine.h"
+	<wiring_private.h>
+
+1503319728 /home/caudanie/src/Arduino/aWXIrons/aDSEngine.h
+	<Arduino.h>
+	<src/LiquidCrystal.h>
+	<src/EEPROM.h>
+	"TimerOne.h"
+	"ClickEncoder.h"
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/Arduino.h
+	<stdlib.h>
+	<stdbool.h>
+	<string.h>
+	<math.h>
+	<avr/pgmspace.h>
+	<avr/io.h>
+	<avr/interrupt.h>
+	"binary.h"
+	"WCharacter.h"
+	"WString.h"
+	"HardwareSerial.h"
+	"USBAPI.h"
+	"pins_arduino.h"
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/binary.h
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/WCharacter.h
+	<ctype.h>
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/WString.h
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	<avr/pgmspace.h>
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/HardwareSerial.h
+	<inttypes.h>
+	"Stream.h"
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/Stream.h
+	<inttypes.h>
+	"Print.h"
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/Print.h
+	<inttypes.h>
+	<stdio.h>
+	"WString.h"
+	"Printable.h"
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/Printable.h
+	<stdlib.h>
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/USBAPI.h
+	<inttypes.h>
+	<avr/pgmspace.h>
+	<avr/eeprom.h>
+	<avr/interrupt.h>
+	<util/delay.h>
+	"Arduino.h"
+	"USBDesc.h"
+	"USBCore.h"
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/USBDesc.h
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/USBCore.h
+	"USBAPI.h"
+
+1496249921 /opt/arduino-1.8.3/hardware/arduino/avr/variants/standard/pins_arduino.h
+	<avr/pgmspace.h>
+
+1496249922 /opt/arduino-1.8.3/libraries/LiquidCrystal/src/LiquidCrystal.h
+	<inttypes.h>
+	"Print.h"
+
+1496249921 /opt/arduino-1.8.3/hardware/arduino/avr/libraries/EEPROM/src/EEPROM.h
+	<inttypes.h>
+	<avr/eeprom.h>
+	<avr/io.h>
+
+1484820917 /home/caudanie/src/Arduino/aWXIrons/TimerOne/TimerOne.h
+	"Arduino.h"
+	"WProgram.h"
+	"config/known_16bit_timers.h"
+
+1484820917 /home/caudanie/src/Arduino/aWXIrons/TimerOne/config/known_16bit_timers.h
+
+1484820917 /home/caudanie/src/Arduino/aWXIrons/ClickEncoder/ClickEncoder.h
+	<stdint.h>
+	<avr/io.h>
+	<avr/interrupt.h>
+	<avr/pgmspace.h>
+	"Arduino.h"
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/wiring_private.h
+	<avr/io.h>
+	<avr/interrupt.h>
+	<stdio.h>
+	<stdarg.h>
+	"Arduino.h"
+
+1484820917 source:/home/caudanie/src/Arduino/aWXIrons/cores/CDC.cpp
+	<CDC.cpp>
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/CDC.cpp
+	"USBAPI.h"
+	<avr/wdt.h>
+	<util/atomic.h>
+
+1484820917 source:/home/caudanie/src/Arduino/aWXIrons/cores/HardwareSerial.cpp
+	<HardwareSerial.cpp>
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/HardwareSerial.cpp
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<inttypes.h>
+	"Arduino.h"
+	"HardwareSerial.h"
+	"HardwareSerial_private.h"
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/HardwareSerial_private.h
+	"wiring_private.h"
+
+1503319916 source:/home/caudanie/src/Arduino/aWXIrons/cores/HID.cpp
+	<src/HID.cpp>
+
+1496249921 /opt/arduino-1.8.3/hardware/arduino/avr/libraries/HID/src/HID.cpp
+	"HID.h"
+
+1496249921 /opt/arduino-1.8.3/hardware/arduino/avr/libraries/HID/src/HID.h
+	<stdint.h>
+	<Arduino.h>
+	"PluggableUSB.h"
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/PluggableUSB.h
+	"USBAPI.h"
+	<stdint.h>
+
+1484820917 source:/home/caudanie/src/Arduino/aWXIrons/cores/IPAddress.cpp
+	<IPAddress.cpp>
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/IPAddress.cpp
+	<Arduino.h>
+	<IPAddress.h>
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/IPAddress.h
+	<stdint.h>
+	"Printable.h"
+	"WString.h"
+
+1484820917 source:/home/caudanie/src/Arduino/aWXIrons/cores/main.cpp
+	<main.cpp>
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/main.cpp
+	<Arduino.h>
+
+1484820917 source:/home/caudanie/src/Arduino/aWXIrons/cores/new.cpp
+	<new.cpp>
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/new.cpp
+	<stdlib.h>
+
+1484820917 source:/home/caudanie/src/Arduino/aWXIrons/cores/Print.cpp
+	<Print.cpp>
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/Print.cpp
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	"Arduino.h"
+	"Print.h"
+
+1484820917 source:/home/caudanie/src/Arduino/aWXIrons/cores/Stream.cpp
+	<Stream.cpp>
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/Stream.cpp
+	"Arduino.h"
+	"Stream.h"
+
+1484820917 source:/home/caudanie/src/Arduino/aWXIrons/cores/Tone.cpp
+	<Tone.cpp>
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/Tone.cpp
+	<avr/interrupt.h>
+	<avr/pgmspace.h>
+	"Arduino.h"
+	"pins_arduino.h"
+
+1484820917 source:/home/caudanie/src/Arduino/aWXIrons/cores/USBCore.cpp
+	<USBCore.cpp>
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/USBCore.cpp
+	"USBAPI.h"
+	"PluggableUSB.h"
+	<stdlib.h>
+
+1484820917 source:/home/caudanie/src/Arduino/aWXIrons/cores/WInterrupts.c
+	<WInterrupts.c>
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/WInterrupts.c
+	<inttypes.h>
+	<avr/io.h>
+	<avr/interrupt.h>
+	<avr/pgmspace.h>
+	<stdio.h>
+	"wiring_private.h"
+
+1484820917 source:/home/caudanie/src/Arduino/aWXIrons/cores/wiring.c
+	"wiring_private.h"
+
+1484820917 source:/home/caudanie/src/Arduino/aWXIrons/cores/wiring_analog.c
+	<wiring_analog.c>
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/wiring_analog.c
+	"wiring_private.h"
+	"pins_arduino.h"
+
+1484820917 source:/home/caudanie/src/Arduino/aWXIrons/cores/wiring_digital.c
+	<wiring_digital.c>
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/wiring_digital.c
+	"wiring_private.h"
+	"pins_arduino.h"
+
+1484820917 source:/home/caudanie/src/Arduino/aWXIrons/cores/wiring_pulse.c
+	<wiring_pulse.c>
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/wiring_pulse.c
+	"wiring_private.h"
+	"pins_arduino.h"
+
+1484820917 source:/home/caudanie/src/Arduino/aWXIrons/cores/wiring_shift.c
+	<wiring_shift.c>
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/wiring_shift.c
+	"wiring_private.h"
+
+1484820917 source:/home/caudanie/src/Arduino/aWXIrons/cores/WMath.cpp
+	<WMath.cpp>
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/WMath.cpp
+	"stdlib.h"
+
+1484820917 source:/home/caudanie/src/Arduino/aWXIrons/cores/WString.cpp
+	<WString.cpp>
+
+1496249920 /opt/arduino-1.8.3/hardware/arduino/avr/cores/arduino/WString.cpp
+	"WString.h"
+
+1503320010 source:/home/caudanie/src/Arduino/aWXIrons/libraries/libraries.cpp
+	<Arduino.h>
+	"ClickEncoder.cpp"
+	"TimerOne.cpp"
+	"Ethernet.cpp"
+	"EthernetClient.cpp"
+	"EthernetServer.cpp"
+	"EthernetUdp.cpp"
+	"Firmata.cpp"
+	"src/LiquidCrystal.cpp"
+	"LCD4884.cpp"
+	"OBD.cpp"
+	"SD.cpp"
+	"Sd2Card.cpp"
+	"SdFile.cpp"
+	"SdVolume.cpp"
+	"File.cpp"
+	"Servo.cpp"
+	"SoftwareSerial.cpp"
+	"SPI.cpp"
+	"stepper.cpp"
+	"TinyGPS.cpp"
+	"Wire.cpp"
+	"twi.c"
+
+1484820917 /home/caudanie/src/Arduino/aWXIrons/ClickEncoder/ClickEncoder.cpp
+	"ClickEncoder.h"
+
+1484820917 /home/caudanie/src/Arduino/aWXIrons/TimerOne/TimerOne.cpp
+	"TimerOne.h"
+
+1489880866 /opt/arduino-1.8.3/libraries/Firmata/Firmata.cpp
+	"Firmata.h"
+	"HardwareSerial.h"
+	<string.h>
+	<stdlib.h>
+
+1489880866 /opt/arduino-1.8.3/libraries/Firmata/Firmata.h
+	"Boards.h"
+	"FirmataDefines.h"
+	"FirmataMarshaller.h"
+	"FirmataParser.h"
+
+1489880866 /opt/arduino-1.8.3/libraries/Firmata/Boards.h
+	<inttypes.h>
+	"Arduino.h"
+	"WProgram.h"
+
+1489880866 /opt/arduino-1.8.3/libraries/Firmata/FirmataDefines.h
+	"FirmataConstants.h"
+
+1489880866 /opt/arduino-1.8.3/libraries/Firmata/FirmataConstants.h
+
+1489880866 /opt/arduino-1.8.3/libraries/Firmata/FirmataMarshaller.h
+	<cstddef>
+	<cstdint>
+	<stddef.h>
+	<stdint.h>
+	<Stream.h>
+
+1489880866 /opt/arduino-1.8.3/libraries/Firmata/FirmataParser.h
+	<cstddef>
+	<cstdint>
+	<stddef.h>
+	<stdint.h>
+
+1496249922 /opt/arduino-1.8.3/libraries/LiquidCrystal/src/LiquidCrystal.cpp
+	"LiquidCrystal.h"
+	<stdio.h>
+	<string.h>
+	<inttypes.h>
+	"Arduino.h"
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/Arduino.h
+	<stdlib.h>
+	<stdbool.h>
+	<string.h>
+	<math.h>
+	<avr/pgmspace.h>
+	<avr/io.h>
+	<avr/interrupt.h>
+	"binary.h"
+	"WCharacter.h"
+	"WString.h"
+	"HardwareSerial.h"
+	"USBAPI.h"
+	"pins_arduino.h"
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/binary.h
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/WCharacter.h
+	<ctype.h>
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/WString.h
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	<avr/pgmspace.h>
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/HardwareSerial.h
+	<inttypes.h>
+	"Stream.h"
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/Stream.h
+	<inttypes.h>
+	"Print.h"
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/Print.h
+	<inttypes.h>
+	<stdio.h>
+	"WString.h"
+	"Printable.h"
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/Printable.h
+	<stdlib.h>
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/USBAPI.h
+	<inttypes.h>
+	<avr/pgmspace.h>
+	<avr/eeprom.h>
+	<avr/interrupt.h>
+	<util/delay.h>
+	"Arduino.h"
+	"USBDesc.h"
+	"USBCore.h"
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/USBDesc.h
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/USBCore.h
+	"USBAPI.h"
+
+1471452056 /opt/arduino-1.6.11/hardware/arduino/avr/variants/standard/pins_arduino.h
+	<avr/pgmspace.h>
+
+1471452059 /opt/arduino-1.6.11/libraries/LiquidCrystal/src/LiquidCrystal.h
+	<inttypes.h>
+	"Print.h"
+
+1471452056 /opt/arduino-1.6.11/hardware/arduino/avr/libraries/EEPROM/src/EEPROM.h
+	<inttypes.h>
+	<avr/eeprom.h>
+	<avr/io.h>
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/wiring_private.h
+	<avr/io.h>
+	<avr/interrupt.h>
+	<stdio.h>
+	<stdarg.h>
+	"Arduino.h"
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/CDC.cpp
+	"USBAPI.h"
+	<avr/wdt.h>
+	<util/atomic.h>
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/HardwareSerial.cpp
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<inttypes.h>
+	"Arduino.h"
+	"HardwareSerial.h"
+	"HardwareSerial_private.h"
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/HardwareSerial_private.h
+	"wiring_private.h"
+
+1471452056 /opt/arduino-1.6.11/hardware/arduino/avr/libraries/HID/src/HID.cpp
+	"HID.h"
+
+1471452056 /opt/arduino-1.6.11/hardware/arduino/avr/libraries/HID/src/HID.h
+	<stdint.h>
+	<Arduino.h>
+	"PluggableUSB.h"
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/PluggableUSB.h
+	"USBAPI.h"
+	<stdint.h>
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/IPAddress.cpp
+	<Arduino.h>
+	<IPAddress.h>
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/IPAddress.h
+	<stdint.h>
+	"Printable.h"
+	"WString.h"
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/main.cpp
+	<Arduino.h>
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/new.cpp
+	<stdlib.h>
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/Print.cpp
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	"Arduino.h"
+	"Print.h"
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/Stream.cpp
+	"Arduino.h"
+	"Stream.h"
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/Tone.cpp
+	<avr/interrupt.h>
+	<avr/pgmspace.h>
+	"Arduino.h"
+	"pins_arduino.h"
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/USBCore.cpp
+	"USBAPI.h"
+	"PluggableUSB.h"
+	<stdlib.h>
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/WInterrupts.c
+	<inttypes.h>
+	<avr/io.h>
+	<avr/interrupt.h>
+	<avr/pgmspace.h>
+	<stdio.h>
+	"wiring_private.h"
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/wiring_analog.c
+	"wiring_private.h"
+	"pins_arduino.h"
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/wiring_digital.c
+	"wiring_private.h"
+	"pins_arduino.h"
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/wiring_pulse.c
+	"wiring_private.h"
+	"pins_arduino.h"
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/wiring_shift.c
+	"wiring_private.h"
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/WMath.cpp
+	"stdlib.h"
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/WString.cpp
+	"WString.h"
+
+1466314079 /opt/arduino-1.6.11/libraries/Firmata/Firmata.cpp
+	"Firmata.h"
+	"HardwareSerial.h"
+	<string.h>
+	<stdlib.h>
+
+1466314079 /opt/arduino-1.6.11/libraries/Firmata/Firmata.h
+	"Boards.h"
+
+1466314079 /opt/arduino-1.6.11/libraries/Firmata/Boards.h
+	<inttypes.h>
+	"Arduino.h"
+	"WProgram.h"
+
+1471452059 /opt/arduino-1.6.11/libraries/LiquidCrystal/src/LiquidCrystal.cpp
+	"LiquidCrystal.h"
+	<stdio.h>
+	<string.h>
+	<inttypes.h>
+	"Arduino.h"
+
+1503320168 source:/home/caudanie/src/Arduino/aWXIrons/sketch.cpp
+	<Arduino.h>
+	<src/LiquidCrystal.h>
+	"aDSEngine.h"
+	<HardwareSerial0.cpp>
+
+1471452054 /opt/arduino-1.6.11/hardware/arduino/avr/cores/arduino/HardwareSerial0.cpp
+	"Arduino.h"
+	"HardwareSerial.h"
+	"HardwareSerial_private.h"
+

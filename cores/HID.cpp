@@ -1,3 +1,3 @@
 /* Stub for HID.cpp */
 
-#include <HID.cpp>
+#include <src/HID.cpp>

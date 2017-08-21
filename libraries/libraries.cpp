@@ -4,7 +4,7 @@
 #include "TimerOne.cpp"
 
 #if USE_EEPROM
-#include "EEPROM.cpp"
+//#include "src/EEPROM.cpp"
 #endif
 
 #if USE_ETHERNET
@@ -19,7 +19,7 @@
 #endif
 
 #if USE_LCD
-#include "LiquidCrystal.cpp"
+#include "src/LiquidCrystal.cpp"
 #endif
 
 #if USE_LCD4884

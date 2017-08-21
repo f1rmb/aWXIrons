@@ -391,28 +391,32 @@
 				<Option type="1" />
 				<Option compiler="avr-gcc" />
 				<Compiler>
+					<Add option="-Os" />
 					<Add option="-mmcu=$(MCU)" />
 					<Add option="-D__AVR_ATmega328P__" />
-					<Add option="-Os" />
 					<Add option="-DF_CPU=$(CPU_FREQ)" />
 					<Add option="-DCODE_BLOCKS" />
-					<Add directory="$(ARDUINO_DIR)/hardware/arduino/cores/arduino" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/avr/cores/arduino" />
 					<Add directory="$(ARDUINO_DIR)/libraries" />
 					<Add directory="$(SKETCH_DIR)/hardware/attiny/variants/standard" />
-					<Add directory="$(ARDUINO_DIR)/hardware/arduino/variants/standard" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/avr/variants/standard" />
 					<Add directory="$(SKETCH_DIR)/libraries" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/avr/libraries" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/avr/libraries/EEPROM" />
+					<Add directory="$(ARDUINO_DIR)/hardware/arduino/avr/libraries/HID" />
 				</Compiler>
 				<Linker>
-					<Add option="-mmcu=$(MCU)" />
 					<Add option="-s" />
+					<Add option="-mmcu=$(MCU)" />
 				</Linker>
 				<ExtraCommands>
 					<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
 					<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
-					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+					<Add after="##avr-size -A $(TARGET_OUTPUT_FILE) &gt;&gt; $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt; python $(HOME)/CodeBlocksArduino/helpers/test_avr_size.py -f $(HOME)/CodeBlocksArduino/helpers/avrsize_dump.txt -m $(MAX_SIZE) -s $(MAX_SRAM)" />
+					<Add after="avr-size -A $(TARGET_OUTPUT_FILE) -t" />
 				</ExtraCommands>
 				<Environment>
-					<Variable name="ARDUINO_DIR" value="$(HOME)/CodeBlocksArduino/arduino" />
+					<Variable name="ARDUINO_DIR" value="/opt/arduino" />
 					<Variable name="BOARD" value="Arduino Uno" />
 					<Variable name="CPU_FREQ" value="16000000L" />
 					<Variable name="MAX_SIZE" value="32256" />
